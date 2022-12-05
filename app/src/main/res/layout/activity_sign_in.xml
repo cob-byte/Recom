@@ -4,26 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
     tools:context=".SignIn">
 
     <ImageView
-        android:id="@+id/ivimage"
-        android:layout_width="946dp"
-        android:layout_height="646dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/gradient_bg"
-        tools:layout_editor_absoluteX="-372dp"
-        tools:layout_editor_absoluteY="-328dp"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
         android:id="@+id/image"
-        android:layout_width="946dp"
-        android:layout_height="646dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:scaleType="centerCrop"
         android:src="@drawable/signin_design"
-        tools:layout_editor_absoluteX="-268dp"
-        tools:layout_editor_absoluteY="127dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sgn"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -31,15 +25,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SIGN-IN"
-        android:textStyle="bold"
         android:textColor="@color/blue"
         android:textSize="48sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="0.073" />
 
     <TextView
         android:id="@+id/wback"
@@ -52,25 +46,24 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.263" />
+        app:layout_constraintVertical_bias="0.262" />
 
     <TextView
         android:id="@+id/wback2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello there, sign-in to continue"
-        android:textStyle="italic"
-        android:textSize="18sp"
         android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.311" />
 
     <TextView
         android:id="@+id/wback5"
@@ -78,28 +71,28 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:text="Forgot password?"
-        android:textSize="18sp"
         android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintHorizontal_bias="0.779"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.684" />
 
     <TextView
         android:id="@+id/wback3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="18sp"
         android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.449" />
+        app:layout_constraintVertical_bias="0.442" />
 
     <TextView
         android:id="@+id/wback4"
@@ -113,7 +106,7 @@
         app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.579" />
+        app:layout_constraintVertical_bias="0.568" />
 
     <EditText
         android:id="@+id/usrname"
