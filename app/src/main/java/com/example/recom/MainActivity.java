@@ -14,7 +14,7 @@ import me.relex.circleindicator.CircleIndicator3;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button signinbutton;
+    Button signinbutton, signupbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +26,22 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         signinbutton = (Button) findViewById(R.id.signinbutton);
+        signupbutton = (Button) findViewById(R.id.signupbutton);
+
 
         signinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signin = new Intent(getApplicationContext(), SignIn.class);
                 startActivity(signin);
+            }
+        });
+
+        signupbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signup = new Intent(getApplicationContext(), Registration.class);
+                startActivity(signup);
             }
         });
 
