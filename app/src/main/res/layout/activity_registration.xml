@@ -69,7 +69,7 @@
         tools:layout_editor_absoluteY="538dp" />
 
     <EditText
-        android:id="@+id/phonenum5"
+        android:id="@+id/phonenum2"
         android:layout_width="279dp"
         android:layout_height="32dp"
         android:background="@drawable/editbox"
@@ -199,7 +199,7 @@
         tools:layout_editor_absoluteY="466dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_back"
         android:layout_width="71dp"
         android:layout_height="36dp"
         android:text="Back"
