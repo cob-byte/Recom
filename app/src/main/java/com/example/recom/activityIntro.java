@@ -68,9 +68,11 @@ public class activityIntro extends AppCompatActivity {
         // fill list screen
 
         final List<itemIntro> iList = new ArrayList<>();
-        iList.add(new itemIntro("Fresh Food","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.a));
-        iList.add(new itemIntro("Fast Delivery","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.b));
-        iList.add(new itemIntro("Easy Payment","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.c));
+        iList.add(new itemIntro("WELCOME!","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.tararecomlogo));
+        iList.add(new itemIntro("Community Consensus","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.cc));
+        iList.add(new itemIntro("Pasuyo","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.pasuyo));
+        iList.add(new itemIntro("Safe Me!","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.safeme));
+        iList.add(new itemIntro("Pa-Sched","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.pasched));
 
         // setup viewpager
         screenPager = findViewById(R.id.screen_viewpager);
@@ -105,8 +107,6 @@ public class activityIntro extends AppCompatActivity {
 
                 }
 
-
-
             }
         });
 
@@ -121,6 +121,15 @@ public class activityIntro extends AppCompatActivity {
 
                     loaddLastScreen();
 
+                }
+
+                if (tab.getPosition() < iList.size()-1 && btnGetStarted.getVisibility() == View.VISIBLE){
+                    btnNext.setVisibility(View.VISIBLE);
+                    btnGetStarted.setVisibility(View.INVISIBLE);
+                    tvSkip.setVisibility(View.VISIBLE);
+                    tabIndicator.setVisibility(View.VISIBLE);
+
+                    btnNext.setAnimation(btnAnim);
                 }
 
 
