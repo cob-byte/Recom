@@ -8,27 +8,16 @@
     tools:context=".SignIn">
 
     <ImageView
-        android:id="@+id/ivimage"
-        android:layout_width="946dp"
-        android:layout_height="646dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-372dp"
-        tools:layout_editor_absoluteY="-328dp" />
-
-    <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:scaleType="centerCrop"
         android:src="@drawable/signin_design"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/Sgn"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -41,10 +30,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.073" />
 
     <TextView
         android:id="@+id/wback"
@@ -124,12 +113,12 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/border"
-        android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:ems="14"
         android:hint="Type your username"
         android:inputType="textPersonName"
         android:textColor="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,10 +129,10 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/border"
-        android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:ems="14"
         android:hint="Type your password"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -156,9 +145,9 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/click_sign_color"
         android:text="Sign- in"
         android:textColor="@color/black"
+        android:backgroundTint="@color/click_sign_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
