@@ -20,6 +20,18 @@
         app:layout_constraintTop_toBottomOf="@+id/Sgn"
         tools:ignore="MissingConstraints" />
 
+    <ImageView
+        android:id="@+id/pwd_showhide"
+        android:layout_width="38dp"
+        android:layout_height="40dp"
+        android:focusable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.628" />
+
     <TextView
         android:id="@+id/Sgn"
         android:layout_width="wrap_content"
@@ -143,7 +155,6 @@
 
     <Button
         android:id="@+id/btnsignin"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign- in"
