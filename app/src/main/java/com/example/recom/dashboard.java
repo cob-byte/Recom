@@ -1,6 +1,9 @@
 package com.example.recom;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
@@ -8,62 +11,49 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.recom.databinding.ActivityDashboardBinding;
+import com.example.recom.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class dashboard extends AppCompatActivity {
-
-    private Button tempsignout;
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    private ViewPager2 viewPager2;
-    private ArrayList<wList> pagerArrayList;
+    private ActivityDashboardBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        binding = ActivityDashboardBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        replaceFragment(new Home());
 
-        tempsignout = findViewById(R.id.signouttemp);
-        viewPager2 = findViewById(R.id.view_pager2);
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-        tempsignout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                startActivity(new Intent(dashboard.this, MainActivity.class));
-                finish();
+            switch (item.getItemId()){
+                case R.id.home:
+                    replaceFragment(new Home());
+                    break;
+                case R.id.inbox:
+                    replaceFragment(new Profile());
+                    break;
+                case R.id.about:
+                    replaceFragment(new About());
+                    break;
+                case R.id.profile:
+                    replaceFragment(new Profile());
+                    break;
             }
+
+            return true;
         });
+    }
 
-        int[] images = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e};
-        String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
-        String[] desc = {getString(R.string.a_desc),
-                getString(R.string.b_desc),
-                getString(R.string.c_desc),
-                getString(R.string.d_desc)
-                ,getString(R.string.e_desc)};
-
-        pagerArrayList = new ArrayList<>();
-
-        for (int i =0; i< images.length ; i++){
-
-            wList viewPagerItem = new wList(images[i],heading[i],desc[i]);
-            pagerArrayList.add(viewPagerItem);
-
-        }
-
-        viewPagerAdapter viewPagerAdapter = new viewPagerAdapter(pagerArrayList);
-
-        viewPager2.setAdapter(viewPagerAdapter);
-
-        viewPager2.setClipToPadding(false);
-
-        viewPager2.setClipChildren(false);
-
-        viewPager2.setOffscreenPageLimit(2);
-
-        viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 }
