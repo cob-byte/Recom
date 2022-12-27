@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import com.example.recom.databinding.ActivityDashboardBinding;
+import com.example.recom.databinding.ActivityIntroBinding;
+import com.example.recom.databinding.IntroLayoutBinding;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import android.view.View;
@@ -20,53 +24,37 @@ import java.util.List;
 
 public class activityIntro extends AppCompatActivity {
 
-    private ViewPager screenPager;
-    introPagerAdapter IntroPagerAdapter;
-    TabLayout tabIndicator;
-    Button btnNext;
-    int position = 0 ;
-    Button btnGetStarted;
-    Animation btnAnim ;
-    TextView tvSkip;
+    private ActivityIntroBinding binding;
+    private introPagerAdapter IntroPagerAdapter;
+    private int position = 0 ;
+    private Animation btnAnim ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
+        binding = ActivityIntroBinding.inflate(getLayoutInflater());
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(binding.getRoot());
 
         // make the activity on full screen
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        // when this activity is about to be launch we need to check if its openened before or not
-
+        // when this activity is about to be launch we need to check if its opened before or not
         if (restorePrefData()) {
-
             Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
             startActivity(mainActivity);
             finish();
-
-
         }
 
-        setContentView(R.layout.activity_intro);
-
         // hide the action bar
-
         getSupportActionBar().hide();
 
-        // ini views
-        btnNext = findViewById(R.id.btn_next);
-        btnGetStarted = findViewById(R.id.btn_get_started);
-        tabIndicator = findViewById(R.id.tab_indicator);
+        // anim
         btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_animation);
-        tvSkip = findViewById(R.id.tv_skip);
 
         // fill list screen
-
         final List<itemIntro> iList = new ArrayList<>();
         iList.add(new itemIntro("WELCOME!","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.tararecomlogo));
         iList.add(new itemIntro("Community Consensus","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.cc));
@@ -75,61 +63,53 @@ public class activityIntro extends AppCompatActivity {
         iList.add(new itemIntro("Pa-Sched","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.pasched));
 
         // setup viewpager
-        screenPager = findViewById(R.id.screen_viewpager);
         IntroPagerAdapter = new introPagerAdapter(this,iList);
-        screenPager.setAdapter(IntroPagerAdapter);
+        binding.sViewpager.setAdapter(IntroPagerAdapter);
 
         // setup tablayout with viewpager
+        binding.tIndicator.setupWithViewPager(binding.sViewpager);
 
-        tabIndicator.setupWithViewPager(screenPager);
+        // next button click Listener
 
-        // next button click Listner
-
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        binding.next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                position = screenPager.getCurrentItem();
+                position = binding.sViewpager.getCurrentItem();
                 if (position < iList.size()) {
 
                     position++;
-                    screenPager.setCurrentItem(position);
+                    binding.sViewpager.setCurrentItem(position);
 
 
                 }
 
-                if (position == iList.size()-1) { // when we rech to the last screen
-
-                    // TODO : show the GETSTARTED Button and hide the indicator and the next button
-
-                    loaddLastScreen();
-
-
+                if (position == iList.size()-1) { // when we reach to the last screen
+                    //show the GETSTARTED Button and hide the indicator and the next button
+                    loadLastScreen();
                 }
 
             }
         });
 
         // tablayout add change listener
-
-
-        tabIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        binding.tIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
                 if (tab.getPosition() == iList.size()-1) {
 
-                    loaddLastScreen();
+                    loadLastScreen();
 
                 }
 
-                if (tab.getPosition() < iList.size()-1 && btnGetStarted.getVisibility() == View.VISIBLE){
-                    btnNext.setVisibility(View.VISIBLE);
-                    btnGetStarted.setVisibility(View.INVISIBLE);
-                    tvSkip.setVisibility(View.VISIBLE);
-                    tabIndicator.setVisibility(View.VISIBLE);
+                if (tab.getPosition() < iList.size()-1 && binding.gStarted.getVisibility() == View.VISIBLE){
+                    binding.next.setVisibility(View.VISIBLE);
+                    binding.gStarted.setVisibility(View.INVISIBLE);
+                    binding.skip.setVisibility(View.VISIBLE);
+                    binding.tIndicator.setVisibility(View.VISIBLE);
 
-                    btnNext.setAnimation(btnAnim);
+                    binding.next.setAnimation(btnAnim);
                 }
 
 
@@ -150,11 +130,9 @@ public class activityIntro extends AppCompatActivity {
 
         // Get Started button click listener
 
-        btnGetStarted.setOnClickListener(new View.OnClickListener() {
+        binding.gStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 //open main activity
 
                 Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
@@ -164,18 +142,15 @@ public class activityIntro extends AppCompatActivity {
                 // i'm going to use shared preferences to that process
                 savePrefsData();
                 finish();
-
-
-
             }
         });
 
         // skip button click listener
 
-        tvSkip.setOnClickListener(new View.OnClickListener() {
+        binding.skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                screenPager.setCurrentItem(iList.size());
+                binding.sViewpager.setCurrentItem(iList.size());
             }
         });
 
@@ -184,38 +159,26 @@ public class activityIntro extends AppCompatActivity {
     }
 
     private boolean restorePrefData() {
-
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
-        return  isIntroActivityOpnendBefore;
-
-
-
+        Boolean isIntroActivityOpenedBefore = pref.getBoolean("isIntroOpened",false);
+        return  isIntroActivityOpenedBefore;
     }
 
     private void savePrefsData() {
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isIntroOpnend",true);
+        editor.putBoolean("isIntroOpened",true);
         editor.commit();
-
-
     }
 
     // show the GETSTARTED Button and hide the indicator and the next button
-    private void loaddLastScreen() {
-
-        btnNext.setVisibility(View.INVISIBLE);
-        btnGetStarted.setVisibility(View.VISIBLE);
-        tvSkip.setVisibility(View.INVISIBLE);
-        tabIndicator.setVisibility(View.INVISIBLE);
+    private void loadLastScreen() {
+        binding.next.setVisibility(View.INVISIBLE);
+        binding.gStarted.setVisibility(View.VISIBLE);
+        binding.skip.setVisibility(View.INVISIBLE);
+        binding.tIndicator.setVisibility(View.INVISIBLE);
         // TODO : ADD an animation the getstarted button
         // setup animation
-        btnGetStarted.setAnimation(btnAnim);
-
-
-
+        binding.gStarted.setAnimation(btnAnim);
     }
 }

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.recom.databinding.ActivitySignInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -29,65 +30,59 @@ import com.google.firebase.auth.FirebaseUser;
 import org.w3c.dom.Text;
 
 public class SignIn extends AppCompatActivity {
-    private TextView email, password;
-    private ImageView pwdshowhide;
-    private Button signin;
+    private ActivitySignInBinding binding;
     private FirebaseAuth mAuth;
     private static final String TAG = "Registration";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.txtpassword);
-        signin = findViewById(R.id.btnsignin);
+        binding = ActivitySignInBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //show/hide password
-        pwdshowhide = findViewById(R.id.pwd_showhide);
-        pwdshowhide.setImageResource(R.drawable.hide_pwd);
-        pwdshowhide.setOnClickListener(new View.OnClickListener() {
+        binding.pwdShowHide.setImageResource(R.drawable.hide_pwd);
+        binding.pwdShowHide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(password.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                if(binding.txtpassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
                     //then hide it
-                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    binding.txtpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     //change icon
-                    pwdshowhide.setImageResource(R.drawable.hide_pwd);
+                    binding.pwdShowHide.setImageResource(R.drawable.hide_pwd);
                 }
                 else{
-                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    pwdshowhide.setImageResource(R.drawable.show_pwd);
+                    binding.txtpassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    binding.pwdShowHide.setImageResource(R.drawable.show_pwd);
                 }
             }
         });
 
-        signin.setOnClickListener(new View.OnClickListener() {
+        binding.btnsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Email = email.getText().toString();
-                String Password = password.getText().toString();
+                String Email = binding.txtemail.getText().toString();
+                String Password = binding.txtpassword.getText().toString();
 
                 if (Email.isEmpty()){
                     Toast.makeText(SignIn.this, "Please enter your email address.", Toast.LENGTH_LONG).show();
-                    email.setError("Email address is required.");
-                    email.requestFocus();
+                    binding.txtemail.setError("Email address is required.");
+                    binding.txtemail.requestFocus();
                 }
                 else if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
                     Toast.makeText(SignIn.this, "Please re-enter your email address.", Toast.LENGTH_LONG).show();
-                    email.setError("Valid email address is required.");
-                    email.requestFocus();
+                    binding.txtemail.setError("Valid email address is required.");
+                    binding.txtemail.requestFocus();
                 }
                 else if(Password.isEmpty()){
                     Toast.makeText(SignIn.this, "Please enter your password.", Toast.LENGTH_LONG).show();
-                    email.setError("Password is required.");
-                    email.requestFocus();
+                    binding.txtemail.setError("Password is required.");
+                    binding.txtemail.requestFocus();
                 }
                 else if(Password.length() < 6){
                     Toast.makeText(SignIn.this, "Please re-enter your password.", Toast.LENGTH_LONG).show();
-                    email.setError("Valid password is required.");
-                    email.requestFocus();
+                    binding.txtemail.setError("Valid password is required.");
+                    binding.txtemail.requestFocus();
                 }
                 else {
                     signIn(Email, Password);
@@ -126,12 +121,12 @@ public class SignIn extends AppCompatActivity {
                         throw task.getException();
                     }
                     catch (FirebaseAuthInvalidCredentialsException e){
-                        email.setError("Invalid credentials. Please check and re-enter.");
-                        email.requestFocus();
+                        binding.txtemail.setError("Invalid credentials. Please check and re-enter.");
+                        binding.txtemail.requestFocus();
                     }
                     catch (FirebaseAuthInvalidUserException e){
-                        email.setError("User does not exists or is no longer valid. Please register again.");
-                        email.requestFocus();
+                        binding.txtemail.setError("User does not exists or is no longer valid. Please register again.");
+                        binding.txtemail.requestFocus();
                     }
                     catch (Exception e){
                         Log.e(TAG, e.getMessage());

@@ -41,8 +41,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Registration extends AppCompatActivity {
+    private ActivityRegistrationBinding binding;
     private TextView fname, mname, lname, emailadd, phonenum, dobirth, pass, cpass;
-    private RadioGroup registerGender;
     private RadioButton selectedGender;
     private Button btn_signup, btn_back;
     private DatabaseReference reference;
@@ -52,24 +52,15 @@ public class Registration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
 
-        fname = findViewById(R.id.Fname);
-        mname = findViewById(R.id.Mname);
-        lname = findViewById(R.id.Lname);
-        emailadd = findViewById(R.id.emailadd);
-        phonenum = findViewById(R.id.phonenum);
-        dobirth = findViewById(R.id.dateofbirth);
-        pass = findViewById(R.id.password);
-        cpass = findViewById(R.id.cpassword);
-
         //Gender
-        registerGender = findViewById(R.id.registerGender);
-        registerGender.clearCheck();
+        binding.registerGender.clearCheck();
 
-        dobirth.setOnClickListener(new View.OnClickListener() {
+        binding.dateofbirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar calendar = Calendar.getInstance();
@@ -81,27 +72,26 @@ public class Registration extends AppCompatActivity {
                 picker = new DatePickerDialog(Registration.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        dobirth.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                        binding.dateofbirth.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                     }
                 }, year, month, day);
                 picker.show();
             }
         });
 
-        btn_signup = findViewById(R.id.btn_signup);
-        btn_signup.setOnClickListener(new View.OnClickListener() {
+        binding.btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int selectedGenderID = registerGender.getCheckedRadioButtonId();
+                int selectedGenderID = binding.registerGender.getCheckedRadioButtonId();
                 selectedGender = findViewById(selectedGenderID);
-                String Fname = fname.getText().toString();
-                String Mname = mname.getText().toString();
-                String Lname = lname.getText().toString();
-                String email = emailadd.getText().toString();
-                String phone = phonenum.getText().toString();
-                String birth = dobirth.getText().toString();
-                String password = pass.getText().toString();
-                String cpassword = cpass.getText().toString();
+                String Fname = binding.Fname.getText().toString();
+                String Mname = binding.Mname.getText().toString();
+                String Lname = binding.Lname.getText().toString();
+                String email = binding.emailadd.getText().toString();
+                String phone = binding.phonenum.getText().toString();
+                String birth = binding.dateofbirth.getText().toString();
+                String password = binding.password.getText().toString();
+                String cpassword = binding.cpassword.getText().toString();
                 String gender;
 
                 //check mobile number
@@ -112,76 +102,76 @@ public class Registration extends AppCompatActivity {
 
                 if(Fname.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your first name.", Toast.LENGTH_LONG).show();
-                    fname.setError("First name is required.");
-                    fname.requestFocus();
+                    binding.Fname.setError("First name is required.");
+                    binding.Fname.requestFocus();
                 }
                 else if(Mname.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your middle name.", Toast.LENGTH_LONG).show();
-                    mname.setError("Middle name is required.");
-                    mname.requestFocus();
+                    binding.Mname.setError("Middle name is required.");
+                    binding.Mname.requestFocus();
                 }
                 else if(Lname.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your last name.", Toast.LENGTH_LONG).show();
-                    lname.setError("Last name is required.");
-                    lname.requestFocus();
+                    binding.Lname.setError("Last name is required.");
+                    binding.Lname.requestFocus();
                 }
                 else if(email.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your email.", Toast.LENGTH_LONG).show();
-                    emailadd.setError("Email address is required.");
-                    emailadd.requestFocus();
+                    binding.emailadd.setError("Email address is required.");
+                    binding.emailadd.requestFocus();
                 }
                 else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     Toast.makeText(Registration.this, "Please re-enter your email address.", Toast.LENGTH_LONG).show();
-                    emailadd.setError("Valid email address is required.");
-                    emailadd.requestFocus();
+                    binding.emailadd.setError("Valid email address is required.");
+                    binding.emailadd.requestFocus();
                 }
                 else if(phone.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your phone number.", Toast.LENGTH_LONG).show();
-                    phonenum.setError("Phone number is required.");
-                    phonenum.requestFocus();
+                    binding.phonenum.setError("Phone number is required.");
+                    binding.phonenum.requestFocus();
                 }
                 else if(phone.length() != 11){
                     Toast.makeText(Registration.this, "Please re-enter your phone number.", Toast.LENGTH_LONG).show();
-                    phonenum.setError("Phone number must be 11 digits.");
-                    phonenum.requestFocus();
+                    binding.phonenum.setError("Phone number must be 11 digits.");
+                    binding.phonenum.requestFocus();
                 }
                 else if(!matcher.find()){
                     Toast.makeText(Registration.this, "Please re-enter your phone number.", Toast.LENGTH_LONG).show();
-                    phonenum.setError("Mobile no. is not valid.");
-                    phonenum.requestFocus();
+                    binding.phonenum.setError("Mobile no. is not valid.");
+                    binding.phonenum.requestFocus();
                 }
                 else if(birth.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your date of birth.", Toast.LENGTH_LONG).show();
                     dobirth.setError("Date of birth is required.");
                     dobirth.requestFocus();
                 }
-                else if(registerGender.getCheckedRadioButtonId() == -1){
+                else if(binding.registerGender.getCheckedRadioButtonId() == -1){
                     Toast.makeText(Registration.this, "Please select your gender.", Toast.LENGTH_LONG).show();
                     selectedGender.setError("Gender is required.");
                     selectedGender.requestFocus();
                 }
                 else if(password.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your password.", Toast.LENGTH_LONG).show();
-                    pass.setError("Password is required.");
-                    pass.requestFocus();
+                    binding.password.setError("Password is required.");
+                    binding.password.requestFocus();
                 }
                 else if(cpassword.isEmpty()){
                     Toast.makeText(Registration.this, "Please confirm your password.", Toast.LENGTH_LONG).show();
-                    cpass.setError("Password confirmation is required.");
-                    cpass.requestFocus();
+                    binding.cpassword.setError("Password confirmation is required.");
+                    binding.cpassword.requestFocus();
                 }
                 else if(password.length() < 6){
                     Toast.makeText(Registration.this, "Password should be at least 6 digits", Toast.LENGTH_LONG).show();
-                    pass.setError("Password is too weak");
-                    pass.requestFocus();
+                    binding.password.setError("Password is too weak");
+                    binding.password.requestFocus();
                 }
                 else if(!password.equals(cpassword)){
                     Toast.makeText(Registration.this, "Please re-enter your password.", Toast.LENGTH_LONG).show();
-                    cpass.setError("Password doesn't match.");
-                    cpass.requestFocus();
+                    binding.cpassword.setError("Password doesn't match.");
+                    binding.cpassword.requestFocus();
                     //clear
-                    pass.clearComposingText();
-                    cpass.clearComposingText();
+                    binding.password.clearComposingText();
+                    binding.cpassword.clearComposingText();
                 }
                 else{
                     gender = selectedGender.getText().toString();
@@ -191,8 +181,7 @@ public class Registration extends AppCompatActivity {
             }
         });
 
-        btn_back = findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent back = new Intent(Registration.this, MainActivity.class);
@@ -216,19 +205,13 @@ public class Registration extends AppCompatActivity {
                     UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(Fullname).build();
                     user.updateProfile(profileChangeRequest);
 
-                    //store other details to hashmap
-                    HashMap createdUser = new HashMap();
-                    createdUser.put("fname", fname);
-                    createdUser.put("mname", mname);
-                    createdUser.put("lname", lname);
-                    createdUser.put("phone", phone);
-                    createdUser.put("birthday", birth);
-                    createdUser.put("gender", gender);
+                    //call user java
+                    User newUser = new User(fname, mname, lname, phone, birth, gender);
 
 
                     //store data in database
                     reference = db.getReference("Users");
-                    reference.child(user.getUid()).setValue(createdUser).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
+                    reference.child(user.getUid()).setValue(newUser).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
@@ -239,7 +222,7 @@ public class Registration extends AppCompatActivity {
 
                                 //continue
                                 Intent login = new Intent(Registration.this, SignIn.class);
-                                login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                login.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(login);
                                 finish();
                             }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.recom.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,22 +19,18 @@ import me.relex.circleindicator.CircleIndicator3;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button signinbutton, signupbutton;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // hide the action bar
-
         getSupportActionBar().hide();
 
-        signinbutton = (Button) findViewById(R.id.signinbutton);
-        signupbutton = (Button) findViewById(R.id.signupbutton);
-
-
-        signinbutton.setOnClickListener(new View.OnClickListener() {
+        binding.signinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signin = new Intent(getApplicationContext(), SignIn.class);
@@ -41,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        signupbutton.setOnClickListener(new View.OnClickListener() {
+        binding.signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signup = new Intent(getApplicationContext(), Registration.class);

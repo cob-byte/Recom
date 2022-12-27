@@ -21,7 +21,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/pwd_showhide"
+        android:id="@+id/pwdShowHide"
         android:layout_width="38dp"
         android:layout_height="40dp"
         android:focusable="false"
@@ -121,15 +121,17 @@
         app:layout_constraintVertical_bias="0.568" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/txtemail"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/border"
         android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="5dp"
         android:ems="14"
         android:hint="Type your email"
         android:inputType="textEmailAddress"
+        android:paddingStart="8dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -143,9 +145,11 @@
         android:background="@drawable/border"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="5dp"
         android:ems="14"
         android:hint="Type your password"
         android:inputType="textPassword"
+        android:paddingStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
