@@ -29,6 +29,8 @@
                 android:layout_width="71dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="4dp"
+                android:backgroundTint="@color/gray"
+                android:background="@android:color/transparent"
                 android:text="Back"
                 android:textSize="12sp" />
 
@@ -85,7 +87,9 @@
                 android:backgroundTint="#FFFFFF"
                 android:ems="10"
                 android:hint="First Name"
+                android:textColorHint="@color/gray"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="10dp"
@@ -102,7 +106,9 @@
                 android:backgroundTint="#FFFFFF"
                 android:ems="10"
                 android:hint="Middle Name"
+                android:textColorHint="@color/gray"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="10dp"
@@ -118,8 +124,10 @@
                 android:background="@drawable/editbox"
                 android:backgroundTint="#FFFFFF"
                 android:ems="10"
+                android:textColorHint="@color/gray"
                 android:hint="Last Name"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="10dp"
@@ -147,6 +155,8 @@
                 android:backgroundTint="#FFFFFF"
                 android:ems="10"
                 android:hint="Type your e-mail address"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
@@ -175,8 +185,10 @@
                 android:backgroundTint="#FFFFFF"
                 android:ems="10"
                 android:hint="XXXX-XXXX-XXX"
+                android:textColorHint="@color/gray"
                 android:inputType="phone"
                 android:paddingLeft="20dp"
+                android:textColor="@color/black"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingRight="10dp"
@@ -227,6 +239,8 @@
                     android:backgroundTint="#FFFFFF"
                     android:ems="10"
                     android:focusable="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:hint="Select your date of birth (dd/mm/yyyy)"
                     android:inputType="date"
                     android:paddingLeft="18dp"
@@ -301,6 +315,8 @@
                     android:backgroundTint="#FFFFFF"
                     android:ems="10"
                     android:hint="Type your password"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/black"
                     android:inputType="textPassword"
                     android:paddingLeft="18dp"
                     android:textSize="12sp" />
@@ -317,7 +333,9 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/editbox"
                     android:backgroundTint="#FFFFFF"
+                    android:textColor="@color/black"
                     android:ems="10"
+                    android:textColorHint="@color/gray"
                     android:hint="Type your password"
                     android:inputType="textPassword"
                     android:paddingLeft="18dp"
@@ -327,6 +345,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
@@ -336,13 +355,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-            <Button
-                android:id="@+id/btn_signup"
-                android:layout_width="96dp"
-                android:layout_height="35dp"
-                android:background="@drawable/editbox"
-                android:text="Sign-Up"
-                android:textSize="12sp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="96dp"
+            android:layout_height="35dp"
+            android:background="@drawable/editbox"
+
+            android:text="Sign-Up"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

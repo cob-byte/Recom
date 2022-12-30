@@ -20,18 +20,6 @@
         app:layout_constraintTop_toBottomOf="@+id/Sgn"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/pwdShowHide"
-        android:layout_width="38dp"
-        android:layout_height="40dp"
-        android:focusable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628" />
-
     <TextView
         android:id="@+id/Sgn"
         android:layout_width="wrap_content"
@@ -78,11 +66,12 @@
         app:layout_constraintVertical_bias="0.311" />
 
     <TextView
-        android:id="@+id/wback5"
+        android:id="@+id/forgotpass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:text="Forgot password?"
+        android:onClick="onClick"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,12 +113,13 @@
         android:id="@+id/txtemail"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:background="@drawable/border"
+        android:background="@drawable/editbox"
         android:backgroundTint="@color/white"
+        android:textColorHint="@color/gray"
+        android:hint="Type your email"
         android:drawableLeft="@drawable/ic_baseline_email_24"
         android:drawablePadding="5dp"
         android:ems="14"
-        android:hint="Type your email"
         android:inputType="textEmailAddress"
         android:paddingStart="8dp"
         android:textColor="@color/black"
@@ -142,12 +132,14 @@
         android:id="@+id/txtpassword"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:background="@drawable/border"
+        android:background="@drawable/editbox"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="5dp"
         android:ems="14"
+        android:textColorHint="@color/gray"
         android:hint="Type your password"
+        android:textColor="@color/black"
         android:inputType="textPassword"
         android:paddingStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -162,7 +154,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign- in"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:backgroundTint="@color/click_sign_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -171,4 +164,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.808" />
 
+    <ImageView
+        android:id="@+id/pwdShowHide"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:focusable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.628" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="71dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:text="Back"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

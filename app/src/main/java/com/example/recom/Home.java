@@ -47,7 +47,7 @@ public class Home extends Fragment {
             }
         });
 
-        int[] images = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e};
+        int[] images = {R.drawable.pasuyo,R.drawable.pasched,R.drawable.cc,R.drawable.safeme,R.drawable.tararecomlogo};
         String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
         String[] desc = {getString(R.string.a_desc),
                 getString(R.string.b_desc),

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="570dp"
+        android:layout_height="950dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/forgot_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/des"
+        android:layout_width="339dp"
+        android:layout_height="344dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="496dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/design"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="71dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:text="Back"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/rec"
+        android:layout_width="380dp"
+        android:layout_height="291dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tararecomlogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.564"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/prof"
+        android:layout_width="358dp"
+        android:layout_height="617dp"
+        android:alpha=".9"
+        android:scaleType="centerCrop"
+        android:src="@drawable/forgot_bg2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.754"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/Sgn"
+        android:layout_width="199dp"
+        android:layout_height="91dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Forgot Password"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
+
+    <EditText
+        android:id="@+id/emailtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/editbox"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="5dp"
+        android:ems="14"
+        android:hint="Type your email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.612" />
+
+    <TextView
+        android:id="@+id/ver_e"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Verify E-mail"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.759"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.336" />
+
+    <Button
+        android:id="@+id/btnconfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        android:text="Confirm E-mail"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.805" />
+
+    <TextView
+        android:id="@+id/wback5"
+        android:layout_width="271dp"
+        android:layout_height="69dp"
+        android:gravity="center_horizontal"
+        android:text="We've sent an email to reset your password.Please check your inbox. "
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.469" />
+
+    <ImageView
+        android:id="@+id/verif"
+        android:layout_width="126dp"
+        android:layout_height="122dp"
+        android:alpha=".7"
+        android:scaleType="centerCrop"
+        android:src="@drawable/verify_email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.295"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
