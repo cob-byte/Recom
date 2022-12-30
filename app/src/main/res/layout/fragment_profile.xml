@@ -1,315 +1,344 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Profile">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg"
+    android:fillViewport="true"
+    tools:context=".Registration">
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="413dp"
-        android:layout_height="169dp"
-        android:background="@drawable/cover_photo"
-        android:src="@drawable/top_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="375dp"
-        android:layout_height="587dp"
-        android:src="@drawable/white_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.993" />
+        <ImageView
+            android:id="@+id/text_background"
+            android:layout_width="417dp"
+            android:layout_height="737dp"
+            android:src="@drawable/white_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/top_background"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="248dp"
-        android:layout_height="341dp"
-        android:src="@drawable/profile_picture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.0" />
+        <ImageView
+            android:id="@+id/top_background"
+            android:layout_width="422dp"
+            android:layout_height="115dp"
+            android:background="@drawable/cover_photo"
+            android:src="@drawable/top_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="224dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Jaymark Asis"
-        android:textColor="#03045E"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="162dp"
+            android:layout_height="130dp"
+            android:src="@drawable/profile_picture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_background"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/top_background"
+            app:layout_constraintVertical_bias="0.091" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="jaymarkasis@gmail.com"
-        android:textColor="#03045E"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Jaymark Asis"
+            android:textColor="#03045E"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/top_background"
+            app:layout_constraintVertical_bias="0.26" />
 
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="354dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/text_place"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jaymarkasis@gmail.com"
+            android:textColor="#03045E"
+            app:layout_constraintBottom_toTopOf="@+id/placeholder1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="354dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/text_place"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        <ImageView
+            android:id="@+id/placeholder1"
+            android:layout_width="354dp"
+            android:layout_height="51dp"
+            android:layout_marginBottom="444dp"
+            android:src="@drawable/text_place"
+            app:layout_constraintBottom_toBottomOf="@+id/text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView18"
-        android:layout_width="354dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/text_place"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        <ImageView
+            android:id="@+id/placeholder2"
+            android:layout_width="354dp"
+            android:layout_height="51dp"
+            android:src="@drawable/text_place"
+            app:layout_constraintBottom_toBottomOf="@+id/text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeholder1"
+            app:layout_constraintVertical_bias="0.02" />
 
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="354dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/text_place"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+        <ImageView
+            android:id="@+id/placeholder3"
+            android:layout_width="354dp"
+            android:layout_height="51dp"
+            android:src="@drawable/text_place"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.467"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeholder2"
+            app:layout_constraintVertical_bias="0.027" />
 
-    <ImageView
-        android:id="@+id/imageView20"
-        android:layout_width="354dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/text_place"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+        <ImageView
+            android:id="@+id/placeholder4"
+            android:layout_width="354dp"
+            android:layout_height="51dp"
+            android:src="@drawable/text_place"
+            app:layout_constraintBottom_toBottomOf="@+id/text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.467"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeholder3"
+            app:layout_constraintVertical_bias="0.031" />
 
-    <ImageView
-        android:id="@+id/imageView21"
-        android:layout_width="354dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/text_place"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+        <ImageView
+            android:id="@+id/placeholder5"
+            android:layout_width="354dp"
+            android:layout_height="51dp"
+            android:src="@drawable/text_place"
+            app:layout_constraintBottom_toBottomOf="@+id/text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.467"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeholder4"
+            app:layout_constraintVertical_bias="0.037" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:text="Username"
-        android:textColor="#03045E"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.0" />
+        <ImageView
+            android:id="@+id/placeholder6"
+            android:layout_width="354dp"
+            android:layout_height="51dp"
+            android:src="@drawable/text_place"
+            app:layout_constraintBottom_toBottomOf="@+id/text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.467"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeholder5"
+            app:layout_constraintVertical_bias="0.061" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="jymrkasis02"
-        android:textColor="#03045E"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintHorizontal_bias="0.217"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/username1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:text="Username"
+            android:textColor="#03045E"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder1"
+            app:layout_constraintStart_toStartOf="@+id/placeholder1"
+            app:layout_constraintTop_toTopOf="@+id/placeholder1"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Full Name"
-        android:textColor="#0D0E64"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.182"
-        app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/username2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="15dp"
+            android:fontFamily="sans-serif-black"
+            android:text="jymrkasis02"
+            android:textColor="#03045E"
+            android:textSize="18sp"
+            app:drawableTint="#03045E"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder1"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder1"
+            app:layout_constraintHorizontal_bias="0.074"
+            app:layout_constraintStart_toStartOf="@+id/placeholder1"
+            app:layout_constraintTop_toBottomOf="@+id/username1"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Jaymark Asis"
-        android:textColor="#0D0E64"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.217"
-        app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/fullname1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full Name"
+            android:textColor="#0D0E64"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder2"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder2"
+            app:layout_constraintHorizontal_bias="0.182"
+            app:layout_constraintStart_toStartOf="@+id/placeholder2"
+            app:layout_constraintTop_toTopOf="@+id/placeholder2"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E-mail"
-        android:textColor="#0D0E64"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
-        app:layout_constraintEnd_toEndOf="@+id/imageView18"
-        app:layout_constraintHorizontal_bias="0.174"
-        app:layout_constraintStart_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toTopOf="@+id/imageView18"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/fullname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/userlogo"
+            android:drawablePadding="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Jaymark Asis"
+            android:textColor="#0D0E64"
+            android:textSize="18sp"
+            app:drawableTint="#03045E"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder2"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder2"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="@+id/placeholder2"
+            app:layout_constraintTop_toBottomOf="@+id/fullname1"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="jaymarkasis@gmail.com"
-        android:textColor="#0D0E64"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
-        app:layout_constraintEnd_toEndOf="@+id/imageView18"
-        app:layout_constraintHorizontal_bias="0.339"
-        app:layout_constraintStart_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/email1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-mail"
+            android:textColor="#0D0E64"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder3"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder3"
+            app:layout_constraintHorizontal_bias="0.174"
+            app:layout_constraintStart_toStartOf="@+id/placeholder3"
+            app:layout_constraintTop_toTopOf="@+id/placeholder3"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Birthdate"
-        android:textColor="#0D0E64"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
-        app:layout_constraintEnd_toEndOf="@+id/imageView19"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toTopOf="@+id/imageView19"
-        app:layout_constraintVertical_bias="0.125" />
+        <TextView
+            android:id="@+id/email2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="11dp"
+            android:fontFamily="sans-serif-black"
+            android:text="jaymarkasis@gmail.com"
+            android:textColor="#0D0E64"
+            android:textSize="18sp"
+            app:drawableTint="#03045E"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder3"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder3"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="@+id/placeholder3"
+            app:layout_constraintTop_toBottomOf="@+id/email1"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="November 02, 2001"
-        android:textColor="#0D0E64"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
-        app:layout_constraintEnd_toEndOf="@+id/imageView19"
-        app:layout_constraintHorizontal_bias="0.261"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/birthdate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birthdate"
+            android:textColor="#0D0E64"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder4"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder4"
+            app:layout_constraintHorizontal_bias="0.172"
+            app:layout_constraintStart_toStartOf="@+id/placeholder4"
+            app:layout_constraintTop_toTopOf="@+id/placeholder4"
+            app:layout_constraintVertical_bias="0.125" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:textColor="#0D0E64"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView20"
-        app:layout_constraintEnd_toEndOf="@+id/imageView20"
-        app:layout_constraintHorizontal_bias="0.178"
-        app:layout_constraintStart_toStartOf="@+id/imageView20"
-        app:layout_constraintTop_toTopOf="@+id/imageView20"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/birthdate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+            android:drawablePadding="11dp"
+            android:fontFamily="sans-serif-black"
+            android:text="November 02, 2001"
+            android:textColor="#0D0E64"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder4"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder4"
+            app:layout_constraintHorizontal_bias="0.112"
+            app:layout_constraintStart_toStartOf="@+id/placeholder4"
+            app:layout_constraintTop_toBottomOf="@+id/birthdate1"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="1445 Gagalangin, Tondo, Manila"
-        android:textColor="#0D0E64"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView20"
-        app:layout_constraintEnd_toEndOf="@+id/imageView20"
-        app:layout_constraintHorizontal_bias="0.569"
-        app:layout_constraintStart_toStartOf="@+id/imageView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/address1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textColor="#0D0E64"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder5"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder5"
+            app:layout_constraintHorizontal_bias="0.178"
+            app:layout_constraintStart_toStartOf="@+id/placeholder5"
+            app:layout_constraintTop_toTopOf="@+id/placeholder5"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Verification Status"
-        android:textColor="#0D0E64"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView21"
-        app:layout_constraintEnd_toEndOf="@+id/imageView21"
-        app:layout_constraintHorizontal_bias="0.225"
-        app:layout_constraintStart_toStartOf="@+id/imageView21"
-        app:layout_constraintTop_toTopOf="@+id/imageView21"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/address2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_place_24"
+            android:drawablePadding="11dp"
+            android:fontFamily="sans-serif-black"
+            android:text="1445 Gagalangin, Tondo, Manila"
+            android:textColor="#0D0E64"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder5"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder5"
+            app:layout_constraintHorizontal_bias="0.31"
+            app:layout_constraintStart_toStartOf="@+id/placeholder5"
+            app:layout_constraintTop_toBottomOf="@+id/address1"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Verified"
-        android:textColor="#0D0E64"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView21"
-        app:layout_constraintEnd_toEndOf="@+id/imageView21"
-        app:layout_constraintHorizontal_bias="0.186"
-        app:layout_constraintStart_toStartOf="@+id/imageView21"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/status1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verification Status"
+            android:textColor="#0D0E64"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder6"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder6"
+            app:layout_constraintHorizontal_bias="0.225"
+            app:layout_constraintStart_toStartOf="@+id/placeholder6"
+            app:layout_constraintTop_toTopOf="@+id/placeholder6"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#0D0E64"
-        android:text="Edit Profile"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/imageView9"
-        app:layout_constraintVertical_bias="0.972" />
+        <TextView
+            android:id="@+id/status2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_verified_user_24"
+            android:drawablePadding="11dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Verified"
+            android:textColor="#0D0E64"
+            android:textSize="18sp"
+            app:drawableTint="#03045E"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder6"
+            app:layout_constraintEnd_toEndOf="@+id/placeholder6"
+            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintStart_toStartOf="@+id/placeholder6"
+            app:layout_constraintTop_toBottomOf="@+id/status1"
+            app:layout_constraintVertical_bias="0.0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_editprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0D0E64"
+            android:text="Edit Profile"
+            app:layout_constraintBottom_toBottomOf="@+id/text_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeholder6"
+            app:layout_constraintVertical_bias="0.141" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
