@@ -333,6 +333,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#0D0E64"
             android:text="Edit Profile"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/text_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
