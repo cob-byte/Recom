@@ -48,6 +48,13 @@ public class Forgot_Activity extends AppCompatActivity {
                 }
             }
         });
+        binding.btnclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resetpass= new Intent(Forgot_Activity.this, SignIn.class);
+                startActivity(resetpass);
+            }
+        });
     }
 
     private void forgotpass(String email) {
@@ -58,12 +65,13 @@ public class Forgot_Activity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "Email Sent.");
-
+                    binding.bgExit.setVisibility(View.VISIBLE);
+                    binding.btnclose.setVisibility(View.VISIBLE);
+                    binding.confrimText.setVisibility(View.VISIBLE);
                 }
-                Intent resetpass= new Intent(Forgot_Activity.this, SignIn.class);
-                startActivity(resetpass);
             }
         });
+
     }
 }
 
