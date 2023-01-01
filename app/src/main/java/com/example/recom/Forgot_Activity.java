@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.example.recom.databinding.ActivityForgot2Binding;
@@ -19,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Forgot_Activity extends AppCompatActivity {
     private ActivityForgot2Binding binding;
+    private Animation btnAnim ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,9 @@ public class Forgot_Activity extends AppCompatActivity {
                 startActivity(resetpass);
             }
         });
+
+        btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_animation);
+
     }
 
     private void forgotpass(String email) {
@@ -65,9 +71,17 @@ public class Forgot_Activity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "Email Sent.");
+
+                    //to visible confirmation text
                     binding.bgExit.setVisibility(View.VISIBLE);
                     binding.btnclose.setVisibility(View.VISIBLE);
                     binding.confrimText.setVisibility(View.VISIBLE);
+
+                    // TODO : ADD an animation the confirmation text button
+                    binding.bgExit.setAnimation(btnAnim);
+                    binding.btnclose.setAnimation(btnAnim);
+                    binding.confrimText.setAnimation(btnAnim);
+
                 }
             }
         });
