@@ -28,6 +28,7 @@ public class dashboard extends AppCompatActivity {
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new Home());
+        getSupportActionBar().hide();
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -36,7 +37,7 @@ public class dashboard extends AppCompatActivity {
                     replaceFragment(new Home());
                     break;
                 case R.id.inbox:
-                    replaceFragment(new Profile());
+                    replaceFragment(new Inbox());
                     break;
                 case R.id.about:
                     replaceFragment(new About());

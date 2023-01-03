@@ -69,7 +69,7 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="58dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:paddingTop="5dp"
@@ -133,6 +133,36 @@
                 android:paddingEnd="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="2dp"
+                android:text="Address"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="375dp"
+                android:layout_height="33dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/editbox"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:hint="Type your address"
+                android:inputType="textPostalAddress"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
                 android:textSize="12sp" />
 
             <TextView
@@ -213,7 +243,7 @@
 
                 <TextView
                     android:id="@+id/genderText"
-                    android:layout_width="66dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="160dp"
                     android:paddingLeft="8dp"
@@ -361,13 +391,15 @@
             android:id="@+id/btn_signup"
             android:layout_width="96dp"
             android:layout_height="35dp"
-            android:background="@drawable/editbox"
+            android:layout_marginBottom="76dp"
 
+            android:background="@drawable/editbox"
             android:text="Sign-Up"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
