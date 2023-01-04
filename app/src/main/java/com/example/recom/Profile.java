@@ -73,15 +73,15 @@ public class Profile extends Fragment {
                     binding.progressBar2.setVisibility(View.GONE);
 
                     //Profile Photo
-                    if(snapshot.hasChild("profileImage")){
-                        Uri dpurl = firebaseUser.getPhotoUrl();
-                        Picasso.get().load(dpurl).into(binding.profileImage);
+                    if(snapshot.hasChild("displayImage")){
+                        String imageDisplay = snapshot.child("displayImage").getValue().toString();
+                        Picasso.get().load(imageDisplay).into(binding.profileImage);
                     }
 
                     //Cover Photo
                     if(snapshot.hasChild("coverImage")){
-                        String image = snapshot.child("coverImage").getValue().toString();
-                        Picasso.get().load(image).into(binding.topBackground);
+                        String imageCover = snapshot.child("coverImage").getValue().toString();
+                        Picasso.get().load(imageCover).into(binding.topBackground);
                     }
 
                 }
@@ -243,8 +243,8 @@ public class Profile extends Fragment {
                     binding.progressBar2.setVisibility(View.GONE);
 
                     //Profile Photo
-                    if(snapshot.hasChild("profileImage")){
-                        String image = snapshot.child("profileImage").getValue().toString();
+                    if(snapshot.hasChild("displayImage")){
+                        String image = snapshot.child("displayImage").getValue().toString();
                         Picasso.get().load(image).into(binding.profileImage);
                     }
 
