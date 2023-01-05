@@ -187,7 +187,7 @@ public class Registration extends AppCompatActivity {
             }
         });
 
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+        binding.btnBackRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent back = new Intent(Registration.this, MainActivity.class);

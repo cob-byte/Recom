@@ -12,6 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/accountSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:elevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_settings_34" />
+
         <LinearLayout
             android:id="@+id/layoutabove"
             android:layout_width="wrap_content"
@@ -80,7 +91,7 @@
             android:layout_marginTop="-75dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/white_background"
+            android:background="@drawable/white_background4corners"
             android:orientation="vertical"
             android:paddingTop="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -399,26 +410,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
-
-            <Button
-                android:id="@+id/btnEditProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="#0D0E64"
-                android:text="Edit Profile"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/btnSignout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="25dp"
-                android:backgroundTint="#0D0E64"
-                android:text="Sign out"
-                android:textColor="@color/white" />
 
         </LinearLayout>
 

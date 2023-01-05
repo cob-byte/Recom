@@ -123,7 +123,7 @@ public class Profile extends Fragment {
             Picasso.get().load(uri).into(binding.profileImage);
         }
 
-        //change profile pic
+        //change profile/cover pic
         binding.changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,15 +163,12 @@ public class Profile extends Fragment {
             }
         });
 
-        //change cover photo
-
-        //signout
-        binding.btnSignout.setOnClickListener(new View.OnClickListener() {
+        //account settings
+        binding.accountSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseProfile.signOut();
-                startActivity(new Intent(getActivity(), MainActivity.class));
-                requireActivity().finish();
+                Intent settings = new Intent(requireActivity(), Settings.class);
+                startActivity(settings);
             }
         });
 

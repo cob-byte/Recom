@@ -66,7 +66,7 @@ public class SignIn extends AppCompatActivity {
             }
         });
         //button back
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+        binding.btnBackSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent back = new Intent(SignIn.this, MainActivity.class);
