@@ -116,8 +116,8 @@ public class Registration extends AppCompatActivity {
                 }
                 else if(address.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your address.", Toast.LENGTH_LONG).show();
-                    binding.Lname.setError("Postal Address is required.");
-                    binding.Lname.requestFocus();
+                    binding.address.setError("Postal Address is required.");
+                    binding.address.requestFocus();
                 }
                 else if(email.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your email.", Toast.LENGTH_LONG).show();

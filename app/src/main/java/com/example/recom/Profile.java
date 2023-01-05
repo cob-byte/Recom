@@ -35,8 +35,10 @@ import com.squareup.picasso.Picasso;
 
 public class Profile extends Fragment {
     private FragmentProfileBinding binding;
-    private FirebaseAuth firebaseProfile;
-    private StorageReference storageReference;
+    private FirebaseAuth firebaseProfile = FirebaseAuth.getInstance();
+    private FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference;
     private Uri uriImage;
     private String UID;
 
@@ -48,55 +50,57 @@ public class Profile extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebaseProfile = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("Users");
-        databaseReference.child(UID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if(user != null){
-                    binding.fullnameTop.setText(firebaseUser.getDisplayName());
-                    binding.emailTop.setText(firebaseUser.getEmail());
-                    binding.textFullName.setText(user.fname + ' ' + user.mname + ' ' + user.lname);
-                    binding.textEmail.setText(firebaseUser.getEmail());
-                    binding.textPhone.setText(user.phonenum);
-                    binding.textBirthdate.setText(user.dobirth);
-                    binding.textAddress.setText(user.address);
-                    if(user.verification.equals("No")){
-                        binding.textVerification.setText("Not Verified");
-                    }
-                    else if(user.verification.equals("Yes")){
-                        binding.textVerification.setText("Verified");
-                    }
-                    binding.progressBar2.setVisibility(View.GONE);
+        databaseReference = database.getReference("Users");
+        if(firebaseUser != null){
+            databaseReference.child(UID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    if(user != null){
+                        binding.fullnameTop.setText(firebaseUser.getDisplayName());
+                        binding.emailTop.setText(firebaseUser.getEmail());
+                        binding.textFullName.setText(user.fname + ' ' + user.mname + ' ' + user.lname);
+                        binding.textEmail.setText(firebaseUser.getEmail());
+                        binding.textPhone.setText(user.phonenum);
+                        binding.textBirthdate.setText(user.dobirth);
+                        binding.textAddress.setText(user.address);
+                        if(user.verification.equals("No")){
+                            binding.textVerification.setText("Not Verified");
+                        }
+                        else if(user.verification.equals("Yes")){
+                            binding.textVerification.setText("Verified");
+                        }
+                        binding.progressBar2.setVisibility(View.GONE);
 
-                    //Profile Photo
-                    if(snapshot.hasChild("displayImage")){
-                        String imageDisplay = snapshot.child("displayImage").getValue().toString();
-                        Picasso.get().load(imageDisplay).into(binding.profileImage);
-                    }
+                        //Profile Photo
+                        if(snapshot.hasChild("displayImage")){
+                            String imageDisplay = snapshot.child("displayImage").getValue().toString();
+                            Picasso.get().load(imageDisplay).into(binding.profileImage);
+                        }
 
-                    //Cover Photo
-                    if(snapshot.hasChild("coverImage")){
-                        String imageCover = snapshot.child("coverImage").getValue().toString();
-                        Picasso.get().load(imageCover).into(binding.topBackground);
-                    }
+                        //Cover Photo
+                        if(snapshot.hasChild("coverImage")){
+                            String imageCover = snapshot.child("coverImage").getValue().toString();
+                            Picasso.get().load(imageCover).into(binding.topBackground);
+                        }
 
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
+                        binding.progressBar2.setVisibility(View.GONE);
+                    }
                 }
-                else{
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
                     binding.progressBar2.setVisibility(View.GONE);
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
-                binding.progressBar2.setVisibility(View.GONE);
-            }
-        });
+            });
+        } else{
+            Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
+            binding.progressBar2.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -106,21 +110,12 @@ public class Profile extends Fragment {
         super.onCreate(savedInstanceState);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         binding.progressBar2.setVisibility(View.VISIBLE);
-        firebaseProfile = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
 
         if(firebaseUser == null){
             Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
         }
         else {
             showUserProfile(firebaseUser);
-        }
-
-        Uri uri = firebaseUser.getPhotoUrl();
-
-        //set users dp in imageview
-        if(uri != null){
-            Picasso.get().load(uri).into(binding.profileImage);
         }
 
         //change profile/cover pic
@@ -167,8 +162,19 @@ public class Profile extends Fragment {
         binding.accountSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent settings = new Intent(requireActivity(), Settings.class);
-                startActivity(settings);
+                if(firebaseUser != null) {
+                    String fName = firebaseUser.getDisplayName();
+                    String email = firebaseUser.getEmail();
+                    String urlPass = firebaseUser.getPhotoUrl().toString();
+                    Intent settings = new Intent(requireActivity(), Settings.class);
+                    settings.putExtra("fname", fName);
+                    settings.putExtra("email", email);
+                    settings.putExtra("photo", urlPass);
+                    startActivity(settings);
+                }
+                else{
+                    Toast.makeText(requireActivity(), "Something went wrong! User is not online at the moment.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -181,14 +187,19 @@ public class Profile extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
+                        firebaseProfile = FirebaseAuth.getInstance();
+                        FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
                         Intent data = result.getData();
-                        if(data != null && data.getData() != null){
+                        if(data != null && data.getData() != null && firebaseUser != null){
                             String type = "displayImage";
                             uriImage = data.getData();
                             Intent changeImage = new Intent(getActivity(), ChangePicture.class);
                             changeImage.putExtra("type", type);
                             changeImage.putExtra("image", uriImage.toString());
                             startActivity(changeImage);
+                        }
+                        else{
+                            Toast.makeText(requireActivity(), "Something went wrong! User is not online at the moment.", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -201,13 +212,18 @@ public class Profile extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
-                        if(data != null && data.getData() != null){
+                        firebaseProfile = FirebaseAuth.getInstance();
+                        FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
+                        if(data != null && data.getData() != null && firebaseUser != null){
                             String type1 = "coverImage";
                             uriImage = data.getData();
                             Intent changeCoverImage = new Intent(getActivity(), ChangePicture.class);
                             changeCoverImage.putExtra("type", type1);
                             changeCoverImage.putExtra("image", uriImage.toString());
                             startActivity(changeCoverImage);
+                        }
+                        else{
+                            Toast.makeText(requireActivity(), "Something went wrong! User is not online at the moment.", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -217,8 +233,7 @@ public class Profile extends Fragment {
         UID = firebaseUser.getUid();
 
         //get the data from database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("Users");
+        databaseReference = database.getReference("Users");
         databaseReference.child(UID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

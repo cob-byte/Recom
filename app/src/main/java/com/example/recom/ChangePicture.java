@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.recom.databinding.ActivityChangePictureBinding;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,18 +55,7 @@ public class ChangePicture extends AppCompatActivity {
             Toast.makeText(ChangePicture.this, "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
         }
         else {
-            showUserProfile(firebaseUser, image_type);
-        }
-
-        //set display/cover image
-        if(image_type.equals("displayImage")){
-            binding.profileImage.setImageURI(fileUri);
-        }
-        else if(image_type.equals("coverImage")){
-            Uri defaulturl = firebaseUser.getPhotoUrl();
-            Picasso.get().load(defaulturl).into(binding.profileImage);
-
-            binding.topBackground.setImageURI(fileUri);
+            showUserProfile(firebaseUser, image_type, fileUri);
         }
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +69,12 @@ public class ChangePicture extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 binding.progressBar2.setVisibility(View.VISIBLE);
-                uploadPic(fileUri, image_type); //upload the image to firebase
+                if(firebaseUser == null){
+                    Toast.makeText(ChangePicture.this, "Something went wrong! User is not online at the moment.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    uploadPic(fileUri, image_type); //upload the image to firebase
+                }
             }
         });
     }
@@ -108,13 +103,18 @@ public class ChangePicture extends AppCompatActivity {
                             databaseReference.child(firebaseUser.getUid()).updateChildren(userMap);
                             finish();
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ChangePicture.this, "Something went wrong! User is not online at the moment.", Toast.LENGTH_LONG).show();
+                        }
                     });
                 }
             });
         }
     }
 
-    private void showUserProfile(FirebaseUser firebaseUse, String image_type) {
+    private void showUserProfile(FirebaseUser firebaseUse, String image_type, Uri fileUri) {
         String UID = firebaseUser.getUid();
 
         //get the data from database
@@ -145,6 +145,17 @@ public class ChangePicture extends AppCompatActivity {
                         }
                     }
 
+                    //set display/cover image
+                    if(image_type.equals("displayImage")){
+                        binding.profileImage.setImageURI(fileUri);
+                    }
+                    else if(image_type.equals("coverImage")){
+                        Uri defaulturl = firebaseUser.getPhotoUrl();
+                        Picasso.get().load(defaulturl).into(binding.profileImage);
+
+                        binding.topBackground.setImageURI(fileUri);
+                    }
+
                     binding.progressBar2.setVisibility(View.GONE);
                 }
                 else{
@@ -158,11 +169,5 @@ public class ChangePicture extends AppCompatActivity {
                 Toast.makeText(ChangePicture.this, "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 }

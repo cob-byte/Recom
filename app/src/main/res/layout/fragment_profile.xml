@@ -38,7 +38,7 @@
             app:layout_constraintTop_toTopOf="@+id/linearLayout3">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/profileImage"
                 android:layout_width="126dp"
                 android:layout_height="126dp"
                 android:src="@drawable/profile_picture"
