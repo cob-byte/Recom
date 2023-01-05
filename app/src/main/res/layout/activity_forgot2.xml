@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Forgot_Activity">
 
 
     <ImageView
@@ -35,7 +36,7 @@
         android:id="@+id/btnBackForgot"
         android:layout_width="71dp"
         android:layout_height="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/transparent"
         android:text="Back"
         android:textColor="#000000"
@@ -59,8 +60,8 @@
 
     <ImageView
         android:id="@+id/prof"
-        android:layout_width="358dp"
-        android:layout_height="617dp"
+        android:layout_width="357dp"
+        android:layout_height="699dp"
         android:alpha=".9"
         android:scaleType="centerCrop"
         android:src="@drawable/forgot_bg2"
@@ -76,18 +77,17 @@
 
     <TextView
         android:id="@+id/Sgn"
-        android:layout_width="199dp"
-        android:layout_height="91dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="Forgot Password"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
+        tools:layout_editor_absoluteY="88dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/emailtxt"
@@ -141,16 +141,16 @@
 
     <TextView
         android:id="@+id/wback5"
-        android:layout_width="271dp"
-        android:layout_height="69dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Please enter your E-mail."
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="italic|bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/prof"
+        app:layout_constraintStart_toStartOf="@+id/prof"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.496" />
 
@@ -158,15 +158,13 @@
         android:id="@+id/verif"
         android:layout_width="126dp"
         android:layout_height="122dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="248dp"
         android:alpha=".7"
         android:scaleType="centerCrop"
         android:src="@drawable/verify_email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -176,8 +174,8 @@
         android:alpha="1"
         android:background="@color/tab_indicator_gray"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -204,16 +202,16 @@
 
     <ImageView
         android:id="@+id/btnclose"
-        android:layout_width="25dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:alpha=".9"
         android:scaleType="centerCrop"
         android:src="@drawable/close_button"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.497"
         tools:ignore="MissingConstraints" />

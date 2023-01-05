@@ -76,8 +76,7 @@ public class Forgot_Activity extends AppCompatActivity {
                     binding.bgExit.setVisibility(View.VISIBLE);
                     binding.btnclose.setVisibility(View.VISIBLE);
                     binding.confrimText.setVisibility(View.VISIBLE);
-
-                    // TODO : ADD an animation the confirmation text button
+                   //to add animation
                     binding.bgExit.setAnimation(btnAnim);
                     binding.btnclose.setAnimation(btnAnim);
                     binding.confrimText.setAnimation(btnAnim);
