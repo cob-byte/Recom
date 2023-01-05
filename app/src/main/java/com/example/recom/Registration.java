@@ -42,9 +42,7 @@ import java.util.regex.Pattern;
 
 public class Registration extends AppCompatActivity {
     private ActivityRegistrationBinding binding;
-    private TextView fname, mname, lname, emailadd, phonenum, dobirth, pass, cpass;
     private RadioButton selectedGender;
-    private Button btn_signup, btn_back;
     private DatabaseReference reference;
     private DatePickerDialog picker;
     private static final String TAG = "Registration";
@@ -87,6 +85,7 @@ public class Registration extends AppCompatActivity {
                 String Fname = binding.Fname.getText().toString();
                 String Mname = binding.Mname.getText().toString();
                 String Lname = binding.Lname.getText().toString();
+                String address = binding.address.getText().toString();
                 String email = binding.emailadd.getText().toString();
                 String phone = binding.phonenum.getText().toString();
                 String birth = binding.dateofbirth.getText().toString();
@@ -113,6 +112,11 @@ public class Registration extends AppCompatActivity {
                 else if(Lname.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your last name.", Toast.LENGTH_LONG).show();
                     binding.Lname.setError("Last name is required.");
+                    binding.Lname.requestFocus();
+                }
+                else if(address.isEmpty()){
+                    Toast.makeText(Registration.this, "Please enter your address.", Toast.LENGTH_LONG).show();
+                    binding.Lname.setError("Postal Address is required.");
                     binding.Lname.requestFocus();
                 }
                 else if(email.isEmpty()){
@@ -142,8 +146,8 @@ public class Registration extends AppCompatActivity {
                 }
                 else if(birth.isEmpty()){
                     Toast.makeText(Registration.this, "Please enter your date of birth.", Toast.LENGTH_LONG).show();
-                    dobirth.setError("Date of birth is required.");
-                    dobirth.requestFocus();
+                    binding.dateofbirth.setError("Date of birth is required.");
+                    binding.dateofbirth.requestFocus();
                 }
                 else if(binding.registerGender.getCheckedRadioButtonId() == -1){
                     Toast.makeText(Registration.this, "Please select your gender.", Toast.LENGTH_LONG).show();
@@ -175,7 +179,9 @@ public class Registration extends AppCompatActivity {
                 }
                 else{
                     gender = selectedGender.getText().toString();
-                    registerUser(Fname, Mname, Lname, email, phone, birth, gender, password);
+                    //new user
+                    String newUser = "No";
+                    registerUser(Fname, Mname, Lname, address, email, phone, birth, gender, password, newUser);
                 }
 
             }
@@ -191,7 +197,7 @@ public class Registration extends AppCompatActivity {
     }
 
     //register user
-    private void registerUser(String fname, String mname, String lname, String email, String phone, String birth, String gender, String password) {
+    private void registerUser(String fname, String mname, String lname, String address, String email, String phone, String birth, String gender, String password, String newuser) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
@@ -201,12 +207,12 @@ public class Registration extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
 
                     //user display name
-                    String Fullname = fname + " " + lname;
+                    String Fullname = fname + ' ' + mname + ' ' + lname;
                     UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(Fullname).build();
                     user.updateProfile(profileChangeRequest);
 
                     //call user java
-                    User newUser = new User(fname, mname, lname, phone, birth, gender);
+                    User newUser = new User(fname, mname, lname, address, phone, birth, gender, newuser);
 
 
                     //store data in database
@@ -238,8 +244,8 @@ public class Registration extends AppCompatActivity {
                     }
                     catch (FirebaseAuthInvalidCredentialsException e){
                         // check if email already exists
-                        emailadd.setError("Your email is invalid or already in use. Use another email.");
-                        emailadd.requestFocus();
+                        binding.emailadd.setError("Your email is invalid or already in use. Use another email.");
+                        binding.emailadd.requestFocus();
                     }
                     catch (Exception e){
                         //for errors

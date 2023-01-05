@@ -1,18 +1,20 @@
 package com.example.recom;
 
 public class User {
-    String fname, mname, lname, phonenum, dobirth, gender;
+    String fname, mname, lname, address, phonenum, dobirth, gender, verification;
 
     public User() {
     }
 
-    public User(String fname, String mname, String lname, String phonenum, String dobirth, String gender) {
+    public User(String fname, String mname, String lname, String address, String phonenum, String dobirth, String gender, String verification) {
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
+        this.address = address;
         this.phonenum = phonenum;
         this.dobirth = dobirth;
         this.gender = gender;
+        this.verification = verification;
     }
 
     public String getFname() {
@@ -39,6 +41,14 @@ public class User {
         this.lname = lname;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getPhonenum() {
         return phonenum;
     }
@@ -61,5 +71,13 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getVerification() {
+        return verification;
+    }
+
+    public void setVerification(String verification) {
+        this.verification = verification;
     }
 }

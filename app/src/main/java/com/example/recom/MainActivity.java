@@ -15,8 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-import me.relex.circleindicator.CircleIndicator3;
-
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;

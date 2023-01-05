@@ -15,11 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Home extends Fragment {
     private Button tempsignout;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -35,17 +30,7 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        tempsignout = view.findViewById(R.id.signouttemp);
         viewPager2 = view.findViewById(R.id.view_pager2);
-
-        tempsignout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                startActivity(new Intent(getActivity(), MainActivity.class));
-                getActivity().finish();
-            }
-        });
 
         int[] images = {R.drawable.pasuyo,R.drawable.pasched,R.drawable.cc,R.drawable.safeme,R.drawable.tararecomlogo};
         String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
