@@ -17,7 +17,11 @@
         android:theme="@style/Theme.Recom"
         tools:targetApi="31">
         <activity
+<<<<<<< Updated upstream
             android:name=".changeInfo"
+=======
+            android:name=".CommunityConsensus"
+>>>>>>> Stashed changes
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
