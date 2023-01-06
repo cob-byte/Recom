@@ -36,8 +36,10 @@ public class EditProfile extends AppCompatActivity {
         Intent intent = getIntent();
         binding.fullnameTop.setText(intent.getStringExtra("fname").toString());
         binding.emailTop.setText(intent.getStringExtra("email").toString());
-        Uri uriImage = Uri.parse(intent.getStringExtra("photo").toString());
-        Picasso.get().load(uriImage).into(binding.profileImage);
+        if(intent.getStringExtra("photo") != null){
+            Uri uriImage = Uri.parse(intent.getStringExtra("photo").toString());
+            Picasso.get().load(uriImage).into(binding.profileImage);
+        }
 
         //get past phone, birthdate, address
         if(firebaseUser != null){

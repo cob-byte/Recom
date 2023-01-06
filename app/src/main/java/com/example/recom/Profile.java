@@ -165,11 +165,16 @@ public class Profile extends Fragment {
                 if(firebaseUser != null) {
                     String fName = firebaseUser.getDisplayName();
                     String email = firebaseUser.getEmail();
-                    String urlPass = firebaseUser.getPhotoUrl().toString();
                     Intent settings = new Intent(requireActivity(), Settings.class);
                     settings.putExtra("fname", fName);
                     settings.putExtra("email", email);
-                    settings.putExtra("photo", urlPass);
+                    if(firebaseUser.getPhotoUrl() != null) {
+                        String urlPass = firebaseUser.getPhotoUrl().toString();
+                        settings.putExtra("photo", urlPass);
+                    }
+                    else{
+                        settings.putExtra("photo", "none");
+                    }
                     startActivity(settings);
                 }
                 else{
