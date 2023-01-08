@@ -82,7 +82,7 @@ public class ChangePicture extends AppCompatActivity {
     //save image
     private void uploadPic(Uri fileUri, String image_type) {
         if(fileUri != null){
-            final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(image_type).child(firebaseUser.getUid());
+            final StorageReference storageReference = FirebaseStorage.getInstance().getReference("Images").child(firebaseUser.getUid()).child(image_type);
             //upload image
             storageReference.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
