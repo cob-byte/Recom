@@ -238,17 +238,17 @@ public class changeInfo extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 switch (type) {
                     case "fullname":
-                        if(binding.editFirstName.toString().isEmpty()){
+                        if(binding.editFirstName.getText().toString().isEmpty()){
                             Toast.makeText(changeInfo.this, "Please enter your first name.", Toast.LENGTH_LONG).show();
                             binding.editFirstName.setError("First name is required.");
                             binding.editFirstName.requestFocus();
                         }
-                        else if(binding.editMiddleName.toString().isEmpty()){
+                        else if(binding.editMiddleName.getText().toString().isEmpty()){
                             Toast.makeText(changeInfo.this, "Please enter your middle name.", Toast.LENGTH_LONG).show();
                             binding.editMiddleName.setError("Middle name is required.");
                             binding.editMiddleName.requestFocus();
                         }
-                        else if(binding.editLastName.toString().isEmpty()){
+                        else if(binding.editLastName.getText().toString().isEmpty()){
                             Toast.makeText(changeInfo.this, "Please enter your last name.", Toast.LENGTH_LONG).show();
                             binding.editLastName.setError("Last name is required.");
                             binding.editLastName.requestFocus();

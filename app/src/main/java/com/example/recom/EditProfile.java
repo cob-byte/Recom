@@ -26,23 +26,14 @@ public class EditProfile extends AppCompatActivity {
     private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        getSupportActionBar().hide();
-
-        Intent intent = getIntent();
-        binding.fullnameTop.setText(intent.getStringExtra("fname").toString());
-        binding.emailTop.setText(intent.getStringExtra("email").toString());
-        if(intent.getStringExtra("photo") != null){
-            Uri uriImage = Uri.parse(intent.getStringExtra("photo").toString());
-            Picasso.get().load(uriImage).into(binding.profileImage);
-        }
-
-        //get past phone, birthdate, address
+    protected void onStart() {
         if(firebaseUser != null){
+            Intent intent = getIntent();
+            if(intent.getStringExtra("photo") != null){
+                Uri uriImage = Uri.parse(intent.getStringExtra("photo").toString());
+                Picasso.get().load(uriImage).into(binding.profileImage);
+            }
+
             String UID = firebaseUser.getUid();
             databaseReference = database.getReference("Users");
             databaseReference.child(UID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -50,10 +41,13 @@ public class EditProfile extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User user = snapshot.getValue(User.class);
                     if(user != null){
-                        final String phone = user.phonenum;
-                        final String birthdate = user.dobirth;
-                        final String address = user.address;
-                        setProfileInfo(phone, birthdate, address);
+                        binding.textFullName.setText(firebaseUser.getDisplayName());
+                        binding.textEmail.setText(firebaseUser.getEmail());
+                        binding.fullnameTop.setText(firebaseUser.getDisplayName());
+                        binding.emailTop.setText(firebaseUser.getEmail());
+                        binding.textPhone.setText(user.phonenum);
+                        binding.textBirthdate.setText(user.dobirth);
+                        binding.textAddress.setText(user.address);
                     }
                 }
 
@@ -63,6 +57,16 @@ public class EditProfile extends AppCompatActivity {
                 }
             });
         }
+        super.onStart();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        getSupportActionBar().hide();
 
         binding.editFullName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,13 +129,5 @@ public class EditProfile extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private void setProfileInfo(String phone, String birthdate, String address) {
-        binding.textFullName.setText(firebaseUser.getDisplayName());
-        binding.textEmail.setText(firebaseUser.getEmail());
-        binding.textPhone.setText(phone);
-        binding.textBirthdate.setText(birthdate);
-        binding.textAddress.setText(address);
     }
 }

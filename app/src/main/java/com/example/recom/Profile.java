@@ -50,53 +50,9 @@ public class Profile extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        databaseReference = database.getReference("Users");
         if(firebaseUser != null){
-            databaseReference.child(UID).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    User user = snapshot.getValue(User.class);
-                    if(user != null){
-                        binding.fullnameTop.setText(firebaseUser.getDisplayName());
-                        binding.emailTop.setText(firebaseUser.getEmail());
-                        binding.textFullName.setText(user.fname + ' ' + user.mname + ' ' + user.lname);
-                        binding.textEmail.setText(firebaseUser.getEmail());
-                        binding.textPhone.setText(user.phonenum);
-                        binding.textBirthdate.setText(user.dobirth);
-                        binding.textAddress.setText(user.address);
-                        if(user.verification.equals("No")){
-                            binding.textVerification.setText("Not Verified");
-                        }
-                        else if(user.verification.equals("Yes")){
-                            binding.textVerification.setText("Verified");
-                        }
-                        binding.progressBar2.setVisibility(View.GONE);
-
-                        //Profile Photo
-                        if(snapshot.hasChild("displayImage")){
-                            String imageDisplay = snapshot.child("displayImage").getValue().toString();
-                            Picasso.get().load(imageDisplay).into(binding.profileImage);
-                        }
-
-                        //Cover Photo
-                        if(snapshot.hasChild("coverImage")){
-                            String imageCover = snapshot.child("coverImage").getValue().toString();
-                            Picasso.get().load(imageCover).into(binding.topBackground);
-                        }
-
-                    }
-                    else{
-                        Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
-                        binding.progressBar2.setVisibility(View.GONE);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
-                    binding.progressBar2.setVisibility(View.GONE);
-                }
-            });
+            binding.progressBar2.setVisibility(View.VISIBLE);
+            showUserProfile(firebaseUser);
         } else{
             Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
             binding.progressBar2.setVisibility(View.GONE);
@@ -109,14 +65,6 @@ public class Profile extends Fragment {
         // set view binding
         super.onCreate(savedInstanceState);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        binding.progressBar2.setVisibility(View.VISIBLE);
-
-        if(firebaseUser == null){
-            Toast.makeText(getActivity(), "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
-        }
-        else {
-            showUserProfile(firebaseUser);
-        }
 
         //change profile/cover pic
         binding.changeProfile.setOnClickListener(new View.OnClickListener() {
@@ -163,11 +111,7 @@ public class Profile extends Fragment {
             @Override
             public void onClick(View view) {
                 if(firebaseUser != null) {
-                    String fName = firebaseUser.getDisplayName();
-                    String email = firebaseUser.getEmail();
                     Intent settings = new Intent(requireActivity(), Settings.class);
-                    settings.putExtra("fname", fName);
-                    settings.putExtra("email", email);
                     if(firebaseUser.getPhotoUrl() != null) {
                         String urlPass = firebaseUser.getPhotoUrl().toString();
                         settings.putExtra("photo", urlPass);

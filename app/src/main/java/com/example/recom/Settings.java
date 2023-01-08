@@ -21,21 +21,28 @@ public class Settings extends AppCompatActivity {
     private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
 
     @Override
+    protected void onStart() {
+        if(firebaseUser != null){
+            Intent intent = getIntent();
+            binding.accSettingsFname.setText(firebaseUser.getDisplayName());
+            binding.accSettingsEmail.setText(firebaseUser.getEmail());
+            if(!intent.getStringExtra("photo").toString().equals("none")){
+                String image = intent.getStringExtra("photo").toString();
+                Uri photo = Uri.parse(image);
+                Picasso.get().load(photo).into(binding.profileImage);
+            }
+        }
+        super.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
-
         Intent intent = getIntent();
-        binding.accSettingsFname.setText(intent.getStringExtra("fname").toString());
-        binding.accSettingsEmail.setText(intent.getStringExtra("email").toString());
-        if(!intent.getStringExtra("photo").toString().equals("none")){
-            String image = intent.getStringExtra("photo").toString();
-            Uri photo = Uri.parse(image);
-            Picasso.get().load(photo).into(binding.profileImage);
-        }
 
         binding.btnBackSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,8 +55,6 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent editProfile = new Intent(Settings.this, EditProfile.class);
-                editProfile.putExtra("fname", intent.getStringExtra("fname"));
-                editProfile.putExtra("email", intent.getStringExtra("email"));
                 if(!intent.getStringExtra("photo").toString().equals("none")){
                     editProfile.putExtra("photo", intent.getStringExtra("photo"));
                 }

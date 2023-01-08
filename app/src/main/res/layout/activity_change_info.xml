@@ -98,7 +98,7 @@
                 android:background="@drawable/text_place"
                 android:editable="false"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="none"
                 android:paddingStart="10dp"
                 android:paddingLeft="20dp"
                 android:paddingTop="5dp"
