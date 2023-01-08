@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/top_background"
     tools:context=".changeInfo">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
+        android:background="@drawable/white_background"
+        android:backgroundTint="#FFFFFF"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,153 +23,273 @@
             android:id="@+id/backandsave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnCInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:text="Back" />
 
             <Button
                 android:id="@+id/btnCInfoSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="215dp"
+                android:layout_marginStart="170dp"
                 android:text="Save" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/pastInfo"
-            android:layout_width="match_parent"
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Past Info"
-            android:textColor="#03045E" />
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Change Profile Information"
+            android:textColor="#03045E"
+            android:textSize="28sp" />
 
-        <EditText
-            android:id="@+id/editPastInfo"
+        <LinearLayout
+            android:id="@+id/BodyLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:editable="false"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="#03045E" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/white_background4corners"
+            android:backgroundTint="#CFCFCF"
+            android:orientation="vertical"
+            android:paddingStart="10dp">
 
-        <TextView
-            android:id="@+id/newInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="New Info"
-            android:textColor="#03045E" />
+            <TextView
+                android:id="@+id/EditProfileInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-black"
+                android:paddingTop="10dp"
+                android:text="Edit Info"
+                android:textColor="#03045E"
+                android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/FirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textColor="#03045E" />
+            <TextView
+                android:id="@+id/pastInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Past Info"
+                android:textColor="#03045E"
+                android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/editFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="First Name"
-            android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/editPastInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/text_place"
+                android:editable="false"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="#03045E" />
 
-        <TextView
-            android:id="@+id/MiddleName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Middle Name"
-            android:textColor="#03045E" />
+            <TextView
+                android:id="@+id/newInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="New Info"
+                android:textColor="#03045E"
+                android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/editMiddleName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Middle Name"
-            android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/FirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="First Name"
+                android:textColor="#03045E" />
 
-        <TextView
-            android:id="@+id/LastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textColor="#03045E" />
+            <EditText
+                android:id="@+id/editFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_place"
+                android:ems="10"
+                android:hint="First Name"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
 
-        <EditText
-            android:id="@+id/editLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Last Name"
-            android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/MiddleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Middle Name"
+                android:textColor="#03045E" />
 
-        <TextView
-            android:id="@+id/EmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email Address"
-            android:textColor="#03045E" />
+            <EditText
+                android:id="@+id/editMiddleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_place"
+                android:ems="10"
+                android:hint="Middle Name"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
 
-        <EditText
-            android:id="@+id/editEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Type your e-mail address"
-            android:inputType="textEmailAddress" />
+            <TextView
+                android:id="@+id/LastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Last Name"
+                android:textColor="#03045E" />
 
-        <TextView
-            android:id="@+id/PhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textColor="#03045E" />
+            <EditText
+                android:id="@+id/editLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_place"
+                android:ems="10"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
 
-        <EditText
-            android:id="@+id/editPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="XXXX-XXXX-XXX"
-            android:ems="10"
-            android:inputType="phone" />
+            <TextView
+                android:id="@+id/EmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Email Address"
+                android:textColor="#03045E" />
 
-        <TextView
-            android:id="@+id/Birthdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Birthdate"
-            android:textColor="#03045E" />
+            <EditText
+                android:id="@+id/editEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_place"
+                android:ems="10"
+                android:hint="Type your e-mail address"
+                android:inputType="textEmailAddress"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
 
-        <EditText
-            android:id="@+id/editBirthdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:ems="10"
-            android:hint="Select your date of birth (dd/mm/yyyy)"
-            android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/PhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textColor="#03045E" />
 
-        <TextView
-            android:id="@+id/Address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            android:textColor="#03045E" />
+            <EditText
+                android:id="@+id/editPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_place"
+                android:ems="10"
+                android:hint="XXXX-XXXX-XXX"
+                android:inputType="phone"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
 
-        <EditText
-            android:id="@+id/editAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter your address"
-            android:inputType="textPostalAddress" />
+            <TextView
+                android:id="@+id/Birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Birthdate"
+                android:textColor="#03045E" />
+
+            <EditText
+                android:id="@+id/editBirthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_place"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Select your date of birth (dd/mm/yyyy)"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="#03045E" />
+
+            <EditText
+                android:id="@+id/editAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_place"
+                android:ems="10"
+                android:hint="Enter your address"
+                android:inputType="textPostalAddress"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

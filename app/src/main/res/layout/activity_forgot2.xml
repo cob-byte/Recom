@@ -4,217 +4,182 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/top_background"
     tools:context=".Forgot_Activity">
 
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="570dp"
-        android:layout_height="950dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/forgot_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/des"
-        android:layout_width="339dp"
-        android:layout_height="344dp"
-        android:layout_marginStart="184dp"
-        android:layout_marginBottom="496dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/design"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btnBackForgot"
-        android:layout_width="71dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="12dp"
-        android:background="@android:color/transparent"
-        android:text="Back"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/rec"
-        android:layout_width="380dp"
-        android:layout_height="291dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/tararecomlogo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.564"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/prof"
-        android:layout_width="357dp"
-        android:layout_height="699dp"
-        android:alpha=".9"
-        android:scaleType="centerCrop"
-        android:src="@drawable/forgot_bg2"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.754"
-        tools:ignore="MissingConstraints" />
-
-
-    <TextView
-        android:id="@+id/Sgn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Forgot Password"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="88dp"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/emailtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@drawable/editbox"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/ic_baseline_email_24"
-        android:drawablePadding="5dp"
-        android:ems="14"
-        android:hint="Type your email"
-        android:inputType="textEmailAddress"
-        android:paddingStart="8dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/white_background"
+        android:backgroundTint="#FFFFFF"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/ver_e"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Verify E-mail"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.759"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336" />
+        <LinearLayout
+            android:id="@+id/backandsave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnconfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
-        android:text="Confirm E-mail"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805" />
+            <Button
+                android:id="@+id/btnBackForgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Back" />
 
-    <TextView
-        android:id="@+id/wback5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Please enter your E-mail."
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="italic|bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/prof"
-        app:layout_constraintStart_toStartOf="@+id/prof"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/verif"
-        android:layout_width="126dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="248dp"
-        android:alpha=".7"
-        android:scaleType="centerCrop"
-        android:src="@drawable/verify_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/bg_exit"
-        android:layout_width="313dp"
-        android:layout_height="223dp"
-        android:alpha="1"
-        android:background="@color/tab_indicator_gray"
-        android:scaleType="centerCrop"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.641"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/Sgn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Forgot Password?"
+            android:textColor="#03045E"
+            android:textSize="60sp"
+            tools:ignore="MissingConstraints" />
 
 
-    <TextView
-        android:id="@+id/confrim_text"
-        android:layout_width="271dp"
-        android:layout_height="69dp"
-        android:gravity="center_horizontal"
-        android:text="We've sent an email to reset your password.Please check your inbox. Thank you! "
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="italic|bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622" />
+        <LinearLayout
+            android:id="@+id/BodyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/white_background4corners"
+            android:backgroundTint="#CFCFCF"
+            android:orientation="vertical"
+            android:paddingStart="10dp">
 
-    <ImageView
-        android:id="@+id/btnclose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha=".9"
-        android:scaleType="centerCrop"
-        android:src="@drawable/close_button"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497"
-        tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/verif"
+                    android:layout_width="126dp"
+                    android:layout_height="122dp"
+                    android:layout_marginTop="20dp"
+                    android:alpha=".7"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/verify_email"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/ver_e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="70dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Verify E-mail"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/wback5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="Please enter your E-mail."
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    android:textStyle="italic|bold" />
+
+                <EditText
+                    android:id="@+id/emailtxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/text_place"
+                    android:backgroundTint="@color/white"
+                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="5dp"
+                    android:ems="14"
+                    android:hint="Type your email"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray" />
+
+                <Button
+                    android:id="@+id/btnconfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/blue"
+                    android:text="Confirm E-mail"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bgExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_background"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/btnclose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:alpha=".9"
+                    android:src="@drawable/close_button"
+                    android:visibility="invisible"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/confrim_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="We've sent an email to reset your password.Please check your inbox. Thank you! "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="italic|bold"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

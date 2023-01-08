@@ -80,6 +80,7 @@ public class changeInfo extends AppCompatActivity {
                         final String birthdate = user.dobirth;
                         final String address = user.address;
                         setPastInfo(phone, birthdate, address, type);
+                        setEditProfileInfo(phone, birthdate, address, type);
                     }
                 }
 
@@ -206,6 +207,26 @@ public class changeInfo extends AppCompatActivity {
         }
         else{
             Toast.makeText(changeInfo.this, "Something went wrong! Past info cannot be fetched.", Toast.LENGTH_LONG).show();
+        }
+    }
+    private void setEditProfileInfo(String phone, String birthdate, String address, String type){
+        if(type.equals("fullname")){
+            binding.EditProfileInfo.setText("Edit Full Name");
+        }
+        else if(type.equals("email")){
+            binding.EditProfileInfo.setText("Edit E-mail");
+        }
+        else if(type.equals("phone")){
+            binding.EditProfileInfo.setText("Edit Phone Number");
+        }
+        else if(type.equals("birthdate")){
+            binding.EditProfileInfo.setText("Edit Birthdate");
+        }
+        else if(type.equals("address")){
+            binding.EditProfileInfo.setText("Edit Address");
+        }
+        else{
+            binding.EditProfileInfo.setText("Edit Profile Information");
         }
     }
 
