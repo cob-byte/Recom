@@ -131,10 +131,10 @@ public class ChangePicture extends AppCompatActivity {
                     binding.textPhone.setText(user.phonenum);
                     binding.textBirthdate.setText(user.dobirth);
                     binding.textAddress.setText(user.address);
-                    if(user.verification.equals("No")){
+                    if(user.userRole == 0){
                         binding.textVerification.setText("Not Verified");
                     }
-                    else if(user.verification.equals("Yes")){
+                    else if(user.userRole == 1){
                         binding.textVerification.setText("Verified");
                     }
 

@@ -1,12 +1,19 @@
 package com.example.recom;
 
 public class User {
-    String fname, mname, lname, address, phonenum, dobirth, gender, verification;
+    String fname;
+    String mname;
+    String lname;
+    String address;
+    String phonenum;
+    String dobirth;
+    String gender;
+    int userRole;
 
     public User() {
     }
 
-    public User(String fname, String mname, String lname, String address, String phonenum, String dobirth, String gender, String verification) {
+    public User(String fname, String mname, String lname, String address, String phonenum, String dobirth, String gender, int userRole) {
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
@@ -14,7 +21,7 @@ public class User {
         this.phonenum = phonenum;
         this.dobirth = dobirth;
         this.gender = gender;
-        this.verification = verification;
+        this.userRole = userRole;
     }
 
     public String getFname() {
@@ -73,11 +80,11 @@ public class User {
         this.gender = gender;
     }
 
-    public String getVerification() {
-        return verification;
+    public int getUserRole() {
+        return userRole;
     }
 
-    public void setVerification(String verification) {
-        this.verification = verification;
+    public void setUserRole(int userRole) {
+        this.userRole = userRole;
     }
 }

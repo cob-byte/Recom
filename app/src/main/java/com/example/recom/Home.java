@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 public class Home extends Fragment {
-    private Button tempsignout;
+    private Button tempConsensus;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private ViewPager2 viewPager2;
     private ArrayList<wList> pagerArrayList;
@@ -33,7 +33,7 @@ public class Home extends Fragment {
         viewPager2 = view.findViewById(R.id.view_pager2);
 
         int[] images = {R.drawable.pasuyo,R.drawable.pasched,R.drawable.cc,R.drawable.safeme,R.drawable.tararecomlogo};
-        String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
+        String[] heading = {"Jaymark","Grilled","Dessert","Italian","Shakes"};
         String[] desc = {getString(R.string.a_desc),
                 getString(R.string.b_desc),
                 getString(R.string.c_desc),
@@ -60,6 +60,18 @@ public class Home extends Fragment {
         viewPager2.setOffscreenPageLimit(2);
 
         viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+        tempConsensus = view.findViewById(R.id.consensus);
+
+        tempConsensus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent consensus = new Intent(requireActivity(), CommunityConsensus.class);
+                consensus.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(consensus);
+            }
+        });
+
         return view;
     }
 }

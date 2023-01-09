@@ -40,6 +40,8 @@ public class SignIn extends AppCompatActivity {
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getSupportActionBar().hide();
+
         //show/hide password
         binding.pwdShowHide.setImageResource(R.drawable.hide_pwd);
         binding.pwdShowHide.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +169,8 @@ public class SignIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        builder.setNegativeButton("Close", null);
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

@@ -180,8 +180,8 @@ public class Registration extends AppCompatActivity {
                 else{
                     gender = selectedGender.getText().toString();
                     //new user
-                    String newUser = "No";
-                    registerUser(Fname, Mname, Lname, address, email, phone, birth, gender, password, newUser);
+                    final int userRole = 0;
+                    registerUser(Fname, Mname, Lname, address, email, phone, birth, gender, password, userRole);
                 }
 
             }
@@ -197,7 +197,7 @@ public class Registration extends AppCompatActivity {
     }
 
     //register user
-    private void registerUser(String fname, String mname, String lname, String address, String email, String phone, String birth, String gender, String password, String newuser) {
+    private void registerUser(String fname, String mname, String lname, String address, String email, String phone, String birth, String gender, String password, final int userRole) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
@@ -212,7 +212,7 @@ public class Registration extends AppCompatActivity {
                     user.updateProfile(profileChangeRequest);
 
                     //call user java
-                    User newUser = new User(fname, mname, lname, address, phone, birth, gender, newuser);
+                    User newUser = new User(fname, mname, lname, address, phone, birth, gender, userRole);
 
 
                     //store data in database

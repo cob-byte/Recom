@@ -17,7 +17,21 @@
         android:theme="@style/Theme.Recom"
         tools:targetApi="31">
         <activity
+            android:name=".ChangePassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Viewpoll"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AskQuestion"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
