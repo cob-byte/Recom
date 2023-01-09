@@ -156,7 +156,7 @@
         android:text="Sign- in"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:backgroundTint="@color/click_sign_color"
+        android:backgroundTint="#4e67eb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
