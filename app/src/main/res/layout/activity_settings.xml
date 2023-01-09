@@ -148,6 +148,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
+                            android:backgroundTint="@android:color/transparent"
                             app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
                     </LinearLayout>
                 </RelativeLayout>
@@ -182,6 +183,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
+                            android:backgroundTint="@android:color/transparent"
                             app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
                     </LinearLayout>
 
@@ -273,6 +275,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
+                        android:backgroundTint="@android:color/transparent"
                         app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
                 </LinearLayout>
                 </RelativeLayout>
@@ -317,6 +320,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
+                            android:backgroundTint="@android:color/transparent"
                             app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
                     </LinearLayout>
                 </RelativeLayout>
@@ -351,6 +355,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
+                            android:backgroundTint="@android:color/transparent"
                             app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
                     </LinearLayout>
 
