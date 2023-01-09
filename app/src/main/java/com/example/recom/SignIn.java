@@ -170,6 +170,8 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
+        builder.setNegativeButton("Close", null);
+
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

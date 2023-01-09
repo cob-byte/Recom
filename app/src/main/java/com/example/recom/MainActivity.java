@@ -12,6 +12,11 @@ import android.widget.Toast;
 import com.example.recom.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -50,13 +55,40 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user != null){
-            Toast.makeText(MainActivity.this, "User already logged in.", Toast.LENGTH_LONG).show();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
-            //new activity
-            startActivity(new Intent(MainActivity.this, dashboard.class));
-            finish();
+        if (user != null) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+            databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@com.google.firebase.database.annotations.NotNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        // user has sign out
+                        Toast.makeText(MainActivity.this, "User has been logged out.", Toast.LENGTH_LONG).show();
+
+                        mAuth.signOut();
+                    } else {
+                        if (!user.isEmailVerified()) {
+                            //resend verification email
+                            user.sendEmailVerification();
+                        } else {
+                            // user still logged in
+                            Toast.makeText(MainActivity.this, "User has already logged in.", Toast.LENGTH_LONG).show();
+
+                            //new activity
+                            startActivity(new Intent(MainActivity.this, dashboard.class));
+                            finish();
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(MainActivity.this, "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 }
