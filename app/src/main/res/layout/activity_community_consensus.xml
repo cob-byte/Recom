@@ -131,7 +131,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imageView11"
+                            android:id="@+id/topline"
                             android:layout_width="345dp"
                             android:layout_height="2dp"
                             android:layout_marginTop="1dp"
@@ -143,12 +143,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif-black"
-                            android:text="Ranks"
+                            android:text="Barangay Polls"
                             android:textColor="#03045E"
-                            android:textSize="12sp"/>
+                            android:layout_gravity="center"
+                            android:textSize="12sp" />
 
                         <ImageView
-                            android:id="@+id/imageView7"
+                            android:id="@+id/bottomline"
                             android:layout_width="345dp"
                             android:layout_height="2dp"
                             android:layout_marginTop="5dp"
@@ -305,9 +306,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif-black"
-                            android:text="Ranks"
+                            android:text="Community Polls"
+                            android:layout_gravity="center"
                             android:textColor="#03045E"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <ImageView
                             android:id="@+id/lowerline2"
