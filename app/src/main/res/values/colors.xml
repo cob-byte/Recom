@@ -9,11 +9,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#03054E</color>
 
+
+
     <!-- colors for button style -->
 
     <color name="gradient_start_color">#4c84ff</color>
     <color name="gradient_end_color">#18a3fe</color>
     <color name="click_sign_color">#74D7DA</color>
+    <color name = "Button_Color">#4E67EB</color>
 
     <!-- colors for tab and screent text -->
 

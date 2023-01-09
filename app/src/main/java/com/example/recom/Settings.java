@@ -63,6 +63,15 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        binding.changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent changePassword = new Intent(Settings.this, ChangePassword.class);
+                changePassword.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(changePassword);
+            }
+        });
+
         binding.btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

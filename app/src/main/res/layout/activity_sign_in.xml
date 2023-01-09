@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/top_background"
+    android:background="@color/white"
     tools:context=".SignIn">
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
         android:src="@drawable/signin_design"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,16 +24,16 @@
         android:id="@+id/Sgn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGN-IN"
+        android:text="Sign-in"
         android:textColor="@color/blue"
-        android:textSize="48sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.078" />
 
     <TextView
         android:id="@+id/wback"
@@ -49,7 +49,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <TextView
         android:id="@+id/wback2"
@@ -61,9 +61,10 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.345" />
 
     <TextView
         android:id="@+id/forgotpass"
@@ -134,14 +135,14 @@
         android:layout_height="40dp"
         android:background="@drawable/editbox"
         android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawableLeft="@drawable/ic_baseline_blacklock_24_"
         android:drawablePadding="5dp"
         android:ems="14"
-        android:textColorHint="@color/gray"
         android:hint="Type your password"
-        android:textColor="@color/black"
         android:inputType="textPassword"
         android:paddingStart="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -156,7 +157,11 @@
         android:text="Sign- in"
         android:textColor="@color/white"
         android:textStyle="bold"
+<<<<<<< Updated upstream
         android:backgroundTint="#4e67eb"
+=======
+        android:backgroundTint="#4E67EB"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -168,21 +173,25 @@
         android:id="@+id/pwdShowHide"
         android:layout_width="29dp"
         android:layout_height="29dp"
+        android:layout_marginEnd="60dp"
+        android:elevation="10dp"
         android:focusable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628" />
+        app:layout_constraintVertical_bias="0.628"
+        app:tint="#686868" />
 
     <Button
         android:id="@+id/btnBackSignIn"
         android:layout_width="71dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
+        android:backgroundTint="#4E67EB"
         android:text="Back"
+        android:layout_marginStart="10dp"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
