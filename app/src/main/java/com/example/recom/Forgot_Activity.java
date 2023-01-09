@@ -3,11 +3,14 @@ package com.example.recom;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -40,22 +43,19 @@ public class Forgot_Activity extends AppCompatActivity {
         binding.btnconfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = binding.emailtxt.getText().toString();
-                if (!email.isEmpty()) {
-                    forgotpass(email);
-
+                if(binding.emailtxt.getText().toString().isEmpty()){
+                    Toast.makeText(Forgot_Activity.this, "Please enter your email.", Toast.LENGTH_LONG).show();
+                    binding.emailtxt.setError("Email address is required.");
+                    binding.emailtxt.requestFocus();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(binding.emailtxt.getText().toString()).matches()){
+                    Toast.makeText(Forgot_Activity.this, "Please re-enter your email address.", Toast.LENGTH_LONG).show();
+                    binding.emailtxt.setError("Valid email address is required.");
+                    binding.emailtxt.requestFocus();
                 }
                 else {
-                    Toast.makeText(Forgot_Activity.this, "Please enter your email address.", Toast.LENGTH_LONG).show();
-
+                    forgotpass(binding.emailtxt.getText().toString());
                 }
-            }
-        });
-        binding.btnclose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent resetpass= new Intent(Forgot_Activity.this, SignIn.class);
-                startActivity(resetpass);
             }
         });
 
@@ -72,19 +72,29 @@ public class Forgot_Activity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "Email Sent.");
 
-                    //to visible confirmation text
-                    binding.bgExit.setVisibility(View.VISIBLE);
-                    binding.btnclose.setVisibility(View.VISIBLE);
-                    binding.confrimText.setVisibility(View.VISIBLE);
-                   //to add animation
-                    binding.bgExit.setAnimation(btnAnim);
-                    binding.btnclose.setAnimation(btnAnim);
-                    binding.confrimText.setAnimation(btnAnim);
-
+                    showAlertDialog();
                 }
             }
         });
 
+    }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Forgot_Activity.this);
+        builder.setTitle("Password Reset Confirmation");
+        builder.setMessage("We've sent an email to reset your password.Please check your inbox. Thank you!");
+        //close
+        builder.setPositiveButton("Return to Sign-in", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Forgot_Activity.this, Home.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
 

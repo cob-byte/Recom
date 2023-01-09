@@ -143,39 +143,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/bgExit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/white_background"
-                android:orientation="vertical"
-                android:visibility="invisible">
-
-                <ImageView
-                    android:id="@+id/btnclose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:alpha=".9"
-                    android:src="@drawable/close_button"
-                    android:visibility="invisible"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/confrim_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:padding="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="We've sent an email to reset your password.Please check your inbox. Thank you! "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="italic|bold"
-                    android:visibility="invisible" />
-
-            </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>

@@ -40,6 +40,8 @@ public class SignIn extends AppCompatActivity {
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getSupportActionBar().hide();
+
         //show/hide password
         binding.pwdShowHide.setImageResource(R.drawable.hide_pwd);
         binding.pwdShowHide.setOnClickListener(new View.OnClickListener() {
