@@ -2,6 +2,7 @@ package com.example.recom;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,6 +18,15 @@ public class CommunityConsensus extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
+
+        binding.btnAsk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ask = new Intent(CommunityConsensus.this, AskQuestion.class);
+                ask.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(ask);
+            }
+        });
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -204,7 +204,8 @@
                             android:id="@+id/RadioBtnOption1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:clickable="false" />
 
                         <EditText
                             android:id="@+id/TextOption1"
@@ -214,7 +215,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Type your answer here." />
+                            android:hint="Type your answer here." />
                     </LinearLayout>
 
                     <LinearLayout
@@ -230,7 +231,8 @@
                             android:id="@+id/RadioBtnOption2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:clickable="false" />
 
                         <EditText
                             android:id="@+id/TextOption2"
@@ -240,10 +242,11 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Type your answer here." />
+                            android:hint="Type your answer here." />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/option3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
@@ -251,13 +254,14 @@
                         android:background="@drawable/square_poll"
                         android:orientation="horizontal"
                         android:padding="5dp"
-                        android:visibility="invisible">
+                        android:visibility="visible">
 
                         <RadioButton
                             android:id="@+id/RadioBtnOption3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:clickable="false" />
 
                         <EditText
                             android:id="@+id/TextOption3"
@@ -266,24 +270,27 @@
                             android:layout_marginStart="-110dp"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="Type your answer here." />
+                            android:hint="Add Option"
+                            android:inputType="textPersonName" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/option4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/square_poll"
                         android:orientation="horizontal"
                         android:padding="5dp"
-                        android:visibility="invisible">
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <RadioButton
                             android:id="@+id/RadioBtnOption4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:clickable="false" />
 
                         <EditText
                             android:id="@+id/TextOption4"
@@ -292,8 +299,8 @@
                             android:layout_marginStart="-110dp"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="Type your answer here." />
+                            android:hint="Add Option"
+                            android:inputType="textPersonName" />
                     </LinearLayout>
 
                 </RadioGroup>

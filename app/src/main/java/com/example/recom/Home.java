@@ -33,7 +33,7 @@ public class Home extends Fragment {
         viewPager2 = view.findViewById(R.id.view_pager2);
 
         int[] images = {R.drawable.pasuyo,R.drawable.pasched,R.drawable.cc,R.drawable.safeme,R.drawable.tararecomlogo};
-        String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
+        String[] heading = {"Jaymark","Grilled","Dessert","Italian","Shakes"};
         String[] desc = {getString(R.string.a_desc),
                 getString(R.string.b_desc),
                 getString(R.string.c_desc),
