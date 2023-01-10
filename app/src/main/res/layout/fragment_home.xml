@@ -69,6 +69,5 @@
                 tools:ignore="MissingConstraints">
 
             </androidx.viewpager2.widget.ViewPager2>
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
