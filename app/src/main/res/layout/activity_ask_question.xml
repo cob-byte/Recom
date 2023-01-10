@@ -76,7 +76,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-black"
                 android:text="Ask a Question"
                 android:textColor="#03045E"
                 android:textSize="40sp" />

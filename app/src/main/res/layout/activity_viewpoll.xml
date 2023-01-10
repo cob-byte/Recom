@@ -520,14 +520,14 @@
                                     android:layout_marginStart="10dp"/>
 
                                 <ImageButton
-                                    android:id="@+id/imageButton4"
+                                    android:id="@+id/sendbutton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginStart="-40dp"
                                     android:layout_marginEnd="10dp"
                                     android:backgroundTint="@color/white"
-                                    app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+                                    app:srcCompat="@drawable/ic_baseline_send_24" />
                             </LinearLayout>
 
                         </LinearLayout>
