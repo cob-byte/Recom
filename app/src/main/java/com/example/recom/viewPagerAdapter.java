@@ -48,7 +48,7 @@ public class viewPagerAdapter extends RecyclerView.Adapter<viewPagerAdapter.View
         return pagerArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
         TextView tcHeading, tvDesc;

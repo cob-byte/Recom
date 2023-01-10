@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -129,14 +131,32 @@ public class AskQuestion extends AppCompatActivity {
     }
 
     private void addNewQuestion() {
+        //get date and time
+        Calendar calForDate = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMM-yy");
+        final String saveCurrentDate = currentDate.format(calForDate.getTime());
+
+        Calendar calForTime = Calendar.getInstance();
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+        final String  saveCurrentTime = currentTime.format(calForDate.getTime());
+
         HashMap<String, Object> questionMap = new HashMap<>();
-        questionMap.put("anon",  binding.AnonSwitch.isChecked());
+        if(binding.AnonSwitch.isChecked()){
+            questionMap.put("anon",  binding.AnonSwitch.isChecked());
+            questionMap.put("name", null);
+        } else {
+            questionMap.put("anon",  binding.AnonSwitch.isChecked());
+            questionMap.put("name", firebaseUser.getDisplayName());
+        }
+        questionMap.put("author", firebaseUser.getUid());
         questionMap.put("title", binding.questionTitle.getText().toString());
         questionMap.put("question", binding.question.getText().toString());
         questionMap.put("answer1", binding.TextOption1.getText().toString());
         questionMap.put("answer2", binding.TextOption2.getText().toString());
         questionMap.put("upvote", 0);
         questionMap.put("downvote", 0);
+        questionMap.put("date", saveCurrentDate);
+        questionMap.put("time", saveCurrentTime);
         if(!binding.TextOption3.getText().toString().isEmpty()){
             if(!binding.TextOption4.getText().toString().isEmpty()){
                 questionMap.put("answer3", binding.TextOption3.getText().toString());
@@ -144,10 +164,16 @@ public class AskQuestion extends AppCompatActivity {
             }
             else{
                 questionMap.put("answer3", binding.TextOption3.getText().toString());
+                questionMap.put("answer4", null);
             }
         }
+        else{
+            questionMap.put("answer3", null);
+            questionMap.put("answer4", null);
+        }
+
         databaseReference = database.getReference("communityConsensus");
-        databaseReference.child(firebaseUser.getUid()).child(binding.questionTitle.getText().toString()).setValue(questionMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReference.child("questions").push().setValue(questionMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){

@@ -138,7 +138,7 @@
                             app:srcCompat="@drawable/top_rectangle" />
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/vPollTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
@@ -163,7 +163,7 @@
                             android:background="@drawable/square_poll">
 
                             <TextView
-                                android:id="@+id/PollName1"
+                                android:id="@+id/vPollName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -173,7 +173,7 @@
                                 android:textSize="10sp"/>
 
                             <TextView
-                                android:id="@+id/Description1"
+                                android:id="@+id/pollDescription"
                                 android:layout_width="270dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
@@ -184,7 +184,7 @@
                                 android:textSize="10sp"/>
 
                             <ImageButton
-                                android:id="@+id/btnPoll1"
+                                android:id="@+id/seePoll"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_marginStart="320dp"
@@ -288,155 +288,50 @@
                         android:id="@+id/LowerPollPlace"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="15dp"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/lowerline1"
-                            android:layout_width="345dp"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="1dp"
-                            app:srcCompat="@drawable/top_rectangle" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/LowerPollName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:fontFamily="sans-serif-black"
-                            android:text="Community Polls"
-                            android:layout_gravity="center"
-                            android:textColor="#03045E"
-                            android:textSize="12sp" />
-
-                        <ImageView
-                            android:id="@+id/lowerline2"
-                            android:layout_width="345dp"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/top_rectangle" />
-
-                        <RelativeLayout
-                            android:id="@+id/LowerFirstPoll"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/square_poll">
+                            <ImageView
+                                android:id="@+id/lowerline1"
+                                android:layout_width="345dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="1dp"
+                                app:srcCompat="@drawable/top_rectangle" />
 
                             <TextView
-                                android:id="@+id/LowerPollName1"
+                                android:id="@+id/LowerPollName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="8dp"
-                                android:text="1.  Anonymous"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="1dp"
+                                android:fontFamily="sans-serif-black"
+                                android:text="Community Polls"
                                 android:textColor="#03045E"
-                                android:textSize="10sp"/>
+                                android:textSize="12sp" />
 
-                            <TextView
-                                android:id="@+id/LowerDescription1"
-                                android:layout_width="270dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="25dp"
-                                android:layout_marginBottom="5dp"
-                                android:text="Writing effectively is an art. Start by using simple, everyday words people can easily understand. "
-                                android:textColor="#03045E"
-                                android:textSize="10sp"/>
+                            <ImageView
+                                android:id="@+id/lowerline2"
+                                android:layout_width="345dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="5dp"
+                                app:srcCompat="@drawable/top_rectangle" />
 
-                            <ImageButton
-                                android:id="@+id/LowerbtnPoll1"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="320dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginEnd="15dp"
-                                app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+                        </LinearLayout>
 
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/LowerSecondPoll2"
-                            android:layout_width="wrap_content"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/questionList"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/square_poll">
-
-                            <TextView
-                                android:id="@+id/LowerPollName2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="8dp"
-                                android:text="2.  Anonymous"
-                                android:textColor="#03045E"
-                                android:textSize="10sp"/>
-
-                            <TextView
-                                android:id="@+id/LowerDescription2"
-                                android:layout_width="270dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="25dp"
-                                android:layout_marginBottom="5dp"
-                                android:text="Writing effectively is an art. Start by using simple, everyday words people can easily understand. "
-                                android:textColor="#03045E"
-                                android:textSize="10sp"/>
-
-                            <ImageButton
-                                android:id="@+id/LowerbtnPoll2"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="320dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginEnd="15dp"
-                                app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/LowerSecondPoll3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/square_poll">
-
-                            <TextView
-                                android:id="@+id/LowerPollName3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="8dp"
-                                android:text="2.  Anonymous"
-                                android:textColor="#03045E"
-                                android:textSize="10sp"/>
-
-                            <TextView
-                                android:id="@+id/LowerDescription3"
-                                android:layout_width="270dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="25dp"
-                                android:layout_marginBottom="5dp"
-                                android:text="Writing effectively is an art. Start by using simple, everyday words people can easily understand. "
-                                android:textColor="#03045E"
-                                android:textSize="10sp"/>
-
-                            <ImageButton
-                                android:id="@+id/LowerbtnPoll3"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="320dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginEnd="15dp"
-                                app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
-                        </RelativeLayout>
+                            android:layout_margin="10dp" />
 
                     </LinearLayout>
-
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
