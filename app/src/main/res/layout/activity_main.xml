@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/top_background"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <Button
@@ -50,7 +50,7 @@
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:text="Welcome!"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/blue"
         android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
@@ -63,7 +63,7 @@
         android:layout_height="300dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/recomlogo2"
+        android:src="@drawable/recomlogo"
         app:layout_constraintBottom_toTopOf="@+id/Welcome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -74,7 +74,7 @@
         android:layout_height="56dp"
         android:layout_marginBottom="212dp"
         android:src="@drawable/userlogo"
-        app:tint="#FFFFFF"
+        app:tint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

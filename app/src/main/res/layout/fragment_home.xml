@@ -7,11 +7,9 @@
     android:background="@drawable/top_background"
     android:fillViewport="true"
     tools:context=".Home">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,14 +20,13 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
+            <Button
                 android:id="@+id/consensus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/top_rectangle"
-                android:orientation="horizontal">
+                android:orientation="horizontal"/>
 
                 <ImageButton
                     android:id="@+id/backBtn"
@@ -48,27 +45,30 @@
                     android:textColor="#FFFFFF"
                     android:textSize="30dp" />
 
-            </LinearLayout>
 
+            </LinearLayout>
             <TextView
                 android:id="@+id/alamNiyoBa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="ALAM NIYO BA?"
                 android:textColor="#143081"
                 android:textSize="34sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
 
-        <androidx.viewpager2.widget.ViewPager2
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                tools:ignore="MissingConstraints"></androidx.viewpager2.widget.ViewPager2>
-        </LinearLayout>
+                tools:ignore="MissingConstraints">
 
+            </androidx.viewpager2.widget.ViewPager2>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
