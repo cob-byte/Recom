@@ -53,7 +53,7 @@ public class Viewpoll extends AppCompatActivity {
 
     private void showPoll(String pushKey) {
         reference = database.getReference("communityConsensus").child("questions").child(pushKey);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 cConsensus consensus = snapshot.getValue(cConsensus.class);
