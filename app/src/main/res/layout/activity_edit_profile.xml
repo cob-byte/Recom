@@ -40,8 +40,21 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Edit Profile"
                 android:textAlignment="center"
-                android:textColor="#FDFDFD"
+                android:textColor="@color/white"
                 android:textSize="43dp" />
+
+            <ImageView
+                android:id="@+id/top_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-10dp"
+                android:src="@drawable/top_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,19 +90,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/top_background"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="-10dp"
-                    android:src="@drawable/top_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
 
             </LinearLayout>
 

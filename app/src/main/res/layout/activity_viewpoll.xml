@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg"
+    android:background="@color/white"
     android:fillViewport="true"
     tools:context=".CommunityConsensus">
 
@@ -59,7 +59,7 @@
             android:id="@+id/BodyLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_background"
+            android:background="@color/white"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/logo"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,6 +100,7 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="20dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#4E67EB"
                         android:text="My Poll" />
 
                     <Button
@@ -109,6 +110,7 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="20dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#4E67EB"
                         android:text="Ask Question" />
 
                 </LinearLayout>
@@ -119,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/blue"
                     android:background="@drawable/text_place">
 
                     <LinearLayout
@@ -136,6 +139,8 @@
                             android:layout_width="345dp"
                             android:layout_height="2dp"
                             android:layout_marginTop="1dp"
+                            android:tint="@color/white"
+                            android:layout_gravity="center"
                             app:srcCompat="@drawable/top_rectangle" />
 
                         <TextView
@@ -146,14 +151,17 @@
                             android:fontFamily="sans-serif-black"
                             android:layout_gravity="center_horizontal"
                             android:text="Title Question"
-                            android:textColor="#03045E"
-                            android:textSize="12sp"/>
+                            android:gravity="center"
+                            android:textColor="#ffff"
+                            android:textSize="16sp"/>
 
                         <ImageView
                             android:id="@+id/imageView7"
                             android:layout_width="345dp"
                             android:layout_height="2dp"
                             android:layout_marginTop="5dp"
+                            android:tint="@color/white"
+                            android:layout_gravity="center"
                             app:srcCompat="@drawable/top_rectangle" />
 
                         <RelativeLayout
@@ -345,7 +353,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -355,15 +363,20 @@
                                     android:layout_marginStart="20dp"
                                     android:layout_marginTop="8dp"
                                     android:text="Anonymous"
+                                    android:fontFamily="sans-serif-black"
                                     android:textColor="#03045E"
-                                    android:textSize="12sp" />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/TimePosted"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Time Posted" />
+                                    android:text="Time Posted"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="8dp"
+                                    android:textColor="#03045E"
+                                    android:textSize="12sp"/>
 
                             </LinearLayout>
 
@@ -372,7 +385,8 @@
                                 android:layout_width="353dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:layout_marginTop="25dp"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginStart="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:text=" Writing effectively is an art. Start by using simple, everyday words people can easily understand. Be clear and direct to the point? "
                                 android:textColor="#03045E"
@@ -383,6 +397,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="5dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -390,6 +405,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:textColor="@color/white"
                                 android:text="Total Votes" />
 
                             <TextView
@@ -397,6 +413,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:textColor="@color/white"
                                 android:text="Time Remaining" />
 
                         </LinearLayout>
@@ -407,6 +424,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:layout_marginRight="10dp"
+                            android:backgroundTint="#4E67EB"
                             android:text="Vote" />
 
                     </LinearLayout>
@@ -420,13 +438,15 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/text_place">
+                    android:background="@drawable/text_place"
+                    android:backgroundTint="@color/blue">
 
                     <LinearLayout
                         android:id="@+id/LowerPollPlace"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="15dp"
                         android:orientation="vertical">
@@ -436,7 +456,9 @@
                             android:layout_width="345dp"
                             android:layout_height="2dp"
                             android:layout_marginTop="1dp"
-                            app:srcCompat="@drawable/top_rectangle" />
+                            app:srcCompat="@drawable/top_rectangle"
+                            android:tint="@color/white"
+                            android:layout_gravity="center"/>
 
                         <TextView
                             android:id="@+id/LowerPollName"
@@ -445,21 +467,25 @@
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif-black"
                             android:text="Comments"
-                            android:textColor="#03045E"
-                            android:textSize="12sp" />
+                            android:textColor="#ffff"
+                            android:layout_gravity="center"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/lowerline2"
                             android:layout_width="345dp"
                             android:layout_height="2dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/top_rectangle" />
+                            app:srcCompat="@drawable/top_rectangle"
+                            android:layout_gravity="center"
+                            android:tint="@color/white"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="center"
                             android:background="@drawable/square_poll"
                             android:orientation="vertical">
 
