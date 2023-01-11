@@ -49,6 +49,8 @@ public class CommunityConsensus extends AppCompatActivity {
         reference.limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                pushKey.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     queList.setAdapter(myAdapter);
                     cConsensus consensus = dataSnapshot.getValue(cConsensus.class);
