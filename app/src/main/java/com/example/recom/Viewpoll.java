@@ -79,102 +79,7 @@ public class Viewpoll extends AppCompatActivity {
                     }
                     binding.vPollQuestion.setText(consensus.getQuestion());
 
-                    if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
-                            || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
-                        binding.pollOptions.setVisibility(View.GONE);
-                        binding.BtnVote.setVisibility(View.GONE);
-                        binding.alreadyVoted.setVisibility(View.VISIBLE);
-                        double answer1, answer2, answer3, answer4,
-                                percent1, percent2, percent3, percent4, total;
-
-                        //get answers count
-                        answer1 = consensus.getAnswer1Count();
-                        answer2 = consensus.getAnswer2Count();
-                        if(consensus.getAnswer3() != null) {
-                            if (consensus.getAnswer4() != null) {
-                                binding.pollResult3.setVisibility(View.VISIBLE);
-                                binding.pollResult4.setVisibility(View.VISIBLE);
-
-                                answer3 = consensus.getAnswer3Count();
-                                answer4 = consensus.getAnswer4Count();
-
-                                //get total if 4 answers
-                                total = answer1+answer2+answer3+answer4;
-
-                                //get percent if 4 answers
-                                percent1=(answer1/total)*100;
-                                percent2=(answer2/total)*100;
-                                percent3=(answer3/total)*100;
-                                percent4=(answer4/total)*100;
-
-                                // set percent on text view
-                                binding.progressBar1.setText(String.format("%.0f%%",percent1));
-                                // Set progress on seekbar
-                                binding.seekBar1.setProgress((int)percent1);
-
-                                binding.progressBar2.setText(String.format("%.0f%%",percent2));
-                                binding.seekBar2.setProgress((int)percent2);
-                                binding.progressBar3.setText(String.format("%.0f%%",percent3));
-                                binding.seekBar3.setProgress((int)percent3);
-                                binding.progressBar4.setText(String.format("%.0f%%",percent4));
-                                binding.seekBar4.setProgress((int)percent4);
-                            }
-                            else{
-                                binding.pollResult3.setVisibility(View.VISIBLE);
-                                answer3 = consensus.getAnswer3Count();
-
-                                //get total if 3 answers
-                                total = answer1+answer2+answer3;
-
-                                //get percent if 3 answers
-                                percent1=(answer1/total)*100;
-                                percent2=(answer2/total)*100;
-                                percent3=(answer3/total)*100;
-
-                                // set percent on text view
-                                binding.progressBar1.setText(String.format("%.0f%%",percent1));
-                                // Set progress on seekbar
-                                binding.seekBar1.setProgress((int)percent1);
-
-                                binding.progressBar2.setText(String.format("%.0f%%",percent2));
-                                binding.seekBar2.setProgress((int)percent2);
-                                binding.progressBar3.setText(String.format("%.0f%%",percent3));
-                                binding.seekBar3.setProgress((int)percent3);
-                            }
-                        }else{
-                            //get total if 2 answers
-                            total = answer1+answer2;
-
-                            //get percent if 2 answers
-                            percent1=(answer1/total)*100;
-                            percent2=(answer2/total)*100;
-
-                            // set percent on text view
-                            binding.progressBar1.setText(String.format("%.0f%%",percent1));
-                            // Set progress on seekbar
-                            binding.seekBar1.setProgress((int)percent1);
-
-                            binding.progressBar2.setText(String.format("%.0f%%",percent2));
-                            binding.seekBar2.setProgress((int)percent2);
-                        }
-                        binding.TotalVotes.setText("Total Votes: " + round(total));
-                    }
-                    else{
-                        binding.radioButton1.setText(consensus.getAnswer1());
-                        binding.radioButton2.setText(consensus.getAnswer2());
-                        if(consensus.getAnswer3() != null){
-                            if(consensus.getAnswer4() != null){
-                                binding.radioButton3.setVisibility(View.VISIBLE);
-                                binding.radioButton4.setVisibility(View.VISIBLE);
-                                binding.radioButton3.setText(consensus.getAnswer3());
-                                binding.radioButton4.setText(consensus.getAnswer4());
-                            }
-                            else{
-                                binding.radioButton3.setVisibility(View.VISIBLE);
-                                binding.radioButton3.setText(consensus.getAnswer3());
-                            }
-                        }
-                    }
+                    checkVote(consensus);
                 }
             }
 
@@ -183,6 +88,105 @@ public class Viewpoll extends AppCompatActivity {
                 Log.d(TAG, "postTransaction:onComplete:" + error);
             }
         });
+    }
+
+    private void checkVote(cConsensus consensus) {
+        if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
+                || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
+            binding.pollOptions.setVisibility(View.GONE);
+            binding.BtnVote.setVisibility(View.GONE);
+            binding.alreadyVoted.setVisibility(View.VISIBLE);
+            double answer1, answer2, answer3, answer4,
+                    percent1, percent2, percent3, percent4, total;
+
+            //get answers count
+            answer1 = consensus.getAnswer1Count();
+            answer2 = consensus.getAnswer2Count();
+            if(consensus.getAnswer3() != null) {
+                if (consensus.getAnswer4() != null) {
+                    binding.pollResult3.setVisibility(View.VISIBLE);
+                    binding.pollResult4.setVisibility(View.VISIBLE);
+
+                    answer3 = consensus.getAnswer3Count();
+                    answer4 = consensus.getAnswer4Count();
+
+                    //get total if 4 answers
+                    total = answer1+answer2+answer3+answer4;
+
+                    //get percent if 4 answers
+                    percent1=(answer1/total)*100;
+                    percent2=(answer2/total)*100;
+                    percent3=(answer3/total)*100;
+                    percent4=(answer4/total)*100;
+
+                    // set percent on text view
+                    binding.progressBar1.setText(String.format("%.0f%%",percent1));
+                    // Set progress on seekbar
+                    binding.seekBar1.setProgress((int)percent1);
+
+                    binding.progressBar2.setText(String.format("%.0f%%",percent2));
+                    binding.seekBar2.setProgress((int)percent2);
+                    binding.progressBar3.setText(String.format("%.0f%%",percent3));
+                    binding.seekBar3.setProgress((int)percent3);
+                    binding.progressBar4.setText(String.format("%.0f%%",percent4));
+                    binding.seekBar4.setProgress((int)percent4);
+                }
+                else{
+                    binding.pollResult3.setVisibility(View.VISIBLE);
+                    answer3 = consensus.getAnswer3Count();
+
+                    //get total if 3 answers
+                    total = answer1+answer2+answer3;
+
+                    //get percent if 3 answers
+                    percent1=(answer1/total)*100;
+                    percent2=(answer2/total)*100;
+                    percent3=(answer3/total)*100;
+
+                    // set percent on text view
+                    binding.progressBar1.setText(String.format("%.0f%%",percent1));
+                    // Set progress on seekbar
+                    binding.seekBar1.setProgress((int)percent1);
+
+                    binding.progressBar2.setText(String.format("%.0f%%",percent2));
+                    binding.seekBar2.setProgress((int)percent2);
+                    binding.progressBar3.setText(String.format("%.0f%%",percent3));
+                    binding.seekBar3.setProgress((int)percent3);
+                }
+            }else{
+                //get total if 2 answers
+                total = answer1+answer2;
+
+                //get percent if 2 answers
+                percent1=(answer1/total)*100;
+                percent2=(answer2/total)*100;
+
+                // set percent on text view
+                binding.progressBar1.setText(String.format("%.0f%%",percent1));
+                // Set progress on seekbar
+                binding.seekBar1.setProgress((int)percent1);
+
+                binding.progressBar2.setText(String.format("%.0f%%",percent2));
+                binding.seekBar2.setProgress((int)percent2);
+            }
+            binding.TotalVotes.setText("Total Votes: " + round(total));
+        }
+        else{
+            binding.radioButton1.setText(consensus.getAnswer1());
+            binding.radioButton2.setText(consensus.getAnswer2());
+            if(consensus.getAnswer3() != null){
+                if(consensus.getAnswer4() != null){
+                    binding.radioButton3.setVisibility(View.VISIBLE);
+                    binding.radioButton4.setVisibility(View.VISIBLE);
+                    binding.radioButton3.setText(consensus.getAnswer3());
+                    binding.radioButton4.setText(consensus.getAnswer4());
+                }
+                else{
+                    binding.radioButton3.setVisibility(View.VISIBLE);
+                    binding.radioButton3.setText(consensus.getAnswer3());
+                }
+            }
+        }
     }
 
     @Override
@@ -308,7 +312,8 @@ public class Viewpoll extends AppCompatActivity {
                 }
                 switch(answer){
                     case 1:
-                        if(consensus.answer1Vote.containsKey(firebaseUser.getUid())){
+                        if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
+                                || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
                             Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -318,7 +323,8 @@ public class Viewpoll extends AppCompatActivity {
                         }
                         break;
                     case 2:
-                        if(consensus.answer2Vote.containsKey(firebaseUser.getUid())){
+                        if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
+                                || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
                             Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -328,7 +334,8 @@ public class Viewpoll extends AppCompatActivity {
                         }
                         break;
                     case 3:
-                        if(consensus.answer3Vote.containsKey(firebaseUser.getUid())){
+                        if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
+                                || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
                             Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -338,7 +345,8 @@ public class Viewpoll extends AppCompatActivity {
                         }
                         break;
                     case 4:
-                        if(consensus.answer4Vote.containsKey(firebaseUser.getUid())){
+                        if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
+                                || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
                             Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -358,7 +366,18 @@ public class Viewpoll extends AppCompatActivity {
 
             @Override
             public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
-                Log.d(TAG, "postTransaction:onComplete:" + error);
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        cConsensus consensus = snapshot.getValue(cConsensus.class);
+                        checkVote(consensus);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
     }
