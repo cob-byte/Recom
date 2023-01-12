@@ -238,7 +238,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/text_place"
                 android:ems="10"
-                android:hint="XXXX-XXXX-XXX"
+                android:hint="09XXXXXXXXX"
                 android:inputType="phone"
                 android:paddingStart="10dp"
                 android:paddingLeft="20dp"
