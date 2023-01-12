@@ -7,7 +7,7 @@ public class cConsensus {
     Boolean anon;
     int upvote, downvote, answer1Count, answer2Count, answer3Count,
             answer4Count;
-    String author, name, title, question, answer1, answer2, answer3, answer4, date, time;
+    String author, name, title, question, answer1, answer2, answer3, answer4, date, time, image;
     public Map<String, Boolean> upVoters = new HashMap<>();
     public Map<String, Boolean> downVoters = new HashMap<>();
     public Map<String, Boolean> answer1Vote = new HashMap<>();
@@ -18,7 +18,7 @@ public class cConsensus {
     public cConsensus() {
     }
 
-    public cConsensus(Boolean anon, int upvote, int downvote, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time) {
+    public cConsensus(Boolean anon, int upvote, int downvote, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time, String image) {
         this.anon = anon;
         this.upvote = upvote;
         this.downvote = downvote;
@@ -36,6 +36,7 @@ public class cConsensus {
         this.answer4Count = answer4Count;
         this.date = date;
         this.time = time;
+        this.image = image;
     }
 
     public Boolean getAnon() {
@@ -173,4 +174,8 @@ public class cConsensus {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getImage(){ return image; }
+
+    public void setImage(String image) { this.image = image; }
 }

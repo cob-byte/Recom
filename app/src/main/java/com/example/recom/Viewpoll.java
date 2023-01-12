@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,6 +63,9 @@ public class Viewpoll extends AppCompatActivity {
                     binding.vPollTitle.setText(consensus.getTitle());
                     if(anon == false){
                         binding.vPollName.setText(consensus.getName());
+                        if(consensus.getImage() != null){
+                            Picasso.get().load(consensus.getImage()).into(binding.profileImage);
+                        }
                     }
                     else{
                         binding.vPollName.setText("Anonymous");
