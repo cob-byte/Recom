@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -28,12 +29,15 @@ public class CommunityConsensus extends AppCompatActivity {
     private RecyclerView queList;
     private ArrayList<cConsensus> list;
     private ArrayList<String> pushKey;
+    private ValueEventListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community_consensus);
         Button btnAsk = (Button) findViewById(R.id.btnAsk);
+        Button communitySeeAllPoll = (Button) findViewById(R.id.SeeAll2);
+        Button seeMyPoll = (Button) findViewById(R.id.btnPoll);
         ImageButton backBtn = (ImageButton) findViewById(R.id.backBtn);
 
         getSupportActionBar().hide();
@@ -46,7 +50,7 @@ public class CommunityConsensus extends AppCompatActivity {
         pushKey = new ArrayList<String>();
         myAdapter = new cConsensusAdapter(this, list, pushKey);
 
-        reference.limitToFirst(3).addValueEventListener(new ValueEventListener() {
+        listener = reference.limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
@@ -62,7 +66,7 @@ public class CommunityConsensus extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(CommunityConsensus.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -75,9 +79,30 @@ public class CommunityConsensus extends AppCompatActivity {
             }
         });
 
+        seeMyPoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent seeMyPoll = new Intent(CommunityConsensus.this, MyPoll_cc.class);
+                seeMyPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(seeMyPoll);
+            }
+        });
+
+        communitySeeAllPoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cSeeAllPoll = new Intent(CommunityConsensus.this, pollview_cc.class);
+                cSeeAllPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(cSeeAllPoll);
+            }
+        });
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (reference != null && listener != null) {
+                    reference.removeEventListener(listener);
+                }
                 finish();
             }
         });

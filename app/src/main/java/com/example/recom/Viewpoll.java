@@ -46,7 +46,16 @@ public class Viewpoll extends AppCompatActivity {
     private RecyclerView comPoll;
     private ArrayList<pollComment> comment;
     private String pushKey;
+    private ValueEventListener listener;
     private static final String TAG = "Viewpoll";
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (reference != null && listener != null) {
+            reference.removeEventListener(listener);
+        }
+    }
 
     @Override
     protected void onStart() {
@@ -66,7 +75,7 @@ public class Viewpoll extends AppCompatActivity {
 
     private void showPoll(String pushKey) {
         reference = database.getReference("communityConsensus").child("questions").child(pushKey);
-        reference.addValueEventListener(new ValueEventListener() {
+        listener = reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 cConsensus consensus = snapshot.getValue(cConsensus.class);
@@ -220,29 +229,48 @@ public class Viewpoll extends AppCompatActivity {
         binding.BtnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int answer;
-                int selectedAnswerID = binding.pollOptions.getCheckedRadioButtonId();
-                switch(selectedAnswerID){
-                    case R.id.radioButton1:
-                        answer = 1;
-                        castVote(answer, pushKey);
-                        break;
-                    case R.id.radioButton2:
-                        answer = 2;
-                        castVote(answer, pushKey);
-                        break;
-                    case R.id.radioButton3:
-                        answer = 3;
-                        castVote(answer, pushKey);
-                        break;
-                    case R.id.radioButton4:
-                        answer = 4;
-                        castVote(answer, pushKey);
-                        break;
-                    default:
+                reference = database.getReference("Users");
+                reference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        int answer;
+                        int selectedAnswerID = binding.pollOptions.getCheckedRadioButtonId();
+                        if(user != null){
+                            if(user.userRole == 0){
+                                Toast.makeText(Viewpoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                switch(selectedAnswerID){
+                                    case R.id.radioButton1:
+                                        answer = 1;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    case R.id.radioButton2:
+                                        answer = 2;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    case R.id.radioButton3:
+                                        answer = 3;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    case R.id.radioButton4:
+                                        answer = 4;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    default:
+                                        Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                                        break;
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
-                        break;
-                }
+                    }
+                });
             }
         });
 
@@ -284,7 +312,7 @@ public class Viewpoll extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -342,7 +370,7 @@ public class Viewpoll extends AppCompatActivity {
         comment = new ArrayList<pollComment>();
         myAdapter = new pollCommentAdapter(this, comment);
 
-        reference.addValueEventListener(new ValueEventListener() {
+        listener = reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 comment.clear();
@@ -350,12 +378,19 @@ public class Viewpoll extends AppCompatActivity {
                     comPoll.setAdapter(myAdapter);
                     pollComment pollcomment = dataSnapshot.getValue(pollComment.class);
                     comment.add(pollcomment);
+                    int commentNumber = (int) snapshot.getChildrenCount();
+                    if(commentNumber < 2){
+                        binding.btnComments.setText(commentNumber + " comment");
+                    }
+                    else{
+                        binding.btnComments.setText(commentNumber + " comments");
+                    }
                 }
                 myAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -500,7 +535,7 @@ public class Viewpoll extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
                     }
                 });
             }

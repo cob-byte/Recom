@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -41,6 +43,7 @@ public class pollCommentAdapter extends RecyclerView.Adapter<pollCommentAdapter.
         if(pollcomment.getImage() != null){
             Picasso.get().load(pollcomment.getImage()).into(holder.profileImage);
         }
+
         holder.commentAuthor.setText(pollcomment.getName());
         holder.commentDescription.setText(pollcomment.getComment());
         String dateTime = pollcomment.getDate() + " " + pollcomment.getTime();
