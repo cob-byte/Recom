@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pollview_cc">
+    tools:context=".MyPoll_cc">
 
     <LinearLayout
         android:id="@+id/LayoutAbove"
@@ -30,9 +30,10 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:fontFamily="sans-serif-black"
-            android:text="Community Consensus"
+            android:text="My Polls"
             android:textColor="#03045E"
             android:textSize="30dp" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
