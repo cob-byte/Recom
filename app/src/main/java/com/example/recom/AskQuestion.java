@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 
 public class AskQuestion extends AppCompatActivity {
     private ActivityAskQuestionBinding binding;
@@ -104,7 +102,7 @@ public class AskQuestion extends AppCompatActivity {
                                                     Toast.makeText(AskQuestion.this, "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
                                                 }
                                                 else{
-                                                    addNewQuestion();
+                                                    addNewQuestion(snapshot);
                                                 }
                                             }
                                         })
@@ -130,7 +128,7 @@ public class AskQuestion extends AppCompatActivity {
         });
     }
 
-    private void addNewQuestion() {
+    private void addNewQuestion(DataSnapshot snapshot) {
         //get date and time
         Calendar calForDateTime = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMM-yy");
@@ -176,6 +174,10 @@ public class AskQuestion extends AppCompatActivity {
         } else {
             questionMap.put("anon",  binding.AnonSwitch.isChecked());
             questionMap.put("name", firebaseUser.getDisplayName());
+            if(firebaseUser.getPhotoUrl() != null){
+                questionMap.put("image", firebaseUser.getPhotoUrl().toString());
+
+            }
         }
 
         databaseReference = database.getReference("communityConsensus");
