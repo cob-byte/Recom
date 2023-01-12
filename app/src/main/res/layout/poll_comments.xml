@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,24 +25,25 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profileImage"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/profile_picture"
                         app:civ_border_color="#FF000000"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
                         app:civ_border_width="2dp" />
 
                     <TextView
                         android:id="@+id/commentAuthor"
-                        android:layout_width="match_parent"
+                        android:layout_width="425dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:text="Anonymous"
                         android:textColor="#03045E"
@@ -53,7 +54,7 @@
                         android:id="@+id/commentDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="Posted"
                         android:textColor="#03045E"
@@ -65,9 +66,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Writing effectively is an art. Start by using simple, everyday words people can easily understand. "
                     android:textColor="#03045E"
                     android:textSize="12sp" />

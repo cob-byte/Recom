@@ -5,6 +5,8 @@ import static java.lang.Math.round;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +16,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.recom.databinding.ActivityViewpollBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +32,9 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class Viewpoll extends AppCompatActivity {
     private ActivityViewpollBinding binding;
@@ -34,6 +42,9 @@ public class Viewpoll extends AppCompatActivity {
     private final FirebaseAuth firebaseProfile = FirebaseAuth.getInstance();
     private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
     private DatabaseReference reference;
+    private pollCommentAdapter myAdapter;
+    private RecyclerView comPoll;
+    private ArrayList<pollComment> comment;
     private String pushKey;
     private static final String TAG = "Viewpoll";
 
@@ -49,6 +60,7 @@ public class Viewpoll extends AppCompatActivity {
             //check if the user already voted
             reference = database.getReference("communityConsensus");
             showPoll(pushKey);
+            showComments();
         }
     }
 
@@ -98,7 +110,9 @@ public class Viewpoll extends AppCompatActivity {
         if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
                 || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
             binding.pollOptions.setVisibility(View.GONE);
-            binding.BtnVote.setVisibility(View.GONE);
+            binding.BtnVote.setEnabled(false);
+            binding.BtnVote.setText("Already Voted");
+            binding.BtnVote.setBackgroundColor(getResources().getColor(R.color.gray));
             binding.alreadyVoted.setVisibility(View.VISIBLE);
             double answer1, answer2, answer3, answer4,
                     percent1, percent2, percent3, percent4, total;
@@ -232,12 +246,119 @@ public class Viewpoll extends AppCompatActivity {
             }
         });
 
+        binding.btnComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(binding.pollComments.getVisibility() == View.VISIBLE){
+                    binding.pollComments.setVisibility(View.GONE);
+                }
+                else{
+                    binding.pollComments.setVisibility(View.VISIBLE);
+                    showComments();
+                }
+            }
+        });
+
+        binding.addComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reference = database.getReference("Users");
+                reference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        if(user != null){
+                            if(user.userRole == 0){
+                                Toast.makeText(Viewpoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
+                            }
+                            else if(binding.textComment.getText().toString().isEmpty()){
+                                Toast.makeText(Viewpoll.this, "Please enter the contents of your comment.", Toast.LENGTH_LONG).show();
+                                binding.textComment.setError("Fill in.");
+                                binding.textComment.requestFocus();
+                            }
+                            else{
+                                addNewComment();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
         binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+    }
+
+    private void addNewComment() {
+        //initialize hashmap
+        HashMap<String, Object> commentMap = new HashMap<>();
+
+        //get date and time
+        Calendar calForDateTime = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMM-yy");
+        final String saveCurrentDate = currentDate.format(calForDateTime.getTime());
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+        final String  saveCurrentTime = currentTime.format(calForDateTime.getTime());
+
+        commentMap.put("date", saveCurrentDate);
+        commentMap.put("time", saveCurrentTime);
+        commentMap.put("name", firebaseUser.getDisplayName());
+        commentMap.put("comment", binding.textComment.getText().toString());
+
+
+        if(firebaseUser.getPhotoUrl() != null){
+            commentMap.put("image", firebaseUser.getPhotoUrl().toString());
+        }
+
+        reference = database.getReference("communityConsensus").child("questions").child(pushKey).child("comments");
+        reference.push().setValue(commentMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    binding.textComment.setText(null);
+                    showComments();
+                }
+                else{
+                    Toast.makeText(Viewpoll.this, "Something went wrong! Please try again.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void showComments() {
+        reference = database.getReference("communityConsensus").child("questions").child(pushKey).child("comments");
+        comPoll = binding.comment;
+        comPoll.setHasFixedSize(true);
+        comPoll.setLayoutManager(new LinearLayoutManager(this));
+        comment = new ArrayList<pollComment>();
+        myAdapter = new pollCommentAdapter(this, comment);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                comment.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    comPoll.setAdapter(myAdapter);
+                    pollComment pollcomment = dataSnapshot.getValue(pollComment.class);
+                    comment.add(pollcomment);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void downvotePoll(String pushKey) {
