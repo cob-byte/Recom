@@ -29,6 +29,42 @@
                 android:text="Community Consensus"
                 android:orientation="horizontal"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/Button_Color"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/wrecomlogo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hey, User!"
+                        android:textSize="40sp"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Opinion Matters"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/alamNiyoBa"
                 android:layout_width="match_parent"
