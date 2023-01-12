@@ -132,31 +132,28 @@ public class AskQuestion extends AppCompatActivity {
 
     private void addNewQuestion() {
         //get date and time
-        Calendar calForDate = Calendar.getInstance();
+        Calendar calForDateTime = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMM-yy");
-        final String saveCurrentDate = currentDate.format(calForDate.getTime());
-
-        Calendar calForTime = Calendar.getInstance();
+        final String saveCurrentDate = currentDate.format(calForDateTime.getTime());
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
-        final String  saveCurrentTime = currentTime.format(calForDate.getTime());
+        final String  saveCurrentTime = currentTime.format(calForDateTime.getTime());
 
+
+        //initialize hashmap
         HashMap<String, Object> questionMap = new HashMap<>();
-        if(binding.AnonSwitch.isChecked()){
-            questionMap.put("anon",  binding.AnonSwitch.isChecked());
-            questionMap.put("name", null);
-        } else {
-            questionMap.put("anon",  binding.AnonSwitch.isChecked());
-            questionMap.put("name", firebaseUser.getDisplayName());
-        }
+
+        //get data
         questionMap.put("author", firebaseUser.getUid());
         questionMap.put("title", binding.questionTitle.getText().toString());
         questionMap.put("question", binding.question.getText().toString());
         questionMap.put("answer1", binding.TextOption1.getText().toString());
         questionMap.put("answer2", binding.TextOption2.getText().toString());
-        questionMap.put("upvote", 0);
-        questionMap.put("downvote", 0);
+
+        //date
         questionMap.put("date", saveCurrentDate);
         questionMap.put("time", saveCurrentTime);
+
+        //for option 3-4
         if(!binding.TextOption3.getText().toString().isEmpty()){
             if(!binding.TextOption4.getText().toString().isEmpty()){
                 questionMap.put("answer3", binding.TextOption3.getText().toString());
@@ -170,6 +167,15 @@ public class AskQuestion extends AppCompatActivity {
         else{
             questionMap.put("answer3", null);
             questionMap.put("answer4", null);
+        }
+
+        //anon or not
+        if(binding.AnonSwitch.isChecked()){
+            questionMap.put("anon",  binding.AnonSwitch.isChecked());
+            questionMap.put("name", null);
+        } else {
+            questionMap.put("anon",  binding.AnonSwitch.isChecked());
+            questionMap.put("name", firebaseUser.getDisplayName());
         }
 
         databaseReference = database.getReference("communityConsensus");
