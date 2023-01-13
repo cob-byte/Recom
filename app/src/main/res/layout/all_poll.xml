@@ -21,7 +21,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical">
 
 
@@ -171,8 +171,8 @@
                     android:clickable="true"
                     android:drawableLeft="@drawable/ic_baseline_comment_24"
                     android:drawablePadding="5dp"
-                    android:text=" "
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:focusable="false" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -202,6 +202,18 @@
 
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/viewPoll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableBottom="@drawable/ic_baseline_keyboard_arrow_down_24"
+                android:gravity="center"
+                android:text="View Poll"
+                android:clickable="true"
+                android:layout_marginTop="10dp"
+                android:textColor="#FFFFFF"
+                android:focusable="false" />
 
         </LinearLayout>
 

@@ -10,13 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 public class Home extends Fragment {
-    private Button tempConsensus;
+    private ImageButton cc;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private ViewPager2 viewPager2;
     private ArrayList<wList> pagerArrayList;
@@ -61,9 +62,8 @@ public class Home extends Fragment {
 
         viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
 
-        tempConsensus = view.findViewById(R.id.consensus);
-
-        tempConsensus.setOnClickListener(new View.OnClickListener() {
+        cc = view.findViewById(R.id.ccBtn);
+        cc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent consensus = new Intent(requireActivity(), CommunityConsensus.class);

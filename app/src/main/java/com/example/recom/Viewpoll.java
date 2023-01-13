@@ -347,7 +347,7 @@ public class Viewpoll extends AppCompatActivity {
             commentMap.put("image", firebaseUser.getPhotoUrl().toString());
         }
 
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey).child("comments");
+        reference = database.getReference("communityConsensus").child("comments").child(pushKey);
         reference.push().setValue(commentMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -363,7 +363,7 @@ public class Viewpoll extends AppCompatActivity {
     }
 
     private void showComments() {
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey).child("comments");
+        reference = database.getReference("communityConsensus").child("comments").child(pushKey);
         comPoll = binding.comment;
         comPoll.setHasFixedSize(true);
         comPoll.setLayoutManager(new LinearLayoutManager(this));
@@ -373,20 +373,22 @@ public class Viewpoll extends AppCompatActivity {
         listener = reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                comment.clear();
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    comPoll.setAdapter(myAdapter);
-                    pollComment pollcomment = dataSnapshot.getValue(pollComment.class);
-                    comment.add(pollcomment);
-                    int commentNumber = (int) snapshot.getChildrenCount();
-                    if(commentNumber < 2){
-                        binding.btnComments.setText(commentNumber + " comment");
+                if(snapshot != null){
+                    comment.clear();
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        comPoll.setAdapter(myAdapter);
+                        pollComment pollcomment = dataSnapshot.getValue(pollComment.class);
+                        comment.add(pollcomment);
+                        int commentNumber = (int) snapshot.getChildrenCount();
+                        if(commentNumber < 2){
+                            binding.btnComments.setText(commentNumber + " comment");
+                        }
+                        else{
+                            binding.btnComments.setText(commentNumber + " comments");
+                        }
                     }
-                    else{
-                        binding.btnComments.setText(commentNumber + " comments");
-                    }
+                    myAdapter.notifyDataSetChanged();
                 }
-                myAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

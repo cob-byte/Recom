@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +40,13 @@ public class pollview_cc extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPollviewCcBinding.inflate(getLayoutInflater());
@@ -46,12 +54,23 @@ public class pollview_cc extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        //recyclerview
         allPollList = binding.seeAllPoll;
+        allPollList.getItemAnimator().setChangeDuration(0);
         reference = database.getReference("communityConsensus").child("questions");
         allPollList.setHasFixedSize(true);
-        allPollList.setLayoutManager(new LinearLayoutManager(this));
+
+        //linearlayout
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        allPollList.setLayoutManager(linearLayoutManager);
+
+        //arraylist
         allList = new ArrayList<cConsensus>();
         pushKey = new ArrayList<String>();
+
+        //adapter
         myAdapter = new allPollsAdapter(this, allList, pushKey);
 
         listener = reference.orderByChild("vote").addValueEventListener(new ValueEventListener() {

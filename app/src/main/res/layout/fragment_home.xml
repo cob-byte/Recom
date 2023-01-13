@@ -20,14 +20,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <Button
-                android:id="@+id/consensus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/top_rectangle"
-                android:text="Community Consensus"
-                android:orientation="horizontal"/>
 
             <LinearLayout
                 android:id="@+id/HeaderLayout"

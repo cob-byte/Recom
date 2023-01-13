@@ -2,6 +2,7 @@ package com.example.recom;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,11 +39,15 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final FirebaseAuth firebaseProfile = FirebaseAuth.getInstance();
     private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
-    private ValueEventListener listener;
     private Context context;
     private ArrayList<cConsensus> allList;
     private ArrayList<String> pushKey;
     private static final String TAG = "Poll";
+
+    @Override
+    public void setHasStableIds(boolean hasStableIds) {
+        super.setHasStableIds(true);
+    }
 
     public allPollsAdapter(Context context, ArrayList<cConsensus> allList, ArrayList<String> pushKey) {
         this.context = context;
@@ -60,11 +65,10 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull allPollsAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         cConsensus consensus = allList.get(position);
-
         //get number of comments per post
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference;
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey.get(position)).child("comments");
+        reference = database.getReference("communityConsensus").child("comments").child(pushKey.get(position));
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -123,6 +127,16 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
                 downvotePoll(pushKey, position);
             }
         });
+
+        holder.viewPoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewPoll = new Intent(context, Viewpoll.class);
+                viewPoll.putExtra("pushKey", pushKey.get(position));
+                viewPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(viewPoll);
+            }
+        });
     }
 
     private void downvotePoll(ArrayList<String> pushKey, int position) {
@@ -146,6 +160,7 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
                         consensus.vote = consensus.vote - 1;
                         consensus.upVoters.remove(firebaseUser.getUid());
                     }
+
                     // downvote the poll
                     consensus.vote = consensus.vote - 1;
                     consensus.downVoters.put(firebaseUser.getUid(), true);
@@ -205,15 +220,14 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public RelativeLayout relativeLayout;
-        public TextView authorName, pollTitle, pollDescription, pollDateTime, comment, pollTimeCount, pollCount;
+        public TextView authorName, pollTitle, pollDescription, pollDateTime, comment, pollTimeCount, pollCount, viewPoll;
         public ImageButton upvote, downvote;
         public CircleImageView profileImage;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            relativeLayout = itemView.findViewById(R.id.PollLayout);
+            viewPoll = itemView.findViewById(R.id.viewPoll);
             pollTitle = itemView.findViewById(R.id.pollTitle);
             pollDescription = itemView.findViewById(R.id.vPollQuestion);
             pollDateTime = itemView.findViewById(R.id.TimePosted);
