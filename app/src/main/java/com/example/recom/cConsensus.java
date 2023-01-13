@@ -7,6 +7,8 @@ public class cConsensus {
     Boolean anon;
     int vote, answer1Count, answer2Count, answer3Count,
             answer4Count;
+    long seconds, start;
+
     String author, name, title, question, answer1, answer2, answer3, answer4, date, time, image;
     public Map<String, Boolean> upVoters = new HashMap<>();
     public Map<String, Boolean> downVoters = new HashMap<>();
@@ -18,9 +20,11 @@ public class cConsensus {
     public cConsensus() {
     }
 
-    public cConsensus(Boolean anon, int vote, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time, String image) {
+    public cConsensus(Boolean anon, int vote, int start, long seconds, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time, String image) {
         this.anon = anon;
         this.vote = vote;
+        this.start = start;
+        this.seconds = seconds;
         this.answer1Count = answer1Count;
         this.answer2Count = answer2Count;
         this.answer3Count = answer3Count;
@@ -52,6 +56,22 @@ public class cConsensus {
 
     public void setVote(int vote) {
         this.vote = vote;
+    }
+
+    public long getStart() {
+        return start;
+    }
+
+    public void setStart(long start) {
+        this.start = start;
+    }
+
+    public long getSeconds() {
+        return seconds;
+    }
+
+    public void setSeconds(long seconds) {
+        this.seconds = seconds;
     }
 
     public int getAnswer1Count() {

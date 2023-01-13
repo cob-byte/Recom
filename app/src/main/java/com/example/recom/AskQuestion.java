@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import com.example.recom.databinding.ActivityAskQuestionBinding;
@@ -20,9 +23,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -30,6 +35,8 @@ public class AskQuestion extends AppCompatActivity {
     private ActivityAskQuestionBinding binding;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference;
+    private String[] day, hour, minute;
+    private ArrayAdapter<String> adapterDay, adapterHour, adapterMinute;
     private final FirebaseAuth firebaseProfile = FirebaseAuth.getInstance();
     private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
 
@@ -60,6 +67,85 @@ public class AskQuestion extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+        //initialize arrays
+        day = new String[8];
+        hour = new String[24];
+        minute = new String[60];
+
+        //get data for arrays
+        for(int i = 0; i < 60; i++){
+            if(i > 7){
+                if(i>23){
+                    minute[i] = String.valueOf(i);
+                }
+                else {
+                    hour[i] = String.valueOf(i);
+                    minute[i] = String.valueOf(i);
+                }
+            }
+            else{
+                day[i] = String.valueOf(i);
+                hour[i] = String.valueOf(i);
+                minute[i] = String.valueOf(i);
+            }
+        }
+
+        //initialize adapter
+        adapterDay = new ArrayAdapter<String>(AskQuestion.this, R.layout.list_item, day);
+        adapterHour = new ArrayAdapter<String>(AskQuestion.this, R.layout.list_item, hour);
+        adapterMinute = new ArrayAdapter<String>(AskQuestion.this, R.layout.list_item, minute);
+
+        //set adapter
+        binding.dayPicker.setAdapter(adapterDay);
+        binding.hourPicker.setAdapter(adapterHour);
+        binding.minutePicker.setAdapter(adapterMinute);
+
+        //set default choice for dropdown
+        binding.dayPicker.setText("1", false);
+        binding.hourPicker.setText("0", false);
+        binding.minutePicker.setText("0", false);
+
+        //listener
+        binding.dayPicker.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                if(item.equals("7")){
+                    binding.hourPicker.setEnabled(false);
+                    binding.minutePicker.setEnabled(false);
+                }
+                else if(item.equals("0")){
+                    binding.hourPicker.setText("1", false);
+                }
+                else{
+                    binding.hourPicker.setEnabled(true);
+                    binding.minutePicker.setEnabled(true);
+                }
+            }
+        });
+
+        binding.hourPicker.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                if(item.equals("0")){
+                    binding.minutePicker.setText("5", false);
+                }
+            }
+        });
+
+
+        binding.minutePicker.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                if(Integer.parseInt(item) < 5){
+                    binding.minutePicker.setText("5", false);
+                    Toast.makeText(AskQuestion.this, "Minimum poll duration is 5 minutes.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -150,6 +236,17 @@ public class AskQuestion extends AppCompatActivity {
         //date
         questionMap.put("date", saveCurrentDate);
         questionMap.put("time", saveCurrentTime);
+
+        //timer
+        long finalDay, finalHour, finalMinute, totalSeconds;
+
+        finalDay = Long.parseLong(binding.dayPicker.getText().toString()) * 86400L;
+        finalHour = Long.parseLong(binding.hourPicker.getText().toString()) * 3600L;
+        finalMinute = Long.parseLong(binding.minutePicker.getText().toString()) * 60L;
+        totalSeconds = finalDay + finalHour + finalMinute;
+        questionMap.put("start", ServerValue.TIMESTAMP);
+        questionMap.put("seconds", totalSeconds);
+
 
         //for option 3-4
         if(!binding.TextOption3.getText().toString().isEmpty()){

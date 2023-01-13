@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class Viewpoll extends AppCompatActivity {
     private ArrayList<pollComment> comment;
     private String pushKey;
     private ValueEventListener listener;
+    private long serverTimeOffset = 0;
     private static final String TAG = "Viewpoll";
 
     @Override
@@ -74,6 +77,20 @@ public class Viewpoll extends AppCompatActivity {
     }
 
     private void showPoll(String pushKey) {
+        //get clock skew
+        DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
+        offsetRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                serverTimeOffset = (long) snapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Listener was cancelled");
+            }
+        });
+
         reference = database.getReference("communityConsensus").child("questions").child(pushKey);
         listener = reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -81,7 +98,11 @@ public class Viewpoll extends AppCompatActivity {
                 cConsensus consensus = snapshot.getValue(cConsensus.class);
                 if(consensus != null){
                     boolean anon = consensus.getAnon();
+
+                    //poll title setter
                     binding.vPollTitle.setText(consensus.getTitle());
+
+                    //anon or not
                     if(anon == false){
                         binding.vPollName.setText(consensus.getName());
                         if(consensus.getImage() != null){
@@ -91,6 +112,8 @@ public class Viewpoll extends AppCompatActivity {
                     else{
                         binding.vPollName.setText("Anonymous");
                     }
+
+                    //date time set
                     String dateTime = consensus.getDate() + " " + consensus.getTime();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yy HH:mm");
                     try {
@@ -102,12 +125,29 @@ public class Viewpoll extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+
+                    //poll question
                     binding.vPollQuestion.setText(consensus.getQuestion());
+
+                    long seconds = consensus.getSeconds();
+                    long start = consensus.getStart();
+
+                    new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    final long timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
+                                    if (timeLeft < 0) {
+                                        binding.TimeRemaining.setText("Time Remaining: 0");
+                                    }
+                                    else {
+                                        binding.TimeRemaining.setText(String.format("Time Remaining: %s", DateUtils.formatElapsedTime((long) Math.floor(timeLeft / 1000))));
+                                    }
+                                }
+                            }, 100);
 
                     checkVote(consensus);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d(TAG, "postTransaction:onComplete:" + error);
