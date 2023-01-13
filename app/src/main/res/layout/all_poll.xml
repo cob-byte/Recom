@@ -83,7 +83,7 @@
                             android:layout_gravity="center"
                             android:background="@null"
                             android:clickable="true"
-                            android:focusable="true"
+                            android:focusable="false"
                             app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
                     </LinearLayout>
 
@@ -92,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="30"
+                        android:text="0"
                         android:textColor="@color/white" />
 
                     <LinearLayout
@@ -109,7 +109,7 @@
                             android:layout_gravity="center"
                             android:background="@null"
                             android:clickable="true"
-                            android:focusable="true"
+                            android:focusable="false"
                             app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
                     </LinearLayout>
 
@@ -171,7 +171,7 @@
                     android:clickable="true"
                     android:drawableLeft="@drawable/ic_baseline_comment_24"
                     android:drawablePadding="5dp"
-                    android:text=" 10 Comments"
+                    android:text=" "
                     android:textColor="@color/white" />
 
                 <LinearLayout

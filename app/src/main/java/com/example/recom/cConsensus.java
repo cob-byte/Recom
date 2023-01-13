@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class cConsensus {
     Boolean anon;
-    int upvote, downvote, answer1Count, answer2Count, answer3Count,
+    int vote, answer1Count, answer2Count, answer3Count,
             answer4Count;
     String author, name, title, question, answer1, answer2, answer3, answer4, date, time, image;
     public Map<String, Boolean> upVoters = new HashMap<>();
@@ -18,10 +18,13 @@ public class cConsensus {
     public cConsensus() {
     }
 
-    public cConsensus(Boolean anon, int upvote, int downvote, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time, String image) {
+    public cConsensus(Boolean anon, int vote, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time, String image) {
         this.anon = anon;
-        this.upvote = upvote;
-        this.downvote = downvote;
+        this.vote = vote;
+        this.answer1Count = answer1Count;
+        this.answer2Count = answer2Count;
+        this.answer3Count = answer3Count;
+        this.answer4Count = answer4Count;
         this.author = author;
         this.name = name;
         this.title = title;
@@ -30,10 +33,6 @@ public class cConsensus {
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.answer4 = answer4;
-        this.answer1Count = answer1Count;
-        this.answer2Count = answer2Count;
-        this.answer3Count = answer3Count;
-        this.answer4Count = answer4Count;
         this.date = date;
         this.time = time;
         this.image = image;
@@ -47,20 +46,12 @@ public class cConsensus {
         this.anon = anon;
     }
 
-    public int getUpvote() {
-        return upvote;
+    public int getVote() {
+        return vote;
     }
 
-    public void setUpvote(int upvote) {
-        this.upvote = upvote;
-    }
-
-    public int getDownvote() {
-        return downvote;
-    }
-
-    public void setDownvote(int downvote) {
-        this.downvote = downvote;
+    public void setVote(int vote) {
+        this.vote = vote;
     }
 
     public int getAnswer1Count() {
@@ -175,7 +166,11 @@ public class cConsensus {
         this.time = time;
     }
 
-    public String getImage(){ return image; }
+    public String getImage() {
+        return image;
+    }
 
-    public void setImage(String image) { this.image = image; }
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

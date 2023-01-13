@@ -54,7 +54,7 @@ public class pollview_cc extends AppCompatActivity {
         pushKey = new ArrayList<String>();
         myAdapter = new allPollsAdapter(this, allList, pushKey);
 
-        listener = reference.addValueEventListener(new ValueEventListener() {
+        listener = reference.orderByChild("vote").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 allList.clear();

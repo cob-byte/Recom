@@ -409,11 +409,11 @@ public class Viewpoll extends AppCompatActivity {
 
                 if(consensus.downVoters.containsKey(firebaseUser.getUid())){
                     // remove downvote from the poll
-                    consensus.downvote = consensus.downvote - 1;
+                    consensus.vote = consensus.vote - 1;
                     consensus.downVoters.remove(firebaseUser.getUid());
                 } else{
                     // downvote the poll
-                    consensus.downvote = consensus.downvote + 1;
+                    consensus.vote = consensus.vote + 1;
                     consensus.downVoters.remove(firebaseUser.getUid());
                 }
                 // Set value and report transaction success
@@ -441,11 +441,11 @@ public class Viewpoll extends AppCompatActivity {
 
                 if(consensus.upVoters.containsKey(firebaseUser.getUid())){
                     // remove upvote from the poll
-                    consensus.upvote = consensus.upvote - 1;
+                    consensus.vote = consensus.vote - 1;
                     consensus.upVoters.remove(firebaseUser.getUid());
                 } else{
                     // upvote the poll
-                    consensus.upvote = consensus.upvote + 1;
+                    consensus.vote = consensus.vote + 1;
                     consensus.upVoters.remove(firebaseUser.getUid());
                 }
                 // Set value and report transaction success

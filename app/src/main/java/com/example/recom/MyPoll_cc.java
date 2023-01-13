@@ -31,6 +31,15 @@ public class MyPoll_cc extends AppCompatActivity {
     private RecyclerView myPollList;
     private ArrayList<cConsensus> myList;
     private ArrayList<String> pushKey;
+    private ValueEventListener listener;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (reference != null && listener != null) {
+            reference.removeEventListener(listener);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +57,7 @@ public class MyPoll_cc extends AppCompatActivity {
         pushKey = new ArrayList<String>();
         myAdapter = new allPollsAdapter(this, myList, pushKey);
 
-        reference.orderByChild("author").equalTo(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        listener = reference.orderByChild("author").equalTo(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 myList.clear();
