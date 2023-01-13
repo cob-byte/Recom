@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/top_background"
+    android:background="@color/white"
     android:fillViewport="true"
     tools:context=".Registration">
 
@@ -52,6 +52,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginStart="-40dp"
                 android:clickable="true"
+                android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
         </LinearLayout>
 
@@ -137,6 +138,7 @@
                         android:id="@+id/drawableFullname"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:tint="@color/blue"
                         app:srcCompat="@drawable/userlogo34dp" />
 
                     <LinearLayout
@@ -187,6 +189,7 @@
                         android:id="@+id/drawableEmailAdd"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:tint="@color/blue"
                         app:srcCompat="@drawable/ic_baseline_email_34dp" />
 
                     <LinearLayout
@@ -236,6 +239,7 @@
                         android:id="@+id/drawablePhone"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:tint="@color/blue"
                         app:srcCompat="@drawable/ic_baseline_phone_34dp" />
 
                     <LinearLayout
@@ -285,6 +289,7 @@
                         android:id="@+id/drawableBirthdate"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:tint="@color/blue"
                         app:srcCompat="@drawable/ic_baseline_calendar_month_34dp" />
 
                     <LinearLayout
@@ -333,6 +338,7 @@
                         android:id="@+id/drawableAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:tint="@color/blue"
                         app:srcCompat="@drawable/ic_baseline_place_34dp" />
 
                     <LinearLayout
@@ -381,6 +387,7 @@
                         android:id="@+id/drawableVerification"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:tint="@color/blue"
                         app:srcCompat="@drawable/ic_baseline_verified_user_34dp" />
 
                     <LinearLayout

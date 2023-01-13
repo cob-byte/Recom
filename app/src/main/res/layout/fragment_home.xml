@@ -30,6 +30,7 @@
                 android:orientation="horizontal"/>
 
             <LinearLayout
+                android:id="@+id/HeaderLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/Button_Color"
@@ -37,8 +38,9 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="100dp"
+                    android:layout_width="270dp"
                     android:layout_height="100dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:src="@drawable/wrecomlogo" />
 
@@ -52,32 +54,193 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
                         android:text="Hey, User!"
-                        android:textSize="40sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="50sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Opinion Matters"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="27sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/alamNiyoBa"
+            <LinearLayout
+                android:id="@+id/BodyLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-black"
-                android:gravity="center"
-                android:text="ALAM NIYO BA?"
-                android:textColor="#143081"
-                android:textSize="34sp"
-                android:textStyle="bold"
-                tools:ignore="MissingConstraints" />
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/UpperFeatures"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ccLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/white_background4corners"
+                        android:backgroundTint="@color/tab_indicator_gray"
+                        android:clickable="true"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/ccBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:background="@color/tab_indicator_gray"
+                            android:src="@drawable/ccsmall" />
+
+                        <TextView
+                            android:id="@+id/cctext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-black"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp"
+                            android:text="Community Consensus" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/safemeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/white_background4corners"
+                        android:backgroundTint="@color/tab_indicator_gray"
+                        android:clickable="true"
+                        android:layout_marginStart="5dp"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/safemeBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:background="@color/tab_indicator_gray"
+                            android:src="@drawable/safemesmall" />
+
+                        <TextView
+                            android:id="@+id/safemetext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-black"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp"
+                            android:text="Safe Me" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LowerFeatures"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/pasuyoLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_background4corners"
+                        android:backgroundTint="@color/tab_indicator_gray"
+                        android:clickable="true"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp">
+
+                        <ImageButton
+                            android:id="@+id/pasuyoBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@color/tab_indicator_gray"
+                            android:src="@drawable/pasuyosmall" />
+
+                        <TextView
+                            android:id="@+id/pasuyotext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-black"
+                            android:text="PaSuyo"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paschedLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_background4corners"
+                        android:backgroundTint="@color/tab_indicator_gray"
+                        android:clickable="true"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp">
+
+                        <ImageButton
+                            android:id="@+id/paschedBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@color/tab_indicator_gray"
+                            android:src="@drawable/paschedsmall" />
+
+                        <TextView
+                            android:id="@+id/paschedtext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-black"
+                            android:text="PaSched"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/alam" />
+            </LinearLayout>
 
             <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/view_pager2"
@@ -87,6 +250,19 @@
                     tools:ignore="MissingConstraints">
 
                 </androidx.viewpager2.widget.ViewPager2>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity=""
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:clickable="true"
+                android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+                android:text="See More"
+                android:textColor="@color/blue" />
 
         </LinearLayout>
 
