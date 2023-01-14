@@ -49,7 +49,7 @@ public class Viewpoll extends AppCompatActivity {
     private ArrayList<pollComment> comment;
     private String pushKey;
     private ValueEventListener listener;
-    private long serverTimeOffset = 0;
+    private long serverTimeOffset = 0, timeLeft;
     private static final String TAG = "Viewpoll";
 
     @Override
@@ -136,8 +136,14 @@ public class Viewpoll extends AppCompatActivity {
                             new Runnable() {
                                 public void run() {
                                     final long timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
-                                    if (timeLeft < 0) {
-                                        binding.TimeRemaining.setText("Time Remaining: 0");
+                                    if (timeLeft <= 0) {
+                                        binding.TimeRemaining.setText("Time Remaining: 00:00:00");
+                                        binding.pollOptions.setVisibility(View.GONE);
+                                        binding.BtnVote.setEnabled(false);
+                                        binding.BtnVote.setText("Poll is Finished");
+                                        binding.BtnVote.setBackgroundColor(getResources().getColor(R.color.gray));
+                                        binding.BtnVote.setTextColor(getResources().getColor(R.color.white));
+                                        binding.alreadyVoted.setVisibility(View.VISIBLE);
                                     }
                                     else {
                                         binding.TimeRemaining.setText(String.format("Time Remaining: %s", DateUtils.formatElapsedTime((long) Math.floor(timeLeft / 1000))));
@@ -162,6 +168,7 @@ public class Viewpoll extends AppCompatActivity {
             binding.BtnVote.setEnabled(false);
             binding.BtnVote.setText("Already Voted");
             binding.BtnVote.setBackgroundColor(getResources().getColor(R.color.gray));
+            binding.BtnVote.setTextColor(getResources().getColor(R.color.white));
             binding.alreadyVoted.setVisibility(View.VISIBLE);
             double answer1, answer2, answer3, answer4,
                     percent1, percent2, percent3, percent4, total;
@@ -280,6 +287,9 @@ public class Viewpoll extends AppCompatActivity {
                             if(user.userRole == 0){
                                 Toast.makeText(Viewpoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
                             }
+                            else if(timeLeft <= 0){
+                                Toast.makeText(Viewpoll.this, "Poll is Finished!", Toast.LENGTH_LONG).show();
+                            }
                             else{
                                 switch(selectedAnswerID){
                                     case R.id.radioButton1:
@@ -358,6 +368,24 @@ public class Viewpoll extends AppCompatActivity {
             }
         });
 
+        binding.btnAsk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ask = new Intent(Viewpoll.this, AskQuestion.class);
+                ask.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(ask);
+            }
+        });
+
+        binding.btnPoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent seeMyPoll = new Intent(Viewpoll.this, MyPoll_cc.class);
+                seeMyPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(seeMyPoll);
+            }
+        });
+
         binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -428,6 +456,9 @@ public class Viewpoll extends AppCompatActivity {
                         }
                     }
                     myAdapter.notifyDataSetChanged();
+                }
+                else{
+                    binding.btnComments.setText("0 comment");
                 }
             }
             @Override

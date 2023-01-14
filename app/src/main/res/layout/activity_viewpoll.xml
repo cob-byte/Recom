@@ -291,7 +291,7 @@
 
                                     <SeekBar
                                         android:id="@+id/seekBar1"
-                                        android:layout_width="325dp"
+                                        android:layout_width="315dp"
                                         android:layout_height="wrap_content"
                                         android:gravity="center_vertical"
                                         android:max="100"
@@ -301,7 +301,7 @@
 
                                     <TextView
                                         android:id="@+id/progressBar1"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:gravity="center_vertical"
                                         android:text="25%" />
@@ -318,7 +318,7 @@
 
                                     <SeekBar
                                         android:id="@+id/seekBar2"
-                                        android:layout_width="325dp"
+                                        android:layout_width="315dp"
                                         android:layout_height="wrap_content"
                                         android:gravity="center_vertical"
                                         android:max="100"
@@ -328,7 +328,7 @@
 
                                     <TextView
                                         android:id="@+id/progressBar2"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:gravity="center_vertical"
                                         android:text="25%" />
@@ -348,7 +348,7 @@
 
                                     <SeekBar
                                         android:id="@+id/seekBar3"
-                                        android:layout_width="325dp"
+                                        android:layout_width="315dp"
                                         android:layout_height="wrap_content"
                                         android:gravity="center_vertical"
                                         android:max="100"
@@ -358,7 +358,7 @@
 
                                     <TextView
                                         android:id="@+id/progressBar3"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:gravity="center_vertical"
                                         android:text="25%" />
@@ -377,7 +377,7 @@
 
                                     <SeekBar
                                         android:id="@+id/seekBar4"
-                                        android:layout_width="325dp"
+                                        android:layout_width="315dp"
                                         android:layout_height="wrap_content"
                                         android:gravity="center_vertical"
                                         android:max="100"
@@ -387,7 +387,7 @@
 
                                     <TextView
                                         android:id="@+id/progressBar4"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:gravity="center_vertical"
                                         android:text="25%" />
@@ -410,8 +410,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textColor="@color/white"
-                                android:text="Total Votes" />
+                                android:text="Total Votes: 0"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/TimeRemaining"
@@ -433,12 +433,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
                                 android:layout_weight="1"
+                                android:clickable="true"
                                 android:drawableLeft="@drawable/ic_baseline_comment_24"
                                 android:drawablePadding="10dp"
-                                android:text="Comments"
-                                android:clickable="true"
-                                android:layout_marginStart="10dp"
+                                android:text="0 comment"
                                 android:textColor="@color/white" />
 
                             <Button

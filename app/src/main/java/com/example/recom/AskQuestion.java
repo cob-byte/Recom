@@ -56,11 +56,14 @@ public class AskQuestion extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() > 5){
+                if(charSequence.length() > 0){
                     binding.option4.setVisibility(View.VISIBLE);
                 }
-                else{
+                else if(charSequence.toString().replace(" ", "").length() == 0){
                     binding.option4.setVisibility(View.GONE);
+                }
+                else{
+
                 }
             }
 
@@ -166,18 +169,35 @@ public class AskQuestion extends AppCompatActivity {
                                 binding.questionTitle.setError("Title of the question is required.");
                                 binding.questionTitle.requestFocus();
                             }
+                            else if ((binding.questionTitle.getText().toString().length() < 20) || (binding.questionTitle.getText().toString().length() > 70)){
+                                Toast.makeText(AskQuestion.this, "Length of the title must be between 20 to 70 characters.", Toast.LENGTH_LONG).show();
+                                binding.questionTitle.setError("Length requirements do not meet.");
+                                binding.questionTitle.requestFocus();
+                            }
                             else if(binding.question.getText().toString().isEmpty()){
                                 Toast.makeText(AskQuestion.this, "Please enter your question.", Toast.LENGTH_LONG).show();
                                 binding.question.setError("Question is required.");
                                 binding.question.requestFocus();
                             }
-                            else if(binding.TextOption1.getText().toString().isEmpty() || binding.TextOption2.getText().toString().isEmpty()){
+                            else if ((binding.question.getText().toString().length() < 50) || (binding.question.getText().toString().length() > 160)){
+                                Toast.makeText(AskQuestion.this, "Length of the question must be between 50 to 160 characters.", Toast.LENGTH_LONG).show();
+                                binding.questionTitle.setError("Length requirements do not meet.");
+                                binding.questionTitle.requestFocus();
+                            }
+                            else if(binding.TextOption1.getText().toString().isEmpty() || binding.TextOption1.toString().replace(" ", "").length() == 0
+                                    || binding.TextOption2.getText().toString().isEmpty() || binding.TextOption2.toString().replace(" ", "").length() == 0){
                                 Toast.makeText(AskQuestion.this, "Kindly enter an option.", Toast.LENGTH_LONG).show();
                                 binding.TextOption1.setError("This field is required.");
                                 binding.TextOption1.requestFocus();
                                 binding.TextOption2.setError("This field is required.");
                                 binding.TextOption2.requestFocus();
-                            } else{
+                            }
+                            else if(binding.TextOption1.getText().toString().length() > 25 || binding.TextOption2.getText().toString().length() > 25){
+                                Toast.makeText(AskQuestion.this, "Length of the answer is too long.", Toast.LENGTH_LONG).show();
+                                binding.questionTitle.setError("Answer is too long.");
+                                binding.questionTitle.requestFocus();
+                            }
+                            else{
                                 new AlertDialog.Builder(AskQuestion.this)
                                         .setMessage("Are you sure you want to post this question?")
                                         .setCancelable(false)
@@ -251,12 +271,25 @@ public class AskQuestion extends AppCompatActivity {
         //for option 3-4
         if(!binding.TextOption3.getText().toString().isEmpty()){
             if(!binding.TextOption4.getText().toString().isEmpty()){
-                questionMap.put("answer3", binding.TextOption3.getText().toString());
-                questionMap.put("answer4", binding.TextOption4.getText().toString());
+                if(!(binding.TextOption3.toString().replace(" ", "").length() == 0)) {
+                    if (!(binding.TextOption4.toString().replace(" ", "").length() == 0)) {
+                        questionMap.put("answer3", binding.TextOption3.getText().toString());
+                        questionMap.put("answer4", binding.TextOption4.getText().toString());
+                    } else {
+                        questionMap.put("answer3", binding.TextOption3.getText().toString());
+                        questionMap.put("answer4", null);
+                    }
+                }
             }
             else{
-                questionMap.put("answer3", binding.TextOption3.getText().toString());
-                questionMap.put("answer4", null);
+                if(!(binding.TextOption3.toString().replace(" ", "").length() == 0)) {
+                    questionMap.put("answer3", binding.TextOption3.getText().toString());
+                    questionMap.put("answer4", null);
+                }
+                else{
+                    questionMap.put("answer3", null);
+                    questionMap.put("answer4", null);
+                }
             }
         }
         else{

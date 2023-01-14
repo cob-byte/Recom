@@ -3,6 +3,8 @@ package com.example.recom;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
+import android.os.Looper;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,6 +44,7 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
     private Context context;
     private ArrayList<cConsensus> allList;
     private ArrayList<String> pushKey;
+    private long serverTimeOffset = 0;
     private static final String TAG = "Poll";
 
     @Override
@@ -137,6 +140,37 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
                 context.startActivity(viewPoll);
             }
         });
+
+        //get time skew
+        //get clock skew
+        DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
+        offsetRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                serverTimeOffset = (long) snapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Listener was cancelled");
+            }
+        });
+
+        long seconds = consensus.getSeconds();
+        long start = consensus.getStart();
+
+        new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                new Runnable() {
+                    public void run() {
+                        final long timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
+                        if (timeLeft < 0) {
+                            holder.pollTimeCount.setText("00:00:00");
+                        }
+                        else {
+                            holder.pollTimeCount.setText(String.format("%s", DateUtils.formatElapsedTime((long) Math.floor(timeLeft / 1000))));
+                        }
+                    }
+                }, 100);
     }
 
     private void downvotePoll(ArrayList<String> pushKey, int position) {
