@@ -8,11 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Looper;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -131,25 +134,61 @@ public class Viewpoll extends AppCompatActivity {
 
                     long seconds = consensus.getSeconds();
                     long start = consensus.getStart();
+                    final long timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
+                    new CountDownTimer(timeLeft, 100) {
+                        public void onTick(long millisUntilFinished) {
+                            long seconds = millisUntilFinished / 1000;
+                            long minutes = seconds / 60;
+                            long hours = minutes / 60;
+                            long days = hours / 24;
+                            String time = days+ " days" +": " +hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;
+                            binding.TimeCount.setText(time);
+                        }
+                        @SuppressLint("ClickableViewAccessibility")
+                        public void onFinish() {
+                            binding.pollOptions.setVisibility(View.GONE);
+                            binding.BtnVote.setEnabled(false);
+                            binding.BtnVote.setText("Poll is Finished");
+                            binding.BtnVote.setBackgroundColor(getResources().getColor(R.color.gray));
+                            binding.BtnVote.setTextColor(getResources().getColor(R.color.white));
 
-                    new android.os.Handler(Looper.getMainLooper()).postDelayed(
-                            new Runnable() {
-                                public void run() {
-                                    final long timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
-                                    if (timeLeft <= 0) {
-                                        binding.TimeRemaining.setText("Time Remaining: 00:00:00");
-                                        binding.pollOptions.setVisibility(View.GONE);
-                                        binding.BtnVote.setEnabled(false);
-                                        binding.BtnVote.setText("Poll is Finished");
-                                        binding.BtnVote.setBackgroundColor(getResources().getColor(R.color.gray));
-                                        binding.BtnVote.setTextColor(getResources().getColor(R.color.white));
-                                        binding.alreadyVoted.setVisibility(View.VISIBLE);
-                                    }
-                                    else {
-                                        binding.TimeRemaining.setText(String.format("Time Remaining: %s", DateUtils.formatElapsedTime((long) Math.floor(timeLeft / 1000))));
-                                    }
+                            //show results
+                            binding.alreadyVoted.setVisibility(View.VISIBLE);
+
+                            //disable manual touch of users
+                            binding.seekBar1.setOnTouchListener(new View.OnTouchListener() {
+                                @Override
+                                public boolean onTouch(View view, MotionEvent motionEvent) {
+                                    return true;
                                 }
-                            }, 100);
+                            });
+
+                            binding.seekBar2.setOnTouchListener(new View.OnTouchListener() {
+                                @Override
+                                public boolean onTouch(View view, MotionEvent motionEvent) {
+                                    return true;
+                                }
+                            });
+
+                            binding.seekBar3.setOnTouchListener(new View.OnTouchListener() {
+                                @Override
+                                public boolean onTouch(View view, MotionEvent motionEvent) {
+                                    return true;
+                                }
+                            });
+
+                            binding.seekBar4.setOnTouchListener(new View.OnTouchListener() {
+                                @Override
+                                public boolean onTouch(View view, MotionEvent motionEvent) {
+                                    return true;
+                                }
+                            });
+
+
+                            binding.TimeRemaining.setVisibility(View.GONE);
+                            binding.TimeCount.setText("Poll is finished.");
+                        }
+                    }.start();
 
                     checkVote(consensus);
                 }
@@ -161,15 +200,50 @@ public class Viewpoll extends AppCompatActivity {
         });
     }
 
+    @SuppressLint({"ClickableViewAccessibility", "SetTextI18n", "DefaultLocale"})
     private void checkVote(cConsensus consensus) {
         if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
                 || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
+            //hide the options
             binding.pollOptions.setVisibility(View.GONE);
             binding.BtnVote.setEnabled(false);
             binding.BtnVote.setText("Already Voted");
             binding.BtnVote.setBackgroundColor(getResources().getColor(R.color.gray));
             binding.BtnVote.setTextColor(getResources().getColor(R.color.white));
+
+            //show the results
             binding.alreadyVoted.setVisibility(View.VISIBLE);
+
+            //disable manual touch of users
+            binding.seekBar1.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    return true;
+                }
+            });
+
+            binding.seekBar2.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    return true;
+                }
+            });
+
+            binding.seekBar3.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    return true;
+                }
+            });
+
+            binding.seekBar4.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    return true;
+                }
+            });
+
+            //initialize variables needed
             double answer1, answer2, answer3, answer4,
                     percent1, percent2, percent3, percent4, total;
 
@@ -273,56 +347,75 @@ public class Viewpoll extends AppCompatActivity {
 
         binding.pollOptions.clearCheck();
 
-        binding.BtnVote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reference = database.getReference("Users");
-                reference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        Intent intent = getIntent();
+        pushKey = intent.getStringExtra("pushKey");
+
+        reference = database.getReference("communityConsensus").child("questions").child(pushKey);
+        listener = reference.addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   cConsensus consensus = snapshot.getValue(cConsensus.class);
+
+                   long seconds = consensus.getSeconds();
+                   long start = consensus.getStart();
+
+                   timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
+               }
+
+               @Override
+               public void onCancelled(@NonNull DatabaseError error) {
+
+               }
+           });
+
+                binding.BtnVote.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        User user = snapshot.getValue(User.class);
-                        int answer;
-                        int selectedAnswerID = binding.pollOptions.getCheckedRadioButtonId();
-                        if(user != null){
-                            if(user.userRole == 0){
-                                Toast.makeText(Viewpoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
-                            }
-                            else if(timeLeft <= 0){
-                                Toast.makeText(Viewpoll.this, "Poll is Finished!", Toast.LENGTH_LONG).show();
-                            }
-                            else{
-                                switch(selectedAnswerID){
-                                    case R.id.radioButton1:
-                                        answer = 1;
-                                        castVote(answer, pushKey);
-                                        break;
-                                    case R.id.radioButton2:
-                                        answer = 2;
-                                        castVote(answer, pushKey);
-                                        break;
-                                    case R.id.radioButton3:
-                                        answer = 3;
-                                        castVote(answer, pushKey);
-                                        break;
-                                    case R.id.radioButton4:
-                                        answer = 4;
-                                        castVote(answer, pushKey);
-                                        break;
-                                    default:
-                                        Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
-                                        break;
+                    public void onClick(View view) {
+                        reference = database.getReference("Users");
+                        reference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                User user = snapshot.getValue(User.class);
+                                int answer;
+                                int selectedAnswerID = binding.pollOptions.getCheckedRadioButtonId();
+                                if (user != null) {
+                                    if (user.userRole == 0) {
+                                        Toast.makeText(Viewpoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
+                                    } else if (timeLeft <= 0) {
+                                        Toast.makeText(Viewpoll.this, "Poll is Finished!", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        switch (selectedAnswerID) {
+                                            case R.id.radioButton1:
+                                                answer = 1;
+                                                castVote(answer, pushKey);
+                                                break;
+                                            case R.id.radioButton2:
+                                                answer = 2;
+                                                castVote(answer, pushKey);
+                                                break;
+                                            case R.id.radioButton3:
+                                                answer = 3;
+                                                castVote(answer, pushKey);
+                                                break;
+                                            case R.id.radioButton4:
+                                                answer = 4;
+                                                castVote(answer, pushKey);
+                                                break;
+                                            default:
+                                                Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                                                break;
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
-            }
-        });
 
         binding.btnComments.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -467,70 +560,6 @@ public class Viewpoll extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void downvotePoll(String pushKey) {
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey);
-        reference.runTransaction(new Transaction.Handler() {
-            @NonNull
-            @Override
-            public Transaction.Result doTransaction(@NonNull MutableData currentData) {
-                cConsensus consensus = currentData.getValue(cConsensus.class);
-                if(consensus == null){
-                    return Transaction.success(currentData);
-                }
-
-                if(consensus.downVoters.containsKey(firebaseUser.getUid())){
-                    // remove downvote from the poll
-                    consensus.vote = consensus.vote - 1;
-                    consensus.downVoters.remove(firebaseUser.getUid());
-                } else{
-                    // downvote the poll
-                    consensus.vote = consensus.vote + 1;
-                    consensus.downVoters.remove(firebaseUser.getUid());
-                }
-                // Set value and report transaction success
-                currentData.setValue(consensus);
-                return Transaction.success(currentData);
-            }
-
-            @Override
-            public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
-                Log.d(TAG, "postTransaction:onComplete:" + error);
-            }
-        });
-    }
-
-    private void upvotePoll(String pushKey) {
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey);
-        reference.runTransaction(new Transaction.Handler() {
-            @NonNull
-            @Override
-            public Transaction.Result doTransaction(@NonNull MutableData currentData) {
-                cConsensus consensus = currentData.getValue(cConsensus.class);
-                if(consensus == null){
-                    return Transaction.success(currentData);
-                }
-
-                if(consensus.upVoters.containsKey(firebaseUser.getUid())){
-                    // remove upvote from the poll
-                    consensus.vote = consensus.vote - 1;
-                    consensus.upVoters.remove(firebaseUser.getUid());
-                } else{
-                    // upvote the poll
-                    consensus.vote = consensus.vote + 1;
-                    consensus.upVoters.remove(firebaseUser.getUid());
-                }
-                // Set value and report transaction success
-                currentData.setValue(consensus);
-                return Transaction.success(currentData);
-            }
-
-            @Override
-            public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
-                Log.d(TAG, "postTransaction:onComplete:" + error);
-            }
-        });
     }
 
     private void castVote(int answer, String pushKey) {

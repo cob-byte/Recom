@@ -1,19 +1,18 @@
 package com.example.recom;
 
+import static java.lang.Math.round;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
-import android.os.Looper;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,27 +67,33 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull allPollsAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         cConsensus consensus = allList.get(position);
-        //get number of comments per post
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference;
-        reference = database.getReference("communityConsensus").child("comments").child(pushKey.get(position));
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int commentNumber = (int) snapshot.getChildrenCount();
-                if(commentNumber < 2){
-                    holder.comment.setText(commentNumber + " comment");
-                }
-                else{
-                    holder.comment.setText(commentNumber + " comments");
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(context, "Something went wrong. Unable to fetch the number of comments.", Toast.LENGTH_LONG).show();
+        //get number of votes per post
+        //initialize variables needed
+        double answer1, answer2, answer3, answer4, total;
+
+        //get answers count
+        answer1 = consensus.getAnswer1Count();
+        answer2 = consensus.getAnswer2Count();
+        if(consensus.getAnswer3() != null) {
+            if (consensus.getAnswer4() != null) {
+                answer3 = consensus.getAnswer3Count();
+                answer4 = consensus.getAnswer4Count();
+
+                //get total if 4 answers
+                total = answer1+answer2+answer3+answer4;
             }
-        });
+            else{
+                answer3 = consensus.getAnswer3Count();
+
+                //get total if 3 answers
+                total = answer1+answer2+answer3;
+            }
+        }else{
+            //get total if 2 answers
+            total = answer1+answer2;
+        }
+        holder.pollTotalVotes.setText("Total Votes: " + round(total));
 
         holder.pollTitle.setText(consensus.getTitle());
         holder.pollDescription.setText(consensus.getQuestion());
@@ -158,19 +163,21 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
 
         long seconds = consensus.getSeconds();
         long start = consensus.getStart();
-
-        new android.os.Handler(Looper.getMainLooper()).postDelayed(
-                new Runnable() {
-                    public void run() {
-                        final long timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
-                        if (timeLeft < 0) {
-                            holder.pollTimeCount.setText("00:00:00");
-                        }
-                        else {
-                            holder.pollTimeCount.setText(String.format("%s", DateUtils.formatElapsedTime((long) Math.floor(timeLeft / 1000))));
-                        }
-                    }
-                }, 100);
+        final long timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
+        new CountDownTimer(timeLeft, 100) {
+            public void onTick(long millisUntilFinished) {
+                long seconds = millisUntilFinished / 1000;
+                long minutes = seconds / 60;
+                long hours = minutes / 60;
+                long days = hours / 24;
+                String time = days+ " days" +": " +hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;
+                holder.pollTimeCount.setText(time);
+            }
+            public void onFinish() {
+                holder.pollTimeRemaining.setVisibility(View.GONE);
+                holder.pollTimeCount.setText("Poll is finished.");
+            }
+        }.start();
     }
 
     private void downvotePoll(ArrayList<String> pushKey, int position) {
@@ -254,7 +261,7 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView authorName, pollTitle, pollDescription, pollDateTime, comment, pollTimeCount, pollCount, viewPoll;
+        public TextView authorName, pollTitle, pollDescription, pollDateTime, pollTotalVotes, pollTimeCount, pollTimeRemaining, pollCount, viewPoll;
         public ImageButton upvote, downvote;
         public CircleImageView profileImage;
 
@@ -265,9 +272,10 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
             pollTitle = itemView.findViewById(R.id.pollTitle);
             pollDescription = itemView.findViewById(R.id.vPollQuestion);
             pollDateTime = itemView.findViewById(R.id.TimePosted);
-            comment = itemView.findViewById(R.id.pollComment);
+            pollTotalVotes = itemView.findViewById(R.id.pollTotalVotes);
             profileImage = itemView.findViewById(R.id.profileImage);
             pollTimeCount = itemView.findViewById(R.id.pollTimeCount);
+            pollTimeRemaining = itemView.findViewById(R.id.pollTimeRemaining);
             authorName = itemView.findViewById(R.id.vPollName);
             pollCount = itemView.findViewById(R.id.pollCountVote);
             upvote = itemView.findViewById(R.id.pollUpVote);
