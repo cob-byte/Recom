@@ -224,7 +224,7 @@
                     android:background="@drawable/editbox"
                     android:backgroundTint="#FFFFFF"
                     android:ems="10"
-                    android:hint="XXXX-XXXX-XXX"
+                    android:hint="09XXXXXXXXX"
                     android:inputType="phone"
                     android:paddingLeft="20dp"
                     android:paddingTop="5dp"
