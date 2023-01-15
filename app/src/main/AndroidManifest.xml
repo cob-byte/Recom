@@ -17,6 +17,27 @@
         android:theme="@style/Theme.Recom"
         tools:targetApi="31">
         <activity
+            android:name=".AppointmentSchedule"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PSCalendar"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PaSched"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MyPoll_cc"
             android:exported="false">
             <meta-data

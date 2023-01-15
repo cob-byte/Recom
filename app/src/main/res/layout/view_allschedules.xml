@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:fillViewport="true"
+    tools:context=".PSCalendar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/EntireLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/LayoutAbove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_34white"
+                    app:tint="@color/blue" />
+
+                <TextView
+                    android:id="@+id/PaSched"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="PaSched"
+                    android:textColor="@color/blue"
+                    android:textSize="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/HeaderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                   android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:text="Monthly Schedule"
+                    android:textColor="@color/blue"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/top2corners">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/PrevMonth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/blue"
+                            app:tint="@color/white"
+                            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
+
+                        <TextView
+                            android:id="@+id/TxtMonth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="December, 2020"
+                            android:textColor="@color/white"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/NextMonth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/blue"
+                            app:tint="@color/white"
+                            app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+
+                    </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textWeek1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Week 1"
+                    android:textSize="14sp"
+                   android:textStyle="bold"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"/>
+
+                <ImageView
+                    android:id="@+id/W1LowerLine"
+                    android:layout_width="380dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/top_rectangle"
+                    app:tint="@color/white" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Week1Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:id="@+id/textWeek2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Week 2"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"/>
+
+                <ImageView
+                    android:id="@+id/W2LowerLine"
+                    android:layout_width="380dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/top_rectangle"
+                    app:tint="@color/white" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Week2Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:id="@+id/textWeek3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Week 3"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"/>
+
+                <ImageView
+                    android:id="@+id/W3LowerLine"
+                    android:layout_width="380dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/top_rectangle"
+                    app:tint="@color/white" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Week3Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:id="@+id/textWeek4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Week 4"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"/>
+
+                <ImageView
+                    android:id="@+id/W4LowerLine"
+                    android:layout_width="380dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/top_rectangle"
+                    app:tint="@color/white" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Week4Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+            </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
