@@ -247,7 +247,7 @@
                             android:background="@drawable/text_place"
                             android:text="Event Hall"
                             android:textColor="@color/black"
-                            app:backgroundTint="@color/pink"/>
+                            app:backgroundTint="@color/pink" />
 
                         <Button
                             android:id="@+id/BtnChairs"
@@ -258,7 +258,7 @@
                             android:background="@drawable/text_place"
                             android:text="Chairs"
                             android:textColor="@color/black"
-                            app:backgroundTint="@color/pink"/>
+                            app:backgroundTint="@color/pink" />
 
                         <Button
                             android:id="@+id/BtnTables"
@@ -269,7 +269,7 @@
                             android:background="@drawable/text_place"
                             android:text="Tables"
                             android:textColor="@color/black"
-                            app:backgroundTint="@color/pink"/>
+                            app:backgroundTint="@color/pink" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -287,19 +287,130 @@
                             android:background="@drawable/text_place"
                             android:text="Tent"
                             android:textColor="@color/black"
-                            app:backgroundTint="@color/pink"/>
+                            app:backgroundTint="@color/pink" />
 
                         <Button
                             android:id="@+id/BtnCourt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
                             android:layout_weight="1"
                             android:background="@drawable/text_place"
                             android:text="Covered Basketball Court"
-                            android:layout_marginStart="5dp"
                             android:textColor="@color/black"
-                            app:backgroundTint="@color/pink"/>
+                            app:backgroundTint="@color/pink" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/TxtQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Quantity"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/QuantityPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ChairsQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginStart="10dp">
+
+                            <TextView
+                                android:id="@+id/TxtChairsQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Chairs Quantity"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/InputCQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/layout_text_place"
+                                android:hint="Input Quantity"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/TablesQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginStart="10dp">
+
+                            <TextView
+                                android:id="@+id/TxtTablesQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Tables Quantity"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/InputTQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/layout_text_place"
+                                android:hint="Input Quantity"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/TentsQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginStart="10dp">
+
+                            <TextView
+                                android:id="@+id/TxtTentsQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Tents Quantity"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/InputTentQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/layout_text_place"
+                                android:hint="Input Quantity"
+                                android:inputType="number"
+                                android:textSize="12sp"
+                                android:padding="10dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout

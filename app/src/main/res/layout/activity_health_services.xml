@@ -132,7 +132,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="70dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="10dp"
                     android:id="@+id/TelPhone_recyclerView"
                     android:layout_weight="1" >
                 </androidx.recyclerview.widget.RecyclerView>
@@ -182,7 +183,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="70dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="10dp"
                     android:id="@+id/MobNum_recyclerView"
                     android:layout_weight="1" />
             </LinearLayout>

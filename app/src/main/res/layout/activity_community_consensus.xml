@@ -149,7 +149,7 @@
                             android:layout_width="345dp"
                             android:layout_height="4dp"
                             android:layout_marginTop="5dp"
-                            android:tint="@color/blue"
+                            app:tint="@color/blue"
                             app:srcCompat="@drawable/blueroundcorners" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -193,7 +193,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginBottom="5dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -218,8 +218,8 @@
                                 android:layout_width="345dp"
                                 android:layout_height="4dp"
                                 android:layout_marginTop="5dp"
-                                android:tint="@color/blue"
-                                app:srcCompat="@drawable/top_rectangle" />
+                                app:srcCompat="@drawable/top_rectangle"
+                                app:tint="@color/blue" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/questionList"
