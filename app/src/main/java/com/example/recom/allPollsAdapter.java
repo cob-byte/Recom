@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -213,7 +214,9 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
 
             @Override
             public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
-                Log.d(TAG, "postTransaction:onComplete:" + error);
+                if(!committed){
+                    Toast.makeText(context, "Something went wrong! Please try again.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -250,7 +253,9 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
 
             @Override
             public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
-                Log.d(TAG, "postTransaction:onComplete:" + error);
+                if(!committed){
+                    Toast.makeText(context, "Something went wrong! Please try again.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

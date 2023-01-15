@@ -637,7 +637,9 @@ public class Viewpoll extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                        if(!committed) {
+                            Toast.makeText(Viewpoll.this, "Something went wrong! Please try again.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
