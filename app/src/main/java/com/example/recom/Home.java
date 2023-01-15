@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 public class Home extends Fragment {
-    private ImageButton cc;
+    private ImageButton cc, ps;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private ViewPager2 viewPager2;
     private ArrayList<wList> pagerArrayList;
@@ -61,6 +61,16 @@ public class Home extends Fragment {
         viewPager2.setOffscreenPageLimit(2);
 
         viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+        ps = view.findViewById(R.id.paschedBtn);
+        ps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pasched = new Intent(requireActivity(), PaSched.class);
+                pasched.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(pasched);
+            }
+        });
 
         cc = view.findViewById(R.id.ccBtn);
         cc.setOnClickListener(new View.OnClickListener() {
