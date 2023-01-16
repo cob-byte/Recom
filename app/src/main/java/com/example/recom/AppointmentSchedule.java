@@ -238,7 +238,6 @@ public class AppointmentSchedule extends AppCompatActivity {
                             int tentsD = (int) items.get("tents");
                             boolean basketballCourtD = (boolean) items.get("court");
                             boolean eventHallD = (boolean) items.get("ehall");
-                            isInputValid();
 
                             Event event = new Event(binding.EventName.getText().toString(), binding.EventDate.getText().toString(),
                                     binding.editStartTime.getText().toString(), binding.editEndTime.getText().toString(),
@@ -414,14 +413,14 @@ public class AppointmentSchedule extends AppCompatActivity {
     private Map<String, Object> getEventItems(List<String> selectedItems) {
         Map<String, Object> items = new HashMap<>();
         if (selectedItems.contains("ehall")) {
-            items.put("eventHall", true);
+            items.put("ehall", true);
         } else {
-            items.put("eventHall", false);
+            items.put("ehall", false);
         }
         if (selectedItems.contains("court")) {
-            items.put("basketballCourt", true);
+            items.put("court", true);
         } else {
-            items.put("basketballCourt", false);
+            items.put("court", false);
         }
         if (selectedItems.contains("chairs")) {
             int chairsQuantity = Integer.parseInt(binding.InputCQty.getText().toString());
