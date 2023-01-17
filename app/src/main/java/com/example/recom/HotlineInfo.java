@@ -1,25 +1,22 @@
 package com.example.recom;
 
-public class HotlineInfo
-{
-    //class
+public class HotlineInfo {
+    // Properties
+    private String place;
+    private String contact;
 
-    private String places;
-    private String contacts;
-
-    //constructor
-
-
-    public HotlineInfo(String places, String contacts) {
-        this.places = places;
-        this.contacts = contacts;
+    // Constructor
+    public HotlineInfo(String place, String contact) {
+        this.place = place;
+        this.contact = contact;
     }
 
-    public String getPlaces() {
-        return places;
+    // Getters
+    public String getPlace() {
+        return place;
     }
 
-    public String getContacts() {
-        return contacts;
+    public String getContact() {
+        return contact;
     }
 }

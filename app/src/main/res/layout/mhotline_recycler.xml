@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/HotlineView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@color/blue"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/HotlineNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="(08)000-0000"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/HotlineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Manila Doctors Hospital"
+            android:textColor="@color/white"
+            android:layout_marginStart="30dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

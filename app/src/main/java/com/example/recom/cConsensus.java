@@ -20,7 +20,7 @@ public class cConsensus {
     public cConsensus() {
     }
 
-    public cConsensus(Boolean anon, int vote, int start, long seconds, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time, String image) {
+    public cConsensus(Boolean anon,Boolean isUpvoted,Boolean isDownvoted,int vote, int start, long seconds, int answer1Count, int answer2Count, int answer3Count, int answer4Count, String author, String name, String title, String question, String answer1, String answer2, String answer3, String answer4, String date, String time, String image) {
         this.anon = anon;
         this.vote = vote;
         this.start = start;

@@ -11,30 +11,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class HotlineAllNumAdapter extends RecyclerView.Adapter<HotlineAllNumAdapter.MyViewHolder> {
-
+public class HotlineMobileNumAdapter extends RecyclerView.Adapter<HotlineMobileNumAdapter.MyViewHolder> {
     //HotlineAllNumber Adapter Class
-    private Context context2;
-    private List<HotlineInfo> hotlineInfos;
+    private Context context3;
+    private List<HotlineInfo> mhotlineInfos;
 
     //constructor
 
-    public HotlineAllNumAdapter(Context context2, List<HotlineInfo> hotlineInfos) {
-        this.context2 = context2;
-        this.hotlineInfos = hotlineInfos;
+    public HotlineMobileNumAdapter(Context context3, List<HotlineInfo> mhotlineInfos) {
+        this.context3 = context3;
+        this.mhotlineInfos = mhotlineInfos;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context2).inflate(R.layout.hotline_recycler,parent,false);
-        return new MyViewHolder(view);
+    public HotlineMobileNumAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(context3).inflate(R.layout.mhotline_recycler,parent,false);
+        return new HotlineMobileNumAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.HotlineName.setText(hotlineInfos.get(position).getPlace());
-        holder.HotlineNumber.setText(hotlineInfos.get(position).getContact());
+    public void onBindViewHolder(@NonNull HotlineMobileNumAdapter.MyViewHolder holder, int position) {
+        holder.HotlineName.setText(mhotlineInfos.get(position).getPlace());
+        holder.HotlineNumber.setText(mhotlineInfos.get(position).getContact());
 
         //holder.HotlineNumber.setOnClickListener(new View.OnClickListener() {
         //@Override
@@ -48,7 +47,7 @@ public class HotlineAllNumAdapter extends RecyclerView.Adapter<HotlineAllNumAdap
 
     @Override
     public int getItemCount() {
-        return hotlineInfos.size();
+        return mhotlineInfos.size();
     }
 
 

@@ -1,18 +1,11 @@
 package com.example.recom;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-
-import com.example.recom.databinding.ActivityHealthServicesBinding;
-import com.example.recom.databinding.ActivityHotlineAllnumBinding;
-import com.example.recom.databinding.ActivityMyPollCcBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +17,9 @@ public class hotline_allnum extends AppCompatActivity {
     HotlineAllNumAdapter hotlineAllNumAdapter;
     private RecyclerView recyclerView;
     private List<HotlineInfo> hotlineInfos;
+    private RecyclerView mhotline_recycler;
+    private List<HotlineInfo> mhotlineInfos;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +27,47 @@ public class hotline_allnum extends AppCompatActivity {
         setContentView(R.layout.activity_hotline_allnum);
 
         recyclerView=findViewById(R.id.Tphone_recyclerView);
+        mhotline_recycler=findViewById(R.id.MobilePhone_recyclerView);
 
+//TelephoneNumbers
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+// Get the arrays from the string.xml file
+        String[] tnames = getResources().getStringArray(R.array.thotline_names);
+        String[] tnumbers = getResources().getStringArray(R.array.thotline_numbers);
+
         hotlineInfos = new ArrayList<>();
 
-        hotlineinfo=new HotlineInfo("Manila Doctors","0999999999");
-        hotlineInfos.add(hotlineinfo);
-        hotlineinfo=new HotlineInfo("Manila Med","091111111");
-        hotlineInfos.add(hotlineinfo);
-        hotlineinfo=new HotlineInfo("Manila Mo","092222222");
-        hotlineInfos.add(hotlineinfo);
-        hotlineinfo=new HotlineInfo("Manila Me","0933333333");
-        hotlineInfos.add(hotlineinfo);
+// Iterate through the arrays, creating a new HotlineInfo object for each element and adding it to the hotlineInfos list
+        for (int i = 0; i < tnames.length; i++) {
+            hotlineinfo = new HotlineInfo(tnames[i], tnumbers[i]);
+            hotlineInfos.add(hotlineinfo);
+        }
 
         hotlineAllNumAdapter= new HotlineAllNumAdapter(hotline_allnum.this, hotlineInfos);
         recyclerView.setAdapter(hotlineAllNumAdapter);
+
+//MobileNumbers
+        LinearLayoutManager mlinearLayoutManager = new LinearLayoutManager(this);
+        mlinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mhotline_recycler.setLayoutManager(mlinearLayoutManager);
+
+        // Get the arrays from the string.xml file
+        String[] mnames = getResources().getStringArray(R.array.mhotline_names);
+        String[] mnumbers = getResources().getStringArray(R.array.mhotline_numbers);
+
+        mhotlineInfos = new ArrayList<>();
+
+        // Iterate through the arrays, creating a new HotlineInfo object for each element and adding it to the hotlineInfos list
+        for (int i = 0; i < mnames.length; i++) {
+            hotlineinfo = new HotlineInfo(mnames[i], mnumbers[i]);
+            mhotlineInfos.add(hotlineinfo);
+        }
+
+        HotlineMobileNumAdapter hotlineMobileNumAdapter = new HotlineMobileNumAdapter(hotline_allnum.this, mhotlineInfos);
+        mhotline_recycler.setAdapter(hotlineMobileNumAdapter);
 
 
 
