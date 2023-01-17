@@ -99,7 +99,7 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <CalendarView
+                <com.applandeo.materialcalendarview.CalendarView
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -150,6 +150,7 @@
                         app:tint="@color/blue" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/showEvents"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"

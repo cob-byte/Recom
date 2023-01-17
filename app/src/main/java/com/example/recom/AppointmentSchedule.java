@@ -1,12 +1,17 @@
 package com.example.recom;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
@@ -17,15 +22,30 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TimeZone;
 
 public class AppointmentSchedule extends AppCompatActivity {
     private ActivityAppointmentScheduleBinding binding;
     private int startHour = 0, startMinute = 0;
+    private long timestampDate;
+    private final List<String> selectedItems = new ArrayList<>();
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference eventsRef = database.getReference("events");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +70,12 @@ public class AppointmentSchedule extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         // Convert the selected date to a string/PH time
                         String selectedDate = String.format(new Locale("en", "PH"),"%04d-%02d-%02d", year, month + 1, day);
+                        Calendar calendar = Calendar.getInstance();
+                        TimeZone phTimeZone = TimeZone.getTimeZone("Asia/Manila");
+                        calendar.setTimeZone(phTimeZone);
+                        calendar.set(year, month, day);
+                        timestampDate = calendar.getTimeInMillis();
+
                         // Set the selected date in the TextView
                         binding.EventDate.setText(selectedDate);
                     }
@@ -118,6 +144,125 @@ public class AppointmentSchedule extends AppCompatActivity {
             }
         });
 
+        //hide the quantity input first
+        binding.ChairsQuantity.setVisibility(View.GONE);
+        binding.TablesQuantity.setVisibility(View.GONE);
+        binding.TentsQuantity.setVisibility(View.GONE);
+
+        //facilities
+        binding.BtnEHall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // handle button click
+                if (selectedItems.contains("ehall")) {
+                    selectedItems.remove("ehall");
+                    binding.BtnEHall.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.pink)));
+                } else {
+                    selectedItems.add("ehall");
+                    binding.BtnEHall.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.temp)));
+                }
+            }
+        });
+
+        binding.BtnCourt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // handle button click
+                if (selectedItems.contains("court")) {
+                    selectedItems.remove("court");
+                    binding.BtnCourt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.pink)));
+                } else {
+                    selectedItems.add("court");
+                    binding.BtnCourt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.temp)));
+                }
+            }
+        });
+
+        binding.BtnChairs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // handle button click
+                if (selectedItems.contains("chairs")) {
+                    selectedItems.remove("chairs");
+                    binding.BtnChairs.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.pink)));
+                    binding.ChairsQuantity.setVisibility(View.GONE);
+                } else {
+                    selectedItems.add("chairs");
+                    binding.BtnChairs.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.temp)));
+                    binding.ChairsQuantity.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.BtnTables.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // handle button click
+                if (selectedItems.contains("tables")) {
+                    selectedItems.remove("tables");
+                    binding.BtnTables.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.pink)));
+                    binding.TablesQuantity.setVisibility(View.GONE);
+                } else {
+                    selectedItems.add("tables");
+                    binding.BtnTables.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.temp)));
+                    binding.TablesQuantity.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.BtnTent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // handle button click
+                if (selectedItems.contains("tents")) {
+                    selectedItems.remove("tents");
+                    binding.BtnTent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.pink)));
+                    binding.TentsQuantity.setVisibility(View.GONE);
+                } else {
+                    selectedItems.add("tents");
+                    binding.BtnTent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(AppointmentSchedule.this, R.color.temp)));
+                    binding.TentsQuantity.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.BtnCreateEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isInputValid()){
+                    new AlertDialog.Builder(AppointmentSchedule.this)
+                    .setMessage("Are you sure you want to post this question?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //get pushkey
+                            String eventId = eventsRef.push().getKey();
+
+                            // Retrieve the quantity for each selected item
+                            Map<String, Object> items = getEventItems(selectedItems);
+
+                            int chairsD = (int) items.get("chairs");
+                            int tablesD = (int) items.get("tables");
+                            int tentsD = (int) items.get("tents");
+                            boolean basketballCourtD = (boolean) items.get("court");
+                            boolean eventHallD = (boolean) items.get("ehall");
+
+                            Event event = new Event(binding.EventName.getText().toString(), binding.EventDate.getText().toString(), binding.editStartTime.getText().toString(),
+                                    binding.editEndTime.getText().toString(), binding.editTextDescription.getText().toString(),
+                                    chairsD, tablesD, tentsD, timestampDate, basketballCourtD, eventHallD);
+                            eventsRef.child(eventId).setValue(event);
+
+                            Toast.makeText(AppointmentSchedule.this, "Event Schedule has been sent, please wait for confirmation.", Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No",null)
+                    .show();
+                }
+            }
+        });
+
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,4 +270,187 @@ public class AppointmentSchedule extends AppCompatActivity {
             }
         });
     }
+
+    private boolean isInputValid() {
+        boolean isValid = true;
+
+        // Check if event name is not empty
+        if (TextUtils.isEmpty(binding.EventName.getText().toString())) {
+            // If event name is empty, set error message and set isValid to false
+            binding.EventName.setError("Event name is required");
+            isValid = false;
+        }
+
+        // Check if event description is not empty
+        if (TextUtils.isEmpty(binding.editTextDescription.getText().toString())) {
+            // If event name is empty, set error message and set isValid to false
+            binding.editTextDescription.setError("Event description is required");
+            isValid = false;
+        }
+
+        // Check if date is not empty and is from today onwards
+        if (TextUtils.isEmpty(binding.EventDate.getText().toString())) {
+            // If date is empty, set error message and set isValid to false
+            binding.EventDate.setError("Event date is required");
+            isValid = false;
+        } else {
+            // If date is not empty, check if it's from today onwards
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", new Locale("en", "PH"));
+            Calendar today = Calendar.getInstance();
+            today.set(Calendar.HOUR_OF_DAY, 0);
+            today.set(Calendar.MINUTE, 0);
+            today.set(Calendar.SECOND, 0);
+            today.set(Calendar.MILLISECOND, 0);
+
+            try {
+                Date inputDate = sdf.parse(binding.EventDate.getText().toString());
+                Calendar inputCalendar = Calendar.getInstance();
+                inputCalendar.setTime(inputDate);
+
+                if (inputCalendar.before(today)) {
+                    binding.EventDate.setError("Date must be from today onwards");
+                    isValid = false;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                binding.EventDate.setError("Invalid date format");
+                isValid = false;
+            }
+        }
+
+        // Check if start time is not empty and is within 6 am to 8 pm
+        if (TextUtils.isEmpty(binding.editStartTime.getText().toString())) {
+            // If start time is empty, set error message and set isValid to false
+            binding.editStartTime.setError("Event start time is required");
+            isValid = false;
+        } else {
+            // If start time is not empty, check if it's within 6 am to 8 pm
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", new Locale("en", "PH"));
+            try {
+                Date inputTime = sdf.parse(binding.editStartTime.getText().toString());
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(inputTime);
+                int hour = cal.get(Calendar.HOUR_OF_DAY);
+                if (hour < 6 || hour >= 20) {
+                    // If start time is before 6 am or after 8 pm, set error message and set isValid to false
+                    binding.editStartTime.setError("Start time must be within 6 am to 8 pm");
+                    isValid = false;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                binding.editStartTime.setError("Invalid time format");
+                isValid = false;
+            }
+        }
+
+        // Check if end time is not empty and is within 6 am to 10 pm
+        if (TextUtils.isEmpty(binding.editEndTime.getText().toString())) {
+            // If end time is empty, set error message and set isValid to false
+            binding.editEndTime.setError("End time is required");
+            isValid = false;
+        }
+        else {
+            // If start time is not empty, check if it's within 6 am to 8 pm
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", new Locale("en", "PH"));
+            try {
+                Date endTime = sdf.parse(binding.editEndTime.getText().toString());
+                Calendar endTimeCalender = Calendar.getInstance();
+                endTimeCalender.setTime(endTime);
+                int hour = endTimeCalender.get(Calendar.HOUR_OF_DAY);
+                if (hour < 6 || hour >= 22) {
+                    binding.editEndTime.setError("End time must be within 6 am to 10 pm");
+                    isValid = false;
+                }
+                if(!TextUtils.isEmpty(binding.editEndTime.getText().toString())){
+                    Date startTimeDate = sdf.parse(binding.editStartTime.getText().toString());
+                    Calendar startTimeCalendar = Calendar.getInstance();
+                    startTimeCalendar.setTime(startTimeDate);
+                    if(startTimeCalendar.getTimeInMillis() >= endTimeCalender.getTimeInMillis()){
+                        binding.editEndTime.setError("End time must be more than start time.");
+                        isValid = false;
+                    }
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                binding.editEndTime.setError("Invalid time format");
+                isValid = false;
+            }
+
+            if (selectedItems.size() == 0) {
+                binding.textView22.setError("Please select at least one Facility/Equipment.");
+                return false;
+            }
+            else{
+                for(String item : selectedItems){
+                    if(item.equals("tents")){
+                        if(TextUtils.isEmpty(binding.InputTentQty.getText().toString())){
+                            binding.InputTentQty.setError("Field required");
+                            return false;
+                        }
+                        else if(Integer.parseInt(binding.InputTentQty.getText().toString()) < 0){
+                            binding.InputTentQty.setError("Quantity must be more than 0.");
+                            return false;
+                        }
+                    }
+                    if(item.equals("chairs")){
+                        if(TextUtils.isEmpty(binding.InputCQty.getText().toString())){
+                            binding.InputCQty.setError("Field required");
+                            return false;
+                        }
+                        else if(Integer.parseInt(binding.InputCQty.getText().toString()) < 0){
+                            binding.InputTentQty.setError("Quantity must be more than 0.");
+                            return false;
+                        }
+                    }
+                    if(item.equals("tables")){
+                        if(TextUtils.isEmpty(binding.InputTQty.getText().toString())){
+                            binding.InputTQty.setError("Field required");
+                            return false;
+                        }
+                        else if(Integer.parseInt(binding.InputTQty.getText().toString()) < 0){
+                            binding.InputTentQty.setError("Quantity must be more than 0.");
+                            return false;
+                        }
+                    }
+                }
+            }
+
+        }
+        return isValid;
+    }
+
+    private Map<String, Object> getEventItems(List<String> selectedItems) {
+        Map<String, Object> items = new HashMap<>();
+        if (selectedItems.contains("ehall")) {
+            items.put("ehall", true);
+        } else {
+            items.put("ehall", false);
+        }
+        if (selectedItems.contains("court")) {
+            items.put("court", true);
+        } else {
+            items.put("court", false);
+        }
+        if (selectedItems.contains("chairs")) {
+            int chairsQuantity = Integer.parseInt(binding.InputCQty.getText().toString());
+            items.put("chairs", chairsQuantity);
+        } else {
+            items.put("chairs", 0);
+        }
+        if (selectedItems.contains("tables")) {
+            int tablesQuantity = Integer.parseInt(binding.InputTQty.getText().toString());
+            items.put("tables", tablesQuantity);
+        } else {
+            items.put("tables", 0);
+        }
+        if (selectedItems.contains("tents")) {
+            int tentsQuantity = Integer.parseInt(binding.InputTentQty.getText().toString());
+            items.put("tents", tentsQuantity);
+        } else {
+            items.put("tents", 0);
+        }
+        return items;
+    }
+
+
 }
