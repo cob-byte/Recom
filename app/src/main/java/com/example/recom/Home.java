@@ -21,6 +21,7 @@ public class Home extends Fragment {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private ViewPager2 viewPager2;
     private ArrayList<wList> pagerArrayList;
+    private ImageButton safe;
 
     public Home() {
         // Required empty public constructor
@@ -71,6 +72,15 @@ public class Home extends Fragment {
                 startActivity(pasched);
             }
         });
+                safe=view.findViewById(R.id.safemeBtn);
+                safe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent safe = new Intent(requireActivity(), SafeMe.class);
+                        safe.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(safe);
+                    }
+                });
 
         cc = view.findViewById(R.id.ccBtn);
         cc.setOnClickListener(new View.OnClickListener() {

@@ -10,4 +10,10 @@
     <string name="selectDay">Days</string>
     <string name="selectHour">Hours</string>
     <string name="selectMinute">Minutes</string>
+
+    <!-- Detecting current location -->
+    <string name="title_activity_nearby_places_of_current_location">NearbyPlacesOfCurrentLocation
+    </string>
+    <string name="app_key">AIzaSyBiYApM4rwkaUJofXW7AxDyEf8GIL7Kw6w</string>
+
 </resources>
