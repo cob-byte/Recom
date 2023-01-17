@@ -25,6 +25,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,10 +37,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 
 public class AppointmentSchedule extends AppCompatActivity {
     private ActivityAppointmentScheduleBinding binding;
     private int startHour = 0, startMinute = 0;
+    private long timestampDate;
     private final List<String> selectedItems = new ArrayList<>();
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final DatabaseReference eventsRef = database.getReference("events");
@@ -67,6 +70,12 @@ public class AppointmentSchedule extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         // Convert the selected date to a string/PH time
                         String selectedDate = String.format(new Locale("en", "PH"),"%04d-%02d-%02d", year, month + 1, day);
+                        Calendar calendar = Calendar.getInstance();
+                        TimeZone phTimeZone = TimeZone.getTimeZone("Asia/Manila");
+                        calendar.setTimeZone(phTimeZone);
+                        calendar.set(year, month, day);
+                        timestampDate = calendar.getTimeInMillis();
+
                         // Set the selected date in the TextView
                         binding.EventDate.setText(selectedDate);
                     }
@@ -239,9 +248,9 @@ public class AppointmentSchedule extends AppCompatActivity {
                             boolean basketballCourtD = (boolean) items.get("court");
                             boolean eventHallD = (boolean) items.get("ehall");
 
-                            Event event = new Event(binding.EventName.getText().toString(), binding.EventDate.getText().toString(),
-                                    binding.editStartTime.getText().toString(), binding.editEndTime.getText().toString(),
-                                    binding.editTextDescription.getText().toString(), chairsD, tablesD,tentsD, basketballCourtD, eventHallD);
+                            Event event = new Event(binding.EventName.getText().toString(), binding.EventDate.getText().toString(), binding.editStartTime.getText().toString(),
+                                    binding.editEndTime.getText().toString(), binding.editTextDescription.getText().toString(),
+                                    chairsD, tablesD, tentsD, timestampDate, basketballCourtD, eventHallD);
                             eventsRef.child(eventId).setValue(event);
 
                             Toast.makeText(AppointmentSchedule.this, "Event Schedule has been sent, please wait for confirmation.", Toast.LENGTH_LONG).show();

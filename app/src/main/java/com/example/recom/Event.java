@@ -3,12 +3,13 @@ package com.example.recom;
 public class Event {
     public String name, date, startTime, endTime, description;
     public int chairs, tables, tents;
+    public long timestampDate;
     public boolean basketballCourt, eventHall;
 
     public Event() {
     }
 
-    public Event(String name, String date, String startTime, String endTime, String description, int chairs, int tables, int tents, boolean basketballCourt, boolean eventHall) {
+    public Event(String name, String date, String startTime, String endTime, String description, int chairs, int tables, int tents, long timestampDate, boolean basketballCourt, boolean eventHall) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
@@ -17,6 +18,7 @@ public class Event {
         this.chairs = chairs;
         this.tables = tables;
         this.tents = tents;
+        this.timestampDate = timestampDate;
         this.basketballCourt = basketballCourt;
         this.eventHall = eventHall;
     }
@@ -83,6 +85,14 @@ public class Event {
 
     public void setTents(int tents) {
         this.tents = tents;
+    }
+
+    public long getTimestampDate() {
+        return timestampDate;
+    }
+
+    public void setTimestampDate(long timestampDate) {
+        this.timestampDate = timestampDate;
     }
 
     public boolean isBasketballCourt() {

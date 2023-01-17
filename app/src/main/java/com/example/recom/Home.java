@@ -13,17 +13,62 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Home extends Fragment {
     private ImageButton cc, ps;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference eventsRef = database.getReference("events");
     private ViewPager2 viewPager2;
     private ArrayList<wList> pagerArrayList;
 
     public Home() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //delete past events
+        // Create a query to retrieve events whose date is in the past
+        //get current date
+        Calendar currentDatePH = Calendar.getInstance();
+        currentDatePH.setTimeZone(TimeZone.getTimeZone("Asia/Manila"));
+        currentDatePH.set(Calendar.HOUR_OF_DAY, 0);
+        currentDatePH.set(Calendar.MINUTE, 0);
+        currentDatePH.set(Calendar.SECOND, 0);
+        currentDatePH.set(Calendar.MILLISECOND, 0);
+        Query pastEventsQuery = eventsRef.orderByChild("date").endAt(currentDatePH.getTimeInMillis());
+
+        // Attach a listener to the query
+        pastEventsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot eventSnapshot : dataSnapshot.getChildren()) {
+                    // Get the event key
+                    String eventKey = eventSnapshot.getKey();
+
+                    // Delete the event from the database
+                    eventsRef.child(eventKey).setValue(null);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+            }
+        });
     }
 
     @Override
