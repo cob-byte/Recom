@@ -21,87 +21,224 @@
     </string>
 
     <string-array name="thotline_names">
-        <item>Manila Doctors</item>
-        <item>Manila Med</item>
-        <item>Manila Mo</item>
-        <item>Manila Me</item>
+        <item>Caloocan City Medical Center</item>
+        <item>Dr. Jose N. Rodriguez Memorial Hospital and Sanitarium</item>
+        <item>FDT Medical Foundations Hospital</item>
+        <item>Alabang Medical Center</item>
+        <item>Las Pinas City Medical Center</item>
+        <item>Las Pinas General Hospital</item>
+        <item>Perpetual Help Medical Center</item>
+        <item>Makati Medical Center</item>
+        <item>Ospital ng Makati</item>
+        <item>St Clare’s Medical Center</item>
+        <item>Mandaluyong City Medical Center</item>
+        <item>Hospital of the Infant Jesus</item>
+        <item>Chinese General Hospital and Medical Center</item>
+        <item>Dr. Jose Fabella Memorial Hospital</item>
+        <item>Jose R. Reyes Memorial Medical Center</item>
+        <item>Manila Doctors Hospital</item>
+        <item>Mary Chiles General Hospital</item>
+        <item>Mary Johnston Hospital</item>
+        <item>Metropolitan Medical Center</item>
+        <item>Philippine General Hospital</item>
+        <item>Our Lady of Lourdes Hospital</item>
+        <item>Ospital ng Maynila</item>
+        <item>San Lazaro Hospital</item>
+        <item>Tondo Medical Center</item>
+        <item>University Of Sto. Tomas Hospital</item>
     </string-array>
 
     <string-array name="thotline_numbers">
-        <item>0999999999</item>
-        <item>091111111</item>
-        <item>092222222</item>
-        <item>0933333333</item>
+        <item>5310 7925</item>
+        <item>8294 2571</item>
+        <item>8367 2031</item>
+        <item>8807 8189</item>
+        <item>8806 2288</item>
+        <item>8872 0509</item>
+        <item>8874 8515</item>
+        <item>8651 7800</item>
+        <item>8828 6316</item>
+        <item>8831 6511</item>
+        <item>8532 2563</item>
+        <item>8731 2771</item>
+        <item>8711 4141</item>
+        <item>8734 5561</item>
+        <item>8711 9491</item>
+        <item>8558 0888</item>
+        <item>8735 5341</item>
+        <item>5318 6600</item>
+        <item>8254 1111</item>
+        <item>8554 8400</item>
+        <item>8716 3901</item>
+        <item>8524 6063</item>
+        <item>8732 3776</item>
+        <item>8865 9000</item>
+        <item>8731 3001</item>
     </string-array>
     <string-array name="mhotline_names">
-        <item>Manila Doctors</item>
-        <item>Asis Medical Center</item>
-        <item>Manila Mo</item>
-        <item>Manila Me</item>
+        <item>Caloocan City Medical Center</item>
+        <item>Dr. Jose N. Rodriguez Memorial Hospital and Sanitarium</item>
+        <item>Las Pinas Doctors Hospital</item>
     </string-array>
 
     <string-array name="mhotline_numbers">
-        <item>0999999999</item>
-        <item>091111111</item>
-        <item>092222222</item>
-        <item>0933333333</item>
-    </string-array>
-    <!--Typhoon -->
-    <string-array name="tthotline_names">
-        <item>Manila Doctors</item>
-        <item>Manila Me</item>
+        <item>0943 216 6963</item>
+        <item>0966 549 2697</item>
+        <item>0917 836 9466</item>
     </string-array>
 
+    <!--Typhoon -->
+
+    <string-array name="tthotline_names">
+        <item>Philippine National Emergency Hotline</item>
+        <item>National Disaster Risk Reduction and Management Council (NDRRMC)</item>
+        <item>Office of the Civil Defense </item>
+        <item>Department of Social Welfare and Development (DSWD)</item>
+        <item>Philippine Red Cross</item>
+        <item>PRC National Blood Center</item>
+        <item>PRC Disaster Management Office</item>
+        <item>PRC Emergency Response Unit</item>
+        <item>Philippine Coast Guard</item>
+        <item>Metropolitan Manila Development Authority (MMDA)</item>
+        <item>Philippine National Police (PNP)</item>
+        <item>Bureau of Fire Protection (BFP)</item>
+        <item>Department of Transportation (DOTr)</item>
+        <item>Department of the Interior and Local Government (DILG)</item>
+        <item>The Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA)</item>
+    </string-array>
     <string-array name="tthotline_numbers">
-        <item>0999999999</item>
-        <item>0933333333</item>
+        <item>911</item>
+        <item>(02) 8911-5061</item>
+        <item>(02) 8421-1918</item>
+        <item>(02) 8856-3665</item>
+        <item>(02) 8931-8101</item>
+        <item>(02) 8527-8385</item>
+        <item>(02) 8527-0000</item>
+        <item>134</item>
+        <item>(02) 8790-2300</item>
+        <item>(02) 8527-8481</item>
+        <item>(02) 8882-4151</item>
+        <item>(02) 8722-0650</item>
+        <item>(02) 8426-0219</item>
+        <item>(02) 8790-8300</item>
+        <item>(02) 8876-3454</item>
+        <item>(02) 8284-0800</item>
     </string-array>
     <string-array name="tmhotline_names">
-        <item>Manila Doctors</item>
-        <item>Asis Medical Center</item>
+        <item>Department of Social Welfare and Development (DSWD)</item>
+        <item>Philippine Coast Guard</item>
+        <item>Philippine National Police (PNP)</item>
+    </string-array>
+    <string-array name="tmhotline_numbers">
+        <item>09189122813</item>
+        <item>09177243682</item>
+        <item>09178475757</item>
     </string-array>
 
-    <string-array name="tmhotline_numbers">
-        <item>0999999999</item>
-        <item>091111111</item>
-    </string-array>
     <!--Fire -->
+
     <string-array name="fthotline_names">
-        <item>Manila Doctors</item>
-        <item>Manila Me</item>
+        <item>Manila Fire District</item>
+        <item>Caloocan City Fire Station</item>
+        <item>Malabon City Fire Station</item>
+        <item>Navotas City Fire Station</item>
+        <item>Valenzuela City Fire Station</item>
+        <item>Pasay City Fire Station</item>
+        <item>Makati City Fire Station</item>
+        <item>Parañaque City Fire Station</item>
+        <item>Las Piñas City Fire Station</item>
+        <item>Muntinlupa City Fire Station</item>
+        <item>Marikina City Fire Station</item>
+        <item>Pasig City Fire Station</item>
+        <item>Pateros Fire Station</item>
+        <item>Taguig City Fire Station</item>
+        <item>Mandaluyong City Fire Station</item>
+        <item>San Juan City Fire Station</item>
+        <item>Quezon City Fire Station</item>
+
     </string-array>
 
     <string-array name="fthotline_numbers">
-        <item>0999999999</item>
-        <item>0933333333</item>
+        <item>(02)527-3627)</item>
+        <item>(02)362-4037 </item>
+        <item>(02)361-9712 </item>
+        <item>(02)281-0854</item>
+        <item>(02)292-3519 </item>
+        <item>(02)844-2120</item>
+        <item>(02)818-5150</item>
+        <item>(02)826-9131</item>
+        <item>(02)245-0387</item>
+        <item>(02)842-2201</item>
+        <item>(02)681-0233</item>
+        <item>(02)641-2815</item>
+        <item>(02)641-1365</item>
+        <item>(02)837-0740</item>
+        <item>(02)532-2402</item>
+        <item>(02)725-8044</item>
+        <item>(02)928-8363</item>
     </string-array>
     <string-array name="fmhotline_names">
-        <item>Manila Doctors</item>
-        <item>Asis Medical Center</item>
+        <item>Manila Fire District</item>
+        <item>Pasay City Fire Station</item>
+        <item>Makati City Fire Station</item>
+        <item>Pasig City Fire Station</item>
     </string-array>
 
     <string-array name="fmhotline_numbers">
-        <item>0999999999</item>
-        <item>091111111</item>
+        <item>09664769700</item>
+        <item>09228442120</item>
+        <item>09288185150</item>
+        <item>09286411939</item>
     </string-array>
     <!--Quake -->
     <string-array name="qthotline_names">
-        <item>Manila Doctors</item>
-        <item>Manila Me</item>
+        <item>National Disaster Risk Reduction and Management Council (NDRRMC)</item>
+        <item>Office of the Civil Defense</item>
+        <item>Department of Social Welfare and Development(DSWD)</item>
+        <item>Philippine Red Cross</item>
+        <item>PRC Disaster Management Office</item>
+        <item>PRC Emergency Response Unit</item>
+        <item>Philippine Coast Guard</item>
+        <item>Metropolitan Manila Development Authority (MMDA)</item>
+        <item>Philippine National Police (PNP)</item>
+        <item>Bureau of Fire Protection (BFP)</item>
+        <item>Department of Transportation (DOTr)</item>
+        <item>Department of the Interior and Local Government (DILG)</item>
+        <item>Philippine Institute of Volcanology and Seismology (PHIVOLCS)</item>
+        <item>Department of Public Works and Highways (DPWH)</item>
     </string-array>
 
     <string-array name="qthotline_numbers">
-        <item>0999999999</item>
-        <item>0933333333</item>
+        <item>(02)911-1406</item>
+        <item>(02)913-2786</item>
+        <item>(02)931-8101</item>
+        <item>(02)8527-8385</item>
+        <item>134</item>
+        <item>(02) 8790-2300</item>
+        <item>(02) 8527-8481</item>
+        <item>(02) 8882-4151</item>
+        <item>(02) 8722-0650</item>
+        <item>(02) 8426-0219</item>
+        <item>(02) 8790-8300</item>
+        <item>(02) 8876-3454</item>
+        <item>(02)426-1468</item>
+        <item>(02)304-3000</item>
     </string-array>
     <string-array name="qmhotline_names">
-        <item>Manila Doctors</item>
-        <item>Asis Medical Center</item>
+        <item>Philippine Institute of Volcanology and Seismology (PHIVOLCS)</item>
+        <item>Seismological Observation and Earthquake Prediction Division (SOEPD) </item>
+        <item>Department of Social Welfare and Development (DSWD)</item>
+        <item>Philippine Coast Guard</item>
+        <item>Philippine National Police (PNP)</item>
+
     </string-array>
 
     <string-array name="qmhotline_numbers">
-        <item>0999999999</item>
-        <item>091111111</item>
+        <item>09284261468</item>
+        <item>09284261468</item>
+        <item>09189122813</item>
+        <item>09177243682</item>
+        <item>09178475757</item>
     </string-array>
 
 </resources>

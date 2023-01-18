@@ -56,7 +56,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5"
+                    android:textStyle="bold"
                     android:textSize="15sp"
                     android:text="Select the category that you need"
                     android:textColor="#03045E" />
@@ -122,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="-120dp"
+                    android:layout_marginStart="-100dp"
                     android:layout_gravity="center"
                     android:text="Typhoon"
                     android:textColor="@color/white"
@@ -182,7 +184,7 @@
                             android:id="@+id/safequake"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="-110dp"
+                            android:layout_marginStart="-50dp"
                             android:layout_weight="1"
                             app:srcCompat="@drawable/quake" />
                     </LinearLayout>
@@ -192,9 +194,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="-110dp"
+                        android:layout_marginStart="-40dp"
                         android:layout_weight="1"
-                        android:text="Eathquake"
+                        android:text="Earthquake"
                         android:textColor="@color/white"
                         android:textSize="44sp" />
 

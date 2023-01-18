@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/HotlineNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="(08)000-0000"
@@ -22,11 +22,11 @@
 
         <TextView
             android:id="@+id/HotlineName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Manila Doctors Hospital"
             android:textColor="@color/white"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginStart="5dp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
