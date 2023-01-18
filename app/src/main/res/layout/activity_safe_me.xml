@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SafeMe">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/LayoutAbove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/blue"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/SafebackBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#03045E"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_34white" />
+
+                <TextView
+                    android:id="@+id/SafeMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Safe Me!"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:id="@+id/safeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="60dp"
+                    android:textSize="15sp"
+                    android:text="Select the category that you need"
+                    android:textColor="#03045E" />
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/blueroundcorners"
+                android:layout_marginTop="2dp">
+
+
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/safeHeart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/heart" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/safeHealth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="Health Services"
+                    android:textColor="@color/white"
+                    android:textSize="40sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/blueroundcorners"
+                android:layout_marginTop="10dp">>
+
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/safeTornado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="-110dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/tornado" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/safeTyphoon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="-120dp"
+                    android:layout_gravity="center"
+                    android:text="Typhoon"
+                    android:textColor="@color/white"
+                    android:textSize="44sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/blueroundcorners"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/safeBurn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="-190dp"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/fire" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/safeFire"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="-180dp"
+                        android:layout_weight="1"
+                        android:text="Fire"
+                        android:textColor="@color/white"
+                        android:textSize="44sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/blueroundcorners"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/safequake"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="-110dp"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/quake" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/safeEarthquake"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="-110dp"
+                        android:layout_weight="1"
+                        android:text="Eathquake"
+                        android:textColor="@color/white"
+                        android:textSize="44sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/SafeCLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Current Location"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#03045E"
+                    android:textSize="27sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/safeLocationview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="Location"
+                    android:textColor="#03045E"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <fragment
+                    android:id="@+id/google_map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="218dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

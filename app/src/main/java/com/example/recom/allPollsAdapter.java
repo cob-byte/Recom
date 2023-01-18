@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,6 +70,16 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
     public void onBindViewHolder(@NonNull allPollsAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         cConsensus consensus = allList.get(position);
 
+        // Check if user has already upvoted
+        if (consensus.upVoters != null && consensus.upVoters.containsKey(firebaseUser.getUid())) {
+            holder.upvote.setColorFilter(ContextCompat.getColor(context, R.color.pink), android.graphics.PorterDuff.Mode.SRC_IN);
+        }
+
+        // Check if user has already downvoted
+        if (consensus.downVoters != null && consensus.downVoters.containsKey(firebaseUser.getUid())) {
+            holder.downvote.setColorFilter(ContextCompat.getColor(context, R.color.pink), android.graphics.PorterDuff.Mode.SRC_IN);
+        }
+
         //get number of votes per post
         //initialize variables needed
         double answer1, answer2, answer3, answer4, total;
@@ -97,6 +108,7 @@ public class allPollsAdapter extends RecyclerView.Adapter<allPollsAdapter.MyView
         holder.pollTotalVotes.setText("Total Votes: " + round(total));
 
         holder.pollTitle.setText(consensus.getTitle());
+
         holder.pollDescription.setText(consensus.getQuestion());
         String dateTime = consensus.getDate() + " " + consensus.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yy HH:mm");

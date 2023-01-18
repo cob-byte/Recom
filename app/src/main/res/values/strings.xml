@@ -15,4 +15,37 @@
         <item>Time</item>
         <item>Events</item>
     </string-array>
+    
+    <!-- Detecting current location -->
+    <string name="title_activity_nearby_places_of_current_location">NearbyPlacesOfCurrentLocation
+    </string>
+    <string name="app_key">AIzaSyDGtE2t7RCIS4eyd3Ud59Dl358Zf-OMAFM/</string>
+
+    <string-array name="thotline_names">
+        <item>Manila Doctors</item>
+        <item>Manila Med</item>
+        <item>Manila Mo</item>
+        <item>Manila Me</item>
+    </string-array>
+
+    <string-array name="thotline_numbers">
+        <item>0999999999</item>
+        <item>091111111</item>
+        <item>092222222</item>
+        <item>0933333333</item>
+    </string-array>
+    <string-array name="mhotline_names">
+        <item>Manila Doctors</item>
+        <item>Asis Medical Center</item>
+        <item>Manila Mo</item>
+        <item>Manila Me</item>
+    </string-array>
+
+    <string-array name="mhotline_numbers">
+        <item>0999999999</item>
+        <item>091111111</item>
+        <item>092222222</item>
+        <item>0933333333</item>
+    </string-array>
+
 </resources>
