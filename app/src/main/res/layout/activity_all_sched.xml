@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:agendaCalendar="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".all_sched">
+
+        <LinearLayout
+            android:id="@+id/EntireLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/LayoutAbove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_34white"
+                    app:tint="@color/blue"/>
+
+                <TextView
+                    android:id="@+id/PaSched"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="PaSched"
+                    android:textColor="@color/blue"
+                    android:textSize="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/HeaderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:text="Monthly Schedule"
+                    android:textColor="@color/blue"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.github.tibolte.agendacalendarview.AgendaCalendarView
+                    android:id="@+id/agendaCalendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    agendaCalendar:agendaCurrentDayTextColor="@color/theme_primary"
+                    agendaCalendar:calendarColor="@android:color/white"
+                    agendaCalendar:calendarCurrentDayTextColor="@color/calendar_text_current_day"
+                    agendaCalendar:calendarDayTextColor="@color/theme_primary"
+                    agendaCalendar:calendarHeaderColor="@color/theme_primary_dark"
+                    agendaCalendar:calendarPastDayTextColor="@android:color/darker_gray"
+                    agendaCalendar:fabColor="@color/theme_accent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+</LinearLayout>

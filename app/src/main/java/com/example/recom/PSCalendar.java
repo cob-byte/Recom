@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -130,10 +131,29 @@ public class PSCalendar extends AppCompatActivity {
             // Get the selected event
             Event selectedEvent = getEventByDate(eventDay.getCalendar().getTime(), events);
             if(selectedEvent != null){
-                // go to day calendar and see the events that day
+                // go to weekly calendar and see the events that day
+                // create an Intent to start the new activity
+                Intent intent = new Intent(PSCalendar.this, weekly_sched.class);
+                // Pass the selected day's date to the new activity
+                intent.putExtra("selected_day", eventDay.getCalendar().getTime());
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                // start the new activity
+                startActivity(intent);
             }
             else{
                 Toast.makeText(PSCalendar.this, "Selected day is empty.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.BtnViewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //go to all sched calendar
+                // create an Intent to start the new activity
+                Intent intent = new Intent(PSCalendar.this, all_sched.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                // start the new activity
+                startActivity(intent);
             }
         });
 

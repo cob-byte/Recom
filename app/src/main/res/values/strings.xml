@@ -10,4 +10,9 @@
     <string name="selectDay">Days</string>
     <string name="selectHour">Hours</string>
     <string name="selectMinute">Minutes</string>
+
+    <string-array name="my_header_title">
+        <item>Time</item>
+        <item>Events</item>
+    </string-array>
 </resources>

@@ -109,6 +109,7 @@
                     android:dateTextAppearance="@style/CalendarViewDateCustomText"
                     android:theme="@style/CalendarViewCustom"/>
 
+
                 <LinearLayout
                     android:id="@+id/SchedulesLayout"
                     android:layout_width="match_parent"
