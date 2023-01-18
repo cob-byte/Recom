@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class hotline_allnum extends AppCompatActivity {
+public class typhoon_allnum extends AppCompatActivity {
 
     //Recycler View
     HotlineInfo hotlineinfo;
@@ -27,7 +27,8 @@ public class hotline_allnum extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hotline_allnum);
+        setContentView(R.layout.activity_typhoon_services);
+
         getSupportActionBar().hide();
 
         Backbtn = findViewById(R.id.Backbtn);
@@ -38,18 +39,18 @@ public class hotline_allnum extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.Tphone_recyclerView);
-        mhotline_recycler = findViewById(R.id.MobilePhone_recyclerView);
+        recyclerView = findViewById(R.id.TeleRecycler);
+        mhotline_recycler = findViewById(R.id.MobileRecycler);
 
-//---  HEALTH SERVICES ----
+//---  TYPHOON SERVICES ----
 //TelephoneNumbers
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
 // Get the arrays from the string.xml file
-        String[] tnames = getResources().getStringArray(R.array.thotline_names);
-        String[] tnumbers = getResources().getStringArray(R.array.thotline_numbers);
+        String[] tnames = getResources().getStringArray(R.array.tthotline_names);
+        String[] tnumbers = getResources().getStringArray(R.array.tthotline_numbers);
 
         hotlineInfos = new ArrayList<>();
 
@@ -59,7 +60,7 @@ public class hotline_allnum extends AppCompatActivity {
             hotlineInfos.add(hotlineinfo);
         }
 
-        hotlineAllNumAdapter = new HotlineAllNumAdapter(hotline_allnum.this, hotlineInfos);
+        hotlineAllNumAdapter = new HotlineAllNumAdapter(typhoon_allnum.this, hotlineInfos);
         recyclerView.setAdapter(hotlineAllNumAdapter);
 
 //MobileNumbers
@@ -68,8 +69,8 @@ public class hotline_allnum extends AppCompatActivity {
         mhotline_recycler.setLayoutManager(mlinearLayoutManager);
 
         // Get the arrays from the string.xml file
-        String[] mnames = getResources().getStringArray(R.array.mhotline_names);
-        String[] mnumbers = getResources().getStringArray(R.array.mhotline_numbers);
+        String[] mnames = getResources().getStringArray(R.array.tmhotline_names);
+        String[] mnumbers = getResources().getStringArray(R.array.tmhotline_numbers);
 
         mhotlineInfos = new ArrayList<>();
 
@@ -79,10 +80,11 @@ public class hotline_allnum extends AppCompatActivity {
             mhotlineInfos.add(hotlineinfo);
         }
 
-        HotlineMobileNumAdapter hotlineMobileNumAdapter = new HotlineMobileNumAdapter(hotline_allnum.this, mhotlineInfos);
+        HotlineMobileNumAdapter hotlineMobileNumAdapter = new HotlineMobileNumAdapter(typhoon_allnum.this, mhotlineInfos);
         mhotline_recycler.setAdapter(hotlineMobileNumAdapter);
 
-//---  END OF HEALTH SERVICES ----
+//---  END OF TYPHOON SERVICES ----
+
 
 
 

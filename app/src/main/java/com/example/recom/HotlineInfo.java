@@ -5,6 +5,7 @@ public class HotlineInfo {
     private String place;
     private String contact;
 
+
     // Constructor
     public HotlineInfo(String place, String contact) {
         this.place = place;
@@ -19,4 +20,5 @@ public class HotlineInfo {
     public String getContact() {
         return contact;
     }
+
 }

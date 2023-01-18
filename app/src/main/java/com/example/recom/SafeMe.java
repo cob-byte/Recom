@@ -1,9 +1,5 @@
 package com.example.recom;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,10 +9,14 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -52,7 +52,9 @@ public class SafeMe extends AppCompatActivity {
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
     double currentLat=0,currentLng=0;
-    TextView loc,safe, safeHealth, safeTyphoon, safeBurn, safeEarthquake;
+    ImageButton SafebackBtn;
+    TextView loc,safe, safeHealth, safeTyphoon, safeFire, safeEarthquake;
+
 
 
 
@@ -62,9 +64,15 @@ public class SafeMe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_safe_me);
 
+        getSupportActionBar().hide();
+
         //spType = findViewById(R.id.sp_type);
         safeHealth=findViewById(R.id.safeHealth);
-      safe = findViewById( R.id.SafeCLocation);
+        safeTyphoon=findViewById(R.id.safeTyphoon);
+        safeEarthquake=findViewById(R.id.safeEarthquake);
+        safeFire=findViewById(R.id.safeFire);
+
+        safe = findViewById( R.id.SafeCLocation);
         loc=findViewById(R.id.safeLocationview);
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.google_map);
@@ -111,11 +119,35 @@ public class SafeMe extends AppCompatActivity {
                 startActivity(info);
             }
         });
+        safeTyphoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent info= new Intent(SafeMe.this, typhoon_allnum.class);
+                startActivity(info);
+            }
+        });
+        safeFire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent info= new Intent(SafeMe.this, fire_allnum.class);
+                startActivity(info);
+            }
+        });
+        safeEarthquake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent info= new Intent(SafeMe.this, quake_allnum.class);
+                startActivity(info);
+            }
+        });
 
-
-
-
-
+        SafebackBtn = findViewById(R.id.SafebackBtn);
+        SafebackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

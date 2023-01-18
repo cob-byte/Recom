@@ -19,7 +19,6 @@
     <!-- Detecting current location -->
     <string name="title_activity_nearby_places_of_current_location">NearbyPlacesOfCurrentLocation
     </string>
-    <string name="app_key">AIzaSyDGtE2t7RCIS4eyd3Ud59Dl358Zf-OMAFM/</string>
 
     <string-array name="thotline_names">
         <item>Manila Doctors</item>
@@ -46,6 +45,63 @@
         <item>091111111</item>
         <item>092222222</item>
         <item>0933333333</item>
+    </string-array>
+    <!--Typhoon -->
+    <string-array name="tthotline_names">
+        <item>Manila Doctors</item>
+        <item>Manila Me</item>
+    </string-array>
+
+    <string-array name="tthotline_numbers">
+        <item>0999999999</item>
+        <item>0933333333</item>
+    </string-array>
+    <string-array name="tmhotline_names">
+        <item>Manila Doctors</item>
+        <item>Asis Medical Center</item>
+    </string-array>
+
+    <string-array name="tmhotline_numbers">
+        <item>0999999999</item>
+        <item>091111111</item>
+    </string-array>
+    <!--Fire -->
+    <string-array name="fthotline_names">
+        <item>Manila Doctors</item>
+        <item>Manila Me</item>
+    </string-array>
+
+    <string-array name="fthotline_numbers">
+        <item>0999999999</item>
+        <item>0933333333</item>
+    </string-array>
+    <string-array name="fmhotline_names">
+        <item>Manila Doctors</item>
+        <item>Asis Medical Center</item>
+    </string-array>
+
+    <string-array name="fmhotline_numbers">
+        <item>0999999999</item>
+        <item>091111111</item>
+    </string-array>
+    <!--Quake -->
+    <string-array name="qthotline_names">
+        <item>Manila Doctors</item>
+        <item>Manila Me</item>
+    </string-array>
+
+    <string-array name="qthotline_numbers">
+        <item>0999999999</item>
+        <item>0933333333</item>
+    </string-array>
+    <string-array name="qmhotline_names">
+        <item>Manila Doctors</item>
+        <item>Asis Medical Center</item>
+    </string-array>
+
+    <string-array name="qmhotline_numbers">
+        <item>0999999999</item>
+        <item>091111111</item>
     </string-array>
 
 </resources>
