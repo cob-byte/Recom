@@ -3,7 +3,10 @@ package com.example.recom;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -12,7 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +32,16 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class Home extends Fragment {
-    private ImageButton cc, ps;
+    private ImageButton cc, ps, safe;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference;
+    private final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
     private final DatabaseReference eventsRef = database.getReference("events");
     private ViewPager2 viewPager2;
     private ArrayList<wList> pagerArrayList;
-    private ImageButton safe;
+    private FloatingActionButton menu1, menu2, menu3, menu4;
+    private FloatingActionMenu menu;
 
     public Home() {
         // Required empty public constructor
@@ -117,15 +126,79 @@ public class Home extends Fragment {
                 startActivity(pasched);
             }
         });
-                safe=view.findViewById(R.id.safemeBtn);
-                safe.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent safe = new Intent(requireActivity(), SafeMe.class);
-                        safe.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(safe);
-                    }
-                });
+
+        safe=view.findViewById(R.id.safemeBtn);
+        safe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent safe = new Intent(requireActivity(), SafeMe.class);
+                safe.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(safe);
+            }
+        });
+
+        menu = view.findViewById(R.id.menu);
+
+        databaseReference = database.getReference("Users");
+        databaseReference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if(user.userRole == 2)
+                {
+                    menu.setVisibility(View.VISIBLE);
+                    menu1 = view.findViewById(R.id.menuAS);
+                    menu1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent acceptSchedule = new Intent(requireActivity(), CommunityConsensus.class);
+                            acceptSchedule.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(acceptSchedule);
+                        }
+                    });
+
+                    menu2 = view.findViewById(R.id.menuABP);
+                    menu2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent addBarangayPoll = new Intent(requireActivity(), PaSched.class);
+                            addBarangayPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(addBarangayPoll);
+                        }
+                    });
+
+                    menu3 = view.findViewById(R.id.menuAA);
+                    menu3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent addAnnouncement = new Intent(requireActivity(), SafeMe.class);
+                            addAnnouncement.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(addAnnouncement);
+                        }
+                    });
+
+                    menu4 = view.findViewById(R.id.menuVU);
+                    menu4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frame_layout, new verifyuser());
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+                    });
+                }
+                else{
+                    menu.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         cc = view.findViewById(R.id.ccBtn);
         cc.setOnClickListener(new View.OnClickListener() {

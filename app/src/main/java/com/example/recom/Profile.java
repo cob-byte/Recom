@@ -11,6 +11,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -127,6 +129,17 @@ public class Profile extends Fragment {
             }
         });
 
+        binding.getVerified.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, new getVerified());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -197,9 +210,15 @@ public class Profile extends Fragment {
                     binding.textAddress.setText(user.address);
                     if(user.userRole == 0){
                         binding.textVerification.setText("Not Verified");
+                        binding.getVerified.setVisibility(View.VISIBLE);
                     }
                     else if(user.userRole == 1){
                         binding.textVerification.setText("Verified");
+                        binding.getVerified.setVisibility(View.GONE);
+                    }
+                    else if(user.userRole == 2){
+                        binding.textVerification.setText("Barangay Official");
+                        binding.getVerified.setVisibility(View.GONE);
                     }
                     binding.progressBar2.setVisibility(View.GONE);
 

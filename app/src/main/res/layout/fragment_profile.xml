@@ -138,8 +138,8 @@
                         android:id="@+id/drawableFullname"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:tint="@color/blue"
-                        app:srcCompat="@drawable/userlogo34dp" />
+                        app:srcCompat="@drawable/userlogo34dp"
+                        app:tint="@color/blue" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -189,8 +189,8 @@
                         android:id="@+id/drawableEmailAdd"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:tint="@color/blue"
-                        app:srcCompat="@drawable/ic_baseline_email_34dp" />
+                        app:srcCompat="@drawable/ic_baseline_email_34dp"
+                        app:tint="@color/blue" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -239,8 +239,8 @@
                         android:id="@+id/drawablePhone"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:tint="@color/blue"
-                        app:srcCompat="@drawable/ic_baseline_phone_34dp" />
+                        app:srcCompat="@drawable/ic_baseline_phone_34dp"
+                        app:tint="@color/blue" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -289,8 +289,8 @@
                         android:id="@+id/drawableBirthdate"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:tint="@color/blue"
-                        app:srcCompat="@drawable/ic_baseline_calendar_month_34dp" />
+                        app:srcCompat="@drawable/ic_baseline_calendar_month_34dp"
+                        app:tint="@color/blue" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -338,8 +338,8 @@
                         android:id="@+id/drawableAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:tint="@color/blue"
-                        app:srcCompat="@drawable/ic_baseline_place_34dp" />
+                        app:srcCompat="@drawable/ic_baseline_place_34dp"
+                        app:tint="@color/blue" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -387,11 +387,11 @@
                         android:id="@+id/drawableVerification"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:tint="@color/blue"
+                        app:tint="@color/blue"
                         app:srcCompat="@drawable/ic_baseline_verified_user_34dp" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:orientation="vertical"
@@ -415,6 +415,14 @@
                             android:textSize="18sp"
                             app:drawableTint="#03045E" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/getVerified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:text="Get Verified" />
+
                 </LinearLayout>
             </RelativeLayout>
 
