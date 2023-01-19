@@ -67,6 +67,13 @@ public class verifyuser extends Fragment {
             }
         });
 
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
+
         return binding.getRoot();
     }
 }
