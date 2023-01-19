@@ -12,19 +12,17 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Looper;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.recom.databinding.ActivityViewpollBinding;
+import com.example.recom.databinding.ActivityBrgyViewPollBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,15 +32,14 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class Viewpoll extends AppCompatActivity {
-    private ActivityViewpollBinding binding;
+public class brgyViewPoll extends AppCompatActivity {
+    private ActivityBrgyViewPollBinding binding;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final FirebaseAuth firebaseProfile = FirebaseAuth.getInstance();
     private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
@@ -53,7 +50,7 @@ public class Viewpoll extends AppCompatActivity {
     private String pushKey;
     private ValueEventListener listener;
     private long serverTimeOffset = 0, timeLeft;
-    private static final String TAG = "Viewpoll";
+    private static final String TAG = "Barangay Viewpoll";
 
     @Override
     protected void onStop() {
@@ -67,13 +64,13 @@ public class Viewpoll extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(firebaseUser == null){
-            Toast.makeText(Viewpoll.this, "Something went wrong! di ka naka login beh", Toast.LENGTH_LONG).show();
+            Toast.makeText(brgyViewPoll.this, "Something went wrong! di ka naka login beh", Toast.LENGTH_LONG).show();
         }
         else{
             Intent intent = getIntent();
             pushKey = intent.getStringExtra("pushKey");
             //check if the user already voted
-            reference = database.getReference("communityConsensus");
+            reference = database.getReference("barangayConsensus");
             showPoll(pushKey);
             showComments();
         }
@@ -94,27 +91,17 @@ public class Viewpoll extends AppCompatActivity {
             }
         });
 
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey);
+        reference = database.getReference("barangayConsensus").child("questions").child(pushKey);
         listener = reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                cConsensus consensus = snapshot.getValue(cConsensus.class);
+                bConsensus consensus = snapshot.getValue(bConsensus.class);
                 if(consensus != null){
-                    boolean anon = consensus.getAnon();
-
                     //poll title setter
                     binding.vPollTitle.setText(consensus.getTitle());
-
-                    //anon or not
-                    if(anon == false){
-                        binding.vPollName.setText(consensus.getName());
-                        if(consensus.getImage() != null){
-                            Picasso.get().load(consensus.getImage()).into(binding.profileImage);
-                        }
-                    }
-                    else{
-                        binding.vPollName.setText("Anonymous");
-                    }
+                    //name and brgy pic
+                    binding.vPollName.setText(consensus.getName());
+                    Picasso.get().load(consensus.getImage()).into(binding.profileImage);
 
                     //date time set
                     String dateTime = consensus.getDate() + " " + consensus.getTime();
@@ -193,15 +180,16 @@ public class Viewpoll extends AppCompatActivity {
                     checkVote(consensus);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, "postTransaction:onComplete:" + error);
+                Toast.makeText(brgyViewPoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     @SuppressLint({"ClickableViewAccessibility", "SetTextI18n", "DefaultLocale"})
-    private void checkVote(cConsensus consensus) {
+    private void checkVote(bConsensus consensus) {
         if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
                 || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
             //hide the options
@@ -340,7 +328,7 @@ public class Viewpoll extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityViewpollBinding.inflate(getLayoutInflater());
+        binding = ActivityBrgyViewPollBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
@@ -350,72 +338,72 @@ public class Viewpoll extends AppCompatActivity {
         Intent intent = getIntent();
         pushKey = intent.getStringExtra("pushKey");
 
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey);
+        reference = database.getReference("barangayConsensus").child("questions").child(pushKey);
         listener = reference.addValueEventListener(new ValueEventListener() {
-               @Override
-               public void onDataChange(@NonNull DataSnapshot snapshot) {
-                   cConsensus consensus = snapshot.getValue(cConsensus.class);
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                bConsensus consensus = snapshot.getValue(bConsensus.class);
 
-                   long seconds = consensus.getSeconds();
-                   long start = consensus.getStart();
+                long seconds = consensus.getSeconds();
+                long start = consensus.getStart();
 
-                   timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
-               }
+                timeLeft = (long) ((seconds * 1000) - (System.currentTimeMillis() - start - serverTimeOffset));
+            }
 
-               @Override
-               public void onCancelled(@NonNull DatabaseError error) {
-                   Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
-               }
-           });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                binding.BtnVote.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+
+        binding.BtnVote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reference = database.getReference("Users");
+                reference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onClick(View view) {
-                        reference = database.getReference("Users");
-                        reference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                User user = snapshot.getValue(User.class);
-                                int answer;
-                                int selectedAnswerID = binding.pollOptions.getCheckedRadioButtonId();
-                                if (user != null) {
-                                    if (user.userRole == 0) {
-                                        Toast.makeText(Viewpoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
-                                    } else if (timeLeft <= 0) {
-                                        Toast.makeText(Viewpoll.this, "Poll is Finished!", Toast.LENGTH_LONG).show();
-                                    } else {
-                                        switch (selectedAnswerID) {
-                                            case R.id.radioButton1:
-                                                answer = 1;
-                                                castVote(answer, pushKey);
-                                                break;
-                                            case R.id.radioButton2:
-                                                answer = 2;
-                                                castVote(answer, pushKey);
-                                                break;
-                                            case R.id.radioButton3:
-                                                answer = 3;
-                                                castVote(answer, pushKey);
-                                                break;
-                                            case R.id.radioButton4:
-                                                answer = 4;
-                                                castVote(answer, pushKey);
-                                                break;
-                                            default:
-                                                Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
-                                                break;
-                                        }
-                                    }
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        int answer;
+                        int selectedAnswerID = binding.pollOptions.getCheckedRadioButtonId();
+                        if (user != null) {
+                            if (user.userRole == 0) {
+                                Toast.makeText(brgyViewPoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
+                            } else if (timeLeft <= 0) {
+                                Toast.makeText(brgyViewPoll.this, "Poll is Finished!", Toast.LENGTH_LONG).show();
+                            } else {
+                                switch (selectedAnswerID) {
+                                    case R.id.radioButton1:
+                                        answer = 1;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    case R.id.radioButton2:
+                                        answer = 2;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    case R.id.radioButton3:
+                                        answer = 3;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    case R.id.radioButton4:
+                                        answer = 4;
+                                        castVote(answer, pushKey);
+                                        break;
+                                    default:
+                                        Toast.makeText(brgyViewPoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                                        break;
                                 }
                             }
+                        }
+                    }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
-                            }
-                        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(brgyViewPoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
                     }
                 });
+            }
+        });
 
         binding.btnComments.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -440,10 +428,10 @@ public class Viewpoll extends AppCompatActivity {
                         User user = snapshot.getValue(User.class);
                         if(user != null){
                             if(user.userRole == 0){
-                                Toast.makeText(Viewpoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(brgyViewPoll.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
                             }
                             else if(binding.textComment.getText().toString().isEmpty()){
-                                Toast.makeText(Viewpoll.this, "Please enter the contents of your comment.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(brgyViewPoll.this, "Please enter the contents of your comment.", Toast.LENGTH_LONG).show();
                                 binding.textComment.setError("Fill in.");
                                 binding.textComment.requestFocus();
                             }
@@ -455,7 +443,7 @@ public class Viewpoll extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(brgyViewPoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -464,7 +452,7 @@ public class Viewpoll extends AppCompatActivity {
         binding.btnAsk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ask = new Intent(Viewpoll.this, AskQuestion.class);
+                Intent ask = new Intent(brgyViewPoll.this, AskQuestion.class);
                 ask.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(ask);
             }
@@ -473,7 +461,7 @@ public class Viewpoll extends AppCompatActivity {
         binding.btnPoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent seeMyPoll = new Intent(Viewpoll.this, MyPoll_cc.class);
+                Intent seeMyPoll = new Intent(brgyViewPoll.this, MyPoll_cc.class);
                 seeMyPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(seeMyPoll);
             }
@@ -508,7 +496,7 @@ public class Viewpoll extends AppCompatActivity {
             commentMap.put("image", firebaseUser.getPhotoUrl().toString());
         }
 
-        reference = database.getReference("communityConsensus").child("comments").child(pushKey);
+        reference = database.getReference("barangayConsensus").child("comments").child(pushKey);
         reference.push().setValue(commentMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -517,14 +505,14 @@ public class Viewpoll extends AppCompatActivity {
                     showComments();
                 }
                 else{
-                    Toast.makeText(Viewpoll.this, "Something went wrong! Please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(brgyViewPoll.this, "Something went wrong! Please try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     private void showComments() {
-        reference = database.getReference("communityConsensus").child("comments").child(pushKey);
+        reference = database.getReference("barangayConsensus").child("comments").child(pushKey);
         comPoll = binding.comment;
         comPoll.setHasFixedSize(true);
         comPoll.setLayoutManager(new LinearLayoutManager(this));
@@ -556,19 +544,19 @@ public class Viewpoll extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Viewpoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                Toast.makeText(brgyViewPoll.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
             }
         });
 
     }
 
     private void castVote(int answer, String pushKey) {
-        reference = database.getReference("communityConsensus").child("questions").child(pushKey);
+        reference = database.getReference("barangayConsensus").child("questions").child(pushKey);
         reference.runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData currentData) {
-                cConsensus consensus = currentData.getValue(cConsensus.class);
+                bConsensus consensus = currentData.getValue(bConsensus.class);
                 if(consensus == null){
                     return Transaction.success(currentData);
                 }
@@ -576,7 +564,7 @@ public class Viewpoll extends AppCompatActivity {
                     case 1:
                         if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
                                 || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
-                            Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(brgyViewPoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
                             // vote answer 1 from the poll
@@ -587,7 +575,7 @@ public class Viewpoll extends AppCompatActivity {
                     case 2:
                         if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
                                 || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
-                            Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(brgyViewPoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
                             // vote answer 2 from the poll
@@ -598,7 +586,7 @@ public class Viewpoll extends AppCompatActivity {
                     case 3:
                         if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
                                 || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
-                            Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(brgyViewPoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
                             // vote answer 3 from the poll
@@ -609,7 +597,7 @@ public class Viewpoll extends AppCompatActivity {
                     case 4:
                         if(consensus.answer1Vote.containsKey(firebaseUser.getUid()) || consensus.answer2Vote.containsKey(firebaseUser.getUid())
                                 || consensus.answer3Vote.containsKey(firebaseUser.getUid()) || consensus.answer4Vote.containsKey(firebaseUser.getUid())){
-                            Toast.makeText(Viewpoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(brgyViewPoll.this, "The user has already voted.", Toast.LENGTH_LONG).show();
                         }
                         else{
                             // vote answer 4 from the poll
@@ -618,7 +606,7 @@ public class Viewpoll extends AppCompatActivity {
                         }
                         break;
                     default:
-                        Toast.makeText(Viewpoll.this, "Something went wrong! Please try again.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(brgyViewPoll.this, "Something went wrong! Please try again.", Toast.LENGTH_LONG).show();
                         break;
                 }
                 // Set value and report transaction success
@@ -631,14 +619,14 @@ public class Viewpoll extends AppCompatActivity {
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        cConsensus consensus = snapshot.getValue(cConsensus.class);
+                        bConsensus consensus = snapshot.getValue(bConsensus.class);
                         checkVote(consensus);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         if(!committed) {
-                            Toast.makeText(Viewpoll.this, "Something went wrong! Please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(brgyViewPoll.this, "Something went wrong! Please try again.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

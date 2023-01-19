@@ -161,7 +161,7 @@ public class Home extends Fragment {
                     menu2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent addBarangayPoll = new Intent(requireActivity(), PaSched.class);
+                            Intent addBarangayPoll = new Intent(requireActivity(), barangayConsensus.class);
                             addBarangayPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(addBarangayPoll);
                         }

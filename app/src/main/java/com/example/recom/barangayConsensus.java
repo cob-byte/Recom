@@ -11,10 +11,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
-import com.example.recom.databinding.ActivityAskQuestionBinding;
+import com.example.recom.databinding.ActivityBarangayConsensusBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,12 +26,11 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class AskQuestion extends AppCompatActivity {
-    private ActivityAskQuestionBinding binding;
+public class barangayConsensus extends AppCompatActivity {
+    private ActivityBarangayConsensusBinding binding;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference;
     private String[] day, hour, minute;
@@ -43,7 +41,7 @@ public class AskQuestion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAskQuestionBinding.inflate(getLayoutInflater());
+        binding = ActivityBarangayConsensusBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
@@ -97,9 +95,9 @@ public class AskQuestion extends AppCompatActivity {
         }
 
         //initialize adapter
-        adapterDay = new ArrayAdapter<String>(AskQuestion.this, R.layout.list_item, day);
-        adapterHour = new ArrayAdapter<String>(AskQuestion.this, R.layout.list_item, hour);
-        adapterMinute = new ArrayAdapter<String>(AskQuestion.this, R.layout.list_item, minute);
+        adapterDay = new ArrayAdapter<String>(barangayConsensus.this, R.layout.list_item, day);
+        adapterHour = new ArrayAdapter<String>(barangayConsensus.this, R.layout.list_item, hour);
+        adapterMinute = new ArrayAdapter<String>(barangayConsensus.this, R.layout.list_item, minute);
 
         //set adapter
         binding.dayPicker.setAdapter(adapterDay);
@@ -147,7 +145,7 @@ public class AskQuestion extends AppCompatActivity {
                 String item = adapterView.getItemAtPosition(i).toString();
                 if(Integer.parseInt(item) < 5){
                     binding.minutePicker.setText("5", false);
-                    Toast.makeText(AskQuestion.this, "Minimum poll duration is 5 minutes.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(barangayConsensus.this, "Minimum poll duration is 5 minutes.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -162,50 +160,53 @@ public class AskQuestion extends AppCompatActivity {
                         User user = snapshot.getValue(User.class);
                         if(user != null){
                             if(user.userRole == 0){
-                                Toast.makeText(AskQuestion.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(barangayConsensus.this, "Your account is not verified yet.", Toast.LENGTH_LONG).show();
+                            }
+                            else if(user.userRole == 1){
+                                Toast.makeText(barangayConsensus.this, "Something went wrong! Please try again.", Toast.LENGTH_LONG).show();
                             }
                             else if (binding.questionTitle.getText().toString().isEmpty()){
-                                Toast.makeText(AskQuestion.this, "Please enter the title of your question.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(barangayConsensus.this, "Please enter the title of your question.", Toast.LENGTH_LONG).show();
                                 binding.questionTitle.setError("Title of the question is required.");
                                 binding.questionTitle.requestFocus();
                             }
                             else if ((binding.questionTitle.getText().toString().length() < 20) || (binding.questionTitle.getText().toString().length() > 70)){
-                                Toast.makeText(AskQuestion.this, "Length of the title must be between 20 to 70 characters.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(barangayConsensus.this, "Length of the title must be between 20 to 70 characters.", Toast.LENGTH_LONG).show();
                                 binding.questionTitle.setError("Length requirements do not meet.");
                                 binding.questionTitle.requestFocus();
                             }
                             else if(binding.question.getText().toString().isEmpty()){
-                                Toast.makeText(AskQuestion.this, "Please enter your question.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(barangayConsensus.this, "Please enter your question.", Toast.LENGTH_LONG).show();
                                 binding.question.setError("Question is required.");
                                 binding.question.requestFocus();
                             }
                             else if ((binding.question.getText().toString().length() < 50) || (binding.question.getText().toString().length() > 160)){
-                                Toast.makeText(AskQuestion.this, "Length of the question must be between 50 to 160 characters.", Toast.LENGTH_LONG).show();
-                                binding.question.setError("Length requirements do not meet.");
-                                binding.question.requestFocus();
+                                Toast.makeText(barangayConsensus.this, "Length of the question must be between 50 to 160 characters.", Toast.LENGTH_LONG).show();
+                                binding.questionTitle.setError("Length requirements do not meet.");
+                                binding.questionTitle.requestFocus();
                             }
                             else if(binding.TextOption1.getText().toString().isEmpty() || binding.TextOption1.toString().replace(" ", "").length() == 0
                                     || binding.TextOption2.getText().toString().isEmpty() || binding.TextOption2.toString().replace(" ", "").length() == 0){
-                                Toast.makeText(AskQuestion.this, "Kindly enter an option.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(barangayConsensus.this, "Kindly enter an option.", Toast.LENGTH_LONG).show();
                                 binding.TextOption1.setError("This field is required.");
                                 binding.TextOption1.requestFocus();
                                 binding.TextOption2.setError("This field is required.");
                                 binding.TextOption2.requestFocus();
                             }
                             else if(binding.TextOption1.getText().toString().length() > 25 || binding.TextOption2.getText().toString().length() > 25){
-                                Toast.makeText(AskQuestion.this, "Length of the answer is too long.", Toast.LENGTH_LONG).show();
-                                binding.TextOption1.setError("Answer is too long.");
-                                binding.TextOption1.requestFocus();
+                                Toast.makeText(barangayConsensus.this, "Length of the answer is too long.", Toast.LENGTH_LONG).show();
+                                binding.questionTitle.setError("Answer is too long.");
+                                binding.questionTitle.requestFocus();
                             }
                             else{
-                                new AlertDialog.Builder(AskQuestion.this)
+                                new AlertDialog.Builder(barangayConsensus.this)
                                         .setMessage("Are you sure you want to post this question?")
                                         .setCancelable(false)
                                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 if(firebaseUser == null){
-                                                    Toast.makeText(AskQuestion.this, "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(barangayConsensus.this, "Something went wrong! User details are not available at the moment.", Toast.LENGTH_LONG).show();
                                                 }
                                                 else{
                                                     addNewQuestion(snapshot);
@@ -220,7 +221,7 @@ public class AskQuestion extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        Toast.makeText(barangayConsensus.this, "Failed, please try again.", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -297,29 +298,21 @@ public class AskQuestion extends AppCompatActivity {
             questionMap.put("answer4", null);
         }
 
-        //anon or not
-        if(binding.AnonSwitch.isChecked()){
-            questionMap.put("anon",  binding.AnonSwitch.isChecked());
-            questionMap.put("name", null);
-        } else {
-            questionMap.put("anon",  binding.AnonSwitch.isChecked());
-            questionMap.put("name", firebaseUser.getDisplayName());
-            if(firebaseUser.getPhotoUrl() != null){
-                questionMap.put("image", firebaseUser.getPhotoUrl().toString());
+        //name and default image
+        questionMap.put("name", firebaseUser.getDisplayName());
+        questionMap.put("image", "https://firebasestorage.googleapis.com/v0/b/recom-e0d64.appspot.com/o/Barangay.svg.png?alt=media&token=4919230c-83ba-45b9-a2f5-3557c29395d1");
 
-            }
-        }
 
-        databaseReference = database.getReference("communityConsensus");
+        databaseReference = database.getReference("barangayConsensus");
         databaseReference.child("questions").push().setValue(questionMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(AskQuestion.this, "Question posted.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(barangayConsensus.this, "Question posted.", Toast.LENGTH_LONG).show();
                     finish();
                 }
                 else{
-                    Toast.makeText(AskQuestion.this, "Failed, please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(barangayConsensus.this, "Failed, please try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });

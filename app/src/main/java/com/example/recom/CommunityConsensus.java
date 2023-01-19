@@ -24,11 +24,13 @@ import java.util.HashMap;
 
 public class CommunityConsensus extends AppCompatActivity {
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference;
+    private DatabaseReference reference, reference1;
     private cConsensusAdapter myAdapter;
-    private RecyclerView queList;
+    private bConsensusAdapter myAdapter1;
+    private RecyclerView queList, brgyList;
     private ArrayList<cConsensus> list;
-    private ArrayList<String> pushKey;
+    private ArrayList<bConsensus> pList;
+    private ArrayList<String> pushKey, pushKey1;
     private ValueEventListener listener;
 
     @Override
@@ -36,21 +38,50 @@ public class CommunityConsensus extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community_consensus);
         Button btnAsk = (Button) findViewById(R.id.btnAsk);
+        Button brgySeeAllPoll = (Button) findViewById(R.id.SeeAll);
         Button communitySeeAllPoll = (Button) findViewById(R.id.SeeAll2);
         Button seeMyPoll = (Button) findViewById(R.id.btnPoll);
         ImageButton backBtn = (ImageButton) findViewById(R.id.backBtn);
 
         getSupportActionBar().hide();
+        //barangay consensus
+        reference1 = database.getReference("barangayConsensus").child("questions");
+        brgyList = findViewById(R.id.barangayPollList);
+        brgyList.setHasFixedSize(true);
+        brgyList.setLayoutManager(new LinearLayoutManager(this));
+        pList = new ArrayList<bConsensus>();
+        pushKey1 = new ArrayList<String>();
+        myAdapter1 = new bConsensusAdapter(this, pList, pushKey1);
+        listener = reference1.limitToFirst(3).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pList.clear();
+                pushKey1.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    brgyList.setAdapter(myAdapter1);
+                    bConsensus bconsensus = dataSnapshot.getValue(bConsensus.class);
+                    pList.add(bconsensus);
+                    pushKey1.add(dataSnapshot.getKey());
+                }
+                myAdapter1.notifyDataSetChanged();
+            }
 
-        queList = findViewById(R.id.questionList);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(CommunityConsensus.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //community consensus
         reference = database.getReference("communityConsensus").child("questions");
+        queList = findViewById(R.id.questionList);
         queList.setHasFixedSize(true);
         queList.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<cConsensus>();
         pushKey = new ArrayList<String>();
         myAdapter = new cConsensusAdapter(this, list, pushKey);
 
-        listener = reference.limitToFirst(3).addValueEventListener(new ValueEventListener() {
+        listener = reference.orderByChild("vote").limitToFirst(3).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
@@ -85,6 +116,15 @@ public class CommunityConsensus extends AppCompatActivity {
                 Intent seeMyPoll = new Intent(CommunityConsensus.this, MyPoll_cc.class);
                 seeMyPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(seeMyPoll);
+            }
+        });
+
+        brgySeeAllPoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bSeeAllPoll = new Intent(CommunityConsensus.this, bcAllPoll.class);
+                bSeeAllPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(bSeeAllPoll);
             }
         });
 

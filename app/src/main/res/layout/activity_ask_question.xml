@@ -34,7 +34,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:fontFamily="sans-serif-black"
-            android:text="Community Concensus"
+            android:text="Community Consensus"
             android:textColor="#FFFFFF"
             android:textSize="30dp" />
 
