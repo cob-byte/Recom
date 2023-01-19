@@ -15,7 +15,7 @@
         <item>Time</item>
         <item>Events</item>
     </string-array>
-    
+
     <!-- Detecting current location -->
     <string name="title_activity_nearby_places_of_current_location">NearbyPlacesOfCurrentLocation
     </string>

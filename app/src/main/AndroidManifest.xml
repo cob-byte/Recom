@@ -19,6 +19,13 @@
         android:theme="@style/Theme.Recom"
         tools:targetApi="31">
         <activity
+            android:name=".Add_Announcement"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".all_sched"
             android:exported="false">
             <meta-data
@@ -234,7 +241,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
     </application>
 
 </manifest>
