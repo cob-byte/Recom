@@ -136,6 +136,8 @@ public class ChangePicture extends AppCompatActivity {
                     }
                     else if(user.userRole == 1){
                         binding.textVerification.setText("Verified");
+                    } else if (user.userRole == 2) {
+                        binding.textVerification.setText("Barangay Official");
                     }
 
                     if(image_type.equals("displayImage")){
