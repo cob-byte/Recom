@@ -91,7 +91,7 @@ public class bcAllPoll extends AppCompatActivity {
             }
         });
 
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

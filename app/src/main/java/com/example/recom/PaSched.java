@@ -19,7 +19,7 @@ public class PaSched extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

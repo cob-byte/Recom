@@ -44,7 +44,7 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().hide();
         Intent intent = getIntent();
 
-        binding.btnBackSettings.setOnClickListener(new View.OnClickListener() {
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

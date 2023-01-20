@@ -33,7 +33,7 @@ public class Forgot_Activity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //button back
-        binding.btnBackForgot.setOnClickListener(new View.OnClickListener() {
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent back = new Intent(Forgot_Activity.this, SignIn.class);
