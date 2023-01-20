@@ -1,14 +1,641 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".About">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/top_rectangle">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/gilroy_bold"
+                android:layout_marginTop="5dp"
+                android:text="About"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/gilroy_bold"
+                android:text="Barangay 182"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView14"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/add_image" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ttnorms_bold"
+                android:gravity="center"
+                android:text="Chairman"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/cName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ttnorms_light"
+                android:gravity="center"
+                android:text="Jacob Barcelona"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/ttnorms_bold"
+                android:gravity="center"
+                android:text="Mga Kagawad"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic1"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:text="Kagawad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic2"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:text="Kagawad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic3"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:text="Kagawad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic4"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:text="Kagawad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic5"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:text="Kagawad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic6"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:text="Kagawad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic7"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:text="Kagawad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic8"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:gravity="center"
+                    android:text="Secretary"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/kname8.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:gravity="center"
+                    android:text="Jacob Barcelona"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/pic9"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/add_image" />
+
+                <TextView
+                    android:id="@+id/kname9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:text="Treasurer"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/kname9.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ttnorms_light"
+                    android:gravity="center"
+                    android:text="Jacob Barcelona"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/top2corners"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:gravity="center"
+                    android:text="DEVELOPERS"
+                    android:textColor="@color/white"
+                    android:textSize="40sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/gilroy_bold"
+                        android:text="of"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView34"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/gilroy_bold"
+                            android:text="ReCom"
+                            android:textColor="@color/white"
+                            android:textSize="28sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/pic10"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/add_image" />
+
+                        <TextView
+                            android:id="@+id/kname10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_bold"
+                            android:gravity="center"
+                            android:text="Lead Programmer, Debugger"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/kname10.1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:gravity="center"
+                            android:text="Jacob Barcelona"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/pic11"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/add_image" />
+
+
+                        <TextView
+                            android:id="@+id/kname11.1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_bold"
+                            android:gravity="center"
+                            android:text="Team Manager,"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/kname11.2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_bold"
+                            android:gravity="center"
+                            android:text="Lead Designer"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/kname11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:gravity="center"
+                            android:text="Jaymark Asis"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginStart="80dp"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/pic12"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/add_image" />
+
+                        <TextView
+                            android:id="@+id/kname12.1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_bold"
+                            android:gravity="center"
+                            android:text="Designer"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/kname12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:gravity="center"
+                            android:text="Shiena Candido"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/pic13"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/add_image" />
+
+                        <TextView
+                            android:id="@+id/kname13.1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_bold"
+                            android:gravity="center"
+                            android:text="Debugger"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/kname13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:gravity="center"
+                            android:text="Carlo Del Pilar"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginStart="50dp"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/pic14"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/add_image" />
+
+                        <TextView
+                            android:id="@+id/kname14.1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_bold"
+                            android:gravity="center"
+                            android:text="Assistant Programmer"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/kname14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:gravity="center"
+                            android:text="Marc Mariano"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

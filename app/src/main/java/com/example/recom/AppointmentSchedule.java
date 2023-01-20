@@ -22,6 +22,8 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -45,7 +47,9 @@ public class AppointmentSchedule extends AppCompatActivity {
     private long timestampDate;
     private final List<String> selectedItems = new ArrayList<>();
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private final DatabaseReference eventsRef = database.getReference("events");
+    private final DatabaseReference eventsRef = database.getReference("pendingSched");
+    private final FirebaseAuth firebaseProfile = FirebaseAuth.getInstance();
+    private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,7 +254,7 @@ public class AppointmentSchedule extends AppCompatActivity {
 
                             Event event = new Event(binding.EventName.getText().toString(), binding.EventDate.getText().toString(), binding.editStartTime.getText().toString(),
                                     binding.editEndTime.getText().toString(), binding.editTextDescription.getText().toString(),
-                                    chairsD, tablesD, tentsD, timestampDate, basketballCourtD, eventHallD);
+                                    chairsD, tablesD, tentsD, timestampDate, basketballCourtD, eventHallD, firebaseUser.getDisplayName());
                             eventsRef.child(eventId).setValue(event);
 
                             Toast.makeText(AppointmentSchedule.this, "Event Schedule has been sent, please wait for confirmation.", Toast.LENGTH_LONG).show();

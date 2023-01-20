@@ -1,7 +1,7 @@
 package com.example.recom;
 
 public class Event {
-    public String name, date, startTime, endTime, description;
+    public String name, date, startTime, endTime, description, borrowName;
     public int chairs, tables, tents;
     public long timestampDate;
     public boolean basketballCourt, eventHall;
@@ -9,7 +9,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, String date, String startTime, String endTime, String description, int chairs, int tables, int tents, long timestampDate, boolean basketballCourt, boolean eventHall) {
+    public Event(String name, String date, String startTime, String endTime, String description, int chairs, int tables, int tents, long timestampDate, boolean basketballCourt, boolean eventHall, String borrowName) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
@@ -21,6 +21,7 @@ public class Event {
         this.timestampDate = timestampDate;
         this.basketballCourt = basketballCourt;
         this.eventHall = eventHall;
+        this.borrowName = borrowName;
     }
 
     public String getName() {
@@ -110,4 +111,8 @@ public class Event {
     public void setEventHall(boolean eventHall) {
         this.eventHall = eventHall;
     }
+
+    public String getBorrowName() {return borrowName;}
+
+    public void setBorrowName(String borrowName) { this.borrowName = borrowName; }
 }

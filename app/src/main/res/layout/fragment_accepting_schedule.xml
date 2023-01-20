@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".acceptingSchedule">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:elevation="12dp"
+                android:orientation="vertical"
+                >
+
+                <Button
+                    android:id="@+id/btnReturn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#4E67EB"
+                    android:text="Back"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtEditProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/gilroy_bold"
+                android:text="Accept Schedule"
+                android:textAlignment="center"
+                android:textColor="#4E67EB"
+                android:textSize="55dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/blue"
+                android:layout_marginTop="30dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="30dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/borrowerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ttnorms_light"
+                        android:paddingStart="30dp"
+                        android:text="Borrower's Name"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textBname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/layout_text_place"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/facilityBasketball"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/facilityBasketballT"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:paddingStart="30dp"
+                            android:text="Facility/Property"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/facilityBasketballText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/layout_text_place"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/facilityEventHall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/facilityEventHallT"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:paddingStart="30dp"
+                            android:text="Facility/Property"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/facilityEventHallText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/layout_text_place"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/facilityChair"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/facilityChairT"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:paddingStart="30dp"
+                            android:text="Facility/Property"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/facilityChairText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/layout_text_place"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/facilityChairQ"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/ttnorms_light"
+                                android:paddingStart="20dp"
+                                android:text="Quantity"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/facilityChairQuantity"
+                                android:layout_width="175dp"
+                                android:layout_height="33dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@drawable/layout_text_place"
+                                android:paddingStart="20dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/facilityTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/facilityTableT"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:paddingStart="30dp"
+                            android:text="Facility/Property"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/facilityTableText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/layout_text_place"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/facilityTableQ"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/ttnorms_light"
+                                android:paddingStart="20dp"
+                                android:text="Quantity"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/facilityTableQuantity"
+                                android:layout_width="175dp"
+                                android:layout_height="33dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@drawable/layout_text_place"
+                                android:paddingStart="20dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/facilityTent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/facilityTentT"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:paddingStart="30dp"
+                            android:text="Facility/Property"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/facilityTentText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/layout_text_place"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/facilityTentQ"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/ttnorms_light"
+                                android:paddingStart="20dp"
+                                android:text="Quantity"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/facilityTentQuantity"
+                                android:layout_width="175dp"
+                                android:layout_height="33dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@drawable/layout_text_place"
+                                android:paddingStart="20dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/TextViewDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:paddingStart="30dp"
+                            android:text="Date"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/TextDate"
+                            android:layout_width="175dp"
+                            android:layout_height="33dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/layout_text_place"
+                            android:paddingStart="20dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/TextViewTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ttnorms_light"
+                            android:paddingStart="25dp"
+                            android:text="Time"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/TextTime"
+                            android:layout_width="175dp"
+                            android:layout_height="33dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/layout_text_place"
+                            android:paddingStart="20dp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="60dp">
+
+                <Button
+                    android:id="@+id/Decline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/pink"
+                    android:text="Decline" />
+
+                <Button
+                    android:id="@+id/Accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/blue_selected"
+                    android:text="Accept" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

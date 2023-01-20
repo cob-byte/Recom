@@ -151,9 +151,11 @@ public class Home extends Fragment {
                     menu1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent acceptSchedule = new Intent(requireActivity(), CommunityConsensus.class);
-                            acceptSchedule.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(acceptSchedule);
+                            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frame_layout, new acceptschedule());
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
                         }
                     });
 

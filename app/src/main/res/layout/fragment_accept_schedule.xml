@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".acceptschedule">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:elevation="12dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout5"
+                app:layout_constraintStart_toStartOf="@id/linearLayout5"
+                app:layout_constraintTop_toTopOf="@id/linearLayout5">
+
+                <Button
+                    android:id="@+id/btnReturn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#4E67EB"
+                    android:text="Back"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:text="Accept Schedule"
+                    android:textColor="@color/blue"
+                    android:textAlignment="center"
+                    android:textSize="50dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/scheduleList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+</ScrollView>
+
