@@ -3,7 +3,6 @@ package com.example.recom;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +24,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 public class Home extends Fragment {
     private ImageButton cc, ps, safe;
@@ -86,6 +82,8 @@ public class Home extends Fragment {
                 Intent pasched = new Intent(requireActivity(), PaSched.class);
                 pasched.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(pasched);
+                Intent loadingScreenIntent = new Intent(requireActivity(), LoadScreen.class);
+                startActivity(loadingScreenIntent);
             }
         });
 
@@ -96,6 +94,8 @@ public class Home extends Fragment {
                 Intent safe = new Intent(requireActivity(), SafeMe.class);
                 safe.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(safe);
+                Intent loadingScreenIntent = new Intent(requireActivity(), LoadScreen.class);
+                startActivity(loadingScreenIntent);
             }
         });
 
@@ -171,6 +171,8 @@ public class Home extends Fragment {
                 Intent consensus = new Intent(requireActivity(), CommunityConsensus.class);
                 consensus.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(consensus);
+                Intent loadingScreenIntent = new Intent(requireActivity(), LoadScreen.class);
+                startActivity(loadingScreenIntent);
             }
         });
 
