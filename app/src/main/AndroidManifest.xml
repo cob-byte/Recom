@@ -19,9 +19,11 @@
         android:theme="@style/Theme.Recom"
         tools:targetApi="31">
         <activity
+            android:name=".see_allannouncement"
+            android:exported="false" />
+        <activity
             android:name=".bcAllPoll"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -29,7 +31,6 @@
         <activity
             android:name=".brgyViewPoll"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -37,7 +38,6 @@
         <activity
             android:name=".barangayConsensus"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

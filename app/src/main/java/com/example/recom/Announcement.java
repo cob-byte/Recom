@@ -7,9 +7,9 @@ public class Announcement {
     }
 
     public Announcement(String typeTitle, String typeDescription, String typeImageDesc, String imageUri) {
-        TypeTitle = typeTitle;
-        TypeDescription = typeDescription;
-        TypeImageDesc = typeImageDesc;
+        this.TypeTitle = typeTitle;
+        this.TypeDescription = typeDescription;
+        this.TypeImageDesc = typeImageDesc;
         this.imageUri = imageUri;
     }
 

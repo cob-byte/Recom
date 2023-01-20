@@ -36,9 +36,6 @@ public class dashboard extends AppCompatActivity {
                 case R.id.home:
                     replaceFragment(new Home());
                     break;
-                case R.id.inbox:
-                    replaceFragment(new Inbox());
-                    break;
                 case R.id.about:
                     replaceFragment(new About());
                     break;

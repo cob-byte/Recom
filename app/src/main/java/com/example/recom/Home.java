@@ -1,11 +1,15 @@
 package com.example.recom;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,13 +34,14 @@ import java.util.TimeZone;
 
 public class Home extends Fragment {
     private ImageButton cc, ps, safe;
+    private TextView seemore;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference;
     private final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-    private final DatabaseReference eventsRef = database.getReference("events");
+    private final DatabaseReference eventsRef = database.getReference("Announcement");
     private ViewPager2 viewPager2;
-    private ArrayList<wList> pagerArrayList;
+    private ArrayList<Announcement> announcement;
     private FloatingActionButton menu1, menu2, menu3, menu4;
     private FloatingActionMenu menu;
 
@@ -44,75 +49,35 @@ public class Home extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        //delete past events
-        // Create a query to retrieve events whose date is in the past
-        //get current date
-        Calendar currentDatePH = Calendar.getInstance();
-        currentDatePH.setTimeZone(TimeZone.getTimeZone("Asia/Manila"));
-        currentDatePH.set(Calendar.HOUR_OF_DAY, 0);
-        currentDatePH.set(Calendar.MINUTE, 0);
-        currentDatePH.set(Calendar.SECOND, 0);
-        currentDatePH.set(Calendar.MILLISECOND, 0);
-        Query pastEventsQuery = eventsRef.orderByChild("date").endAt(currentDatePH.getTimeInMillis());
-
-        // Attach a listener to the query
-        pastEventsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot eventSnapshot : dataSnapshot.getChildren()) {
-                    // Get the event key
-                    String eventKey = eventSnapshot.getKey();
-
-                    // Delete the event from the database
-                    eventsRef.child(eventKey).setValue(null);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle error
-            }
-        });
-    }
-
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager2 = view.findViewById(R.id.view_pager2);
-
-        int[] images = {R.drawable.pasuyo,R.drawable.pasched,R.drawable.cc,R.drawable.safeme,R.drawable.tararecomlogo};
-        String[] heading = {"Jaymark","Grilled","Dessert","Italian","Shakes"};
-        String[] desc = {getString(R.string.a_desc),
-                getString(R.string.b_desc),
-                getString(R.string.c_desc),
-                getString(R.string.d_desc)
-                ,getString(R.string.e_desc)};
-
-        pagerArrayList = new ArrayList<>();
-
-        for (int i =0; i< images.length ; i++){
-
-            wList viewPagerItem = new wList(images[i],heading[i],desc[i]);
-            pagerArrayList.add(viewPagerItem);
-
-        }
-
-        viewPagerAdapter viewPagerAdapter = new viewPagerAdapter(pagerArrayList);
-
+        announcement = new ArrayList<>();
+        viewPagerAdapter viewPagerAdapter = new viewPagerAdapter(announcement);
         viewPager2.setAdapter(viewPagerAdapter);
+        eventsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                announcement.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    if(dataSnapshot != null) {
+                        Announcement announcement1 = dataSnapshot.getValue(Announcement.class);
+                        announcement.add(announcement1);
+                    }
+                }
+                viewPagerAdapter.setData(announcement);
+                viewPagerAdapter.notifyDataSetChanged();
+            }
 
-        viewPager2.setClipToPadding(false);
-
-        viewPager2.setClipChildren(false);
-
-        viewPager2.setOffscreenPageLimit(2);
-
-        viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(requireContext(), "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+            }
+        });
 
         ps = view.findViewById(R.id.paschedBtn);
         ps.setOnClickListener(new View.OnClickListener() {
@@ -204,6 +169,17 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent consensus = new Intent(requireActivity(), CommunityConsensus.class);
+                consensus.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(consensus);
+            }
+        });
+
+        seemore = view.findViewById(R.id.seeMore);
+
+        seemore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent consensus = new Intent(requireActivity(), see_allannouncement.class);
                 consensus.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(consensus);
             }

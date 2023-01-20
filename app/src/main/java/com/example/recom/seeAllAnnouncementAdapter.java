@@ -1,11 +1,10 @@
 package com.example.recom;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class viewPagerAdapter extends RecyclerView.Adapter<viewPagerAdapter.ViewHolder> {
+public class seeAllAnnouncementAdapter extends RecyclerView.Adapter<seeAllAnnouncementAdapter.ViewHolder> {
 
     ArrayList<Announcement> pagerArrayList;
 
@@ -23,7 +22,7 @@ public class viewPagerAdapter extends RecyclerView.Adapter<viewPagerAdapter.View
         notifyDataSetChanged();
     }
 
-    public viewPagerAdapter(ArrayList<Announcement> pagerArrayList){
+    public seeAllAnnouncementAdapter(ArrayList<Announcement> pagerArrayList){
         this.pagerArrayList = pagerArrayList;
     }
 
@@ -32,7 +31,7 @@ public class viewPagerAdapter extends RecyclerView.Adapter<viewPagerAdapter.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_welcome,parent,false);
+                .inflate(R.layout.see_allpolllayout,parent,false);
 
         return new ViewHolder(view);
     }

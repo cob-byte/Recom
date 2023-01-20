@@ -32,11 +32,11 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Add_Announcement extends AppCompatActivity {
     private ActivityAddAnnouncementBinding binding;
-    private final List<String> selectedItems = new ArrayList<>();
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final FirebaseAuth firebaseProfile = FirebaseAuth.getInstance();
     private final FirebaseUser firebaseUser = firebaseProfile.getCurrentUser();
@@ -74,38 +74,38 @@ public class Add_Announcement extends AppCompatActivity {
                     Toast.makeText(Add_Announcement.this, "Please select an image", Toast.LENGTH_SHORT).show();
 
                 } else {
-                String uri = String.valueOf(imageUri);
-                Announcement announcement = new Announcement(TypeTitle, TypeDescription, TypeImageDesc, uri);
+                    databaseReference = database.getReference("Announcement");
 
-                databaseReference = database.getReference("Announcement").child(firebaseUser.getUid());
-                databaseReference.push().setValue(announcement).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Upload image to Firebase Storage
-                        imageRef = FirebaseStorage.getInstance().getReference("Announcement").child(firebaseUser.getUid()).child(databaseReference.push().getKey());
-                        imageRef.putFile(imageUri)
-                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    // Upload image to Firebase Storage
+                    imageRef = FirebaseStorage.getInstance().getReference("Announcement").child(databaseReference.push().getKey());
+                    imageRef.putFile(imageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // Get download URL of image
+                                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        // Get download URL of image
-                                        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    public void onSuccess(Uri uri) {
+                                        String downloadUri = uri.toString();
+                                        Announcement announcement = new Announcement(TypeTitle, TypeDescription, TypeImageDesc, downloadUri);
+                                        // Save announcement to database with image URL
+                                        databaseReference.push().setValue(announcement).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
-                                            public void onSuccess(Uri uri) {
-                                                // Save announcement to database with image URL
+                                            public void onComplete(@NonNull Task<Void> task) {
                                                 Toast.makeText(Add_Announcement.this, "Announcement created successfully!", Toast.LENGTH_SHORT).show();
                                                 finish();
                                             }
                                         });
                                     }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(Add_Announcement.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
                                 });
-                        }
-                    });
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Add_Announcement.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 }
             }
         });
@@ -169,6 +169,13 @@ public class Add_Announcement extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
