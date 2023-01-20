@@ -2,18 +2,16 @@ package com.example.recom;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -28,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 
 public class Home extends Fragment {
@@ -173,7 +170,7 @@ public class Home extends Fragment {
                     menu3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent addAnnouncement = new Intent(requireActivity(), SafeMe.class);
+                            Intent addAnnouncement = new Intent(requireActivity(), Add_Announcement.class);
                             addAnnouncement.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(addAnnouncement);
                         }

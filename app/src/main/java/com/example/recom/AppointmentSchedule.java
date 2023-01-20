@@ -1,21 +1,19 @@
 package com.example.recom;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.recom.databinding.ActivityAppointmentScheduleBinding;
 import com.google.android.material.datepicker.CalendarConstraints;
@@ -27,18 +25,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.security.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.TimeZone;
 
 public class AppointmentSchedule extends AppCompatActivity {
@@ -292,7 +287,7 @@ public class AppointmentSchedule extends AppCompatActivity {
             isValid = false;
         }
 
-        // Check if date is not empty and is from today onwards
+        // Check if date is not empty and is from today onwards♦
         if (TextUtils.isEmpty(binding.EventDate.getText().toString())) {
             // If date is empty, set error message and set isValid to false
             binding.EventDate.setError("Event date is required");
