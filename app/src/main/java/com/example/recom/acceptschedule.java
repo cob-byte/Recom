@@ -64,7 +64,7 @@ public class acceptschedule extends Fragment {
             }
         });
 
-        binding.btnReturn.setOnClickListener(new View.OnClickListener() {
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getParentFragmentManager().popBackStack();

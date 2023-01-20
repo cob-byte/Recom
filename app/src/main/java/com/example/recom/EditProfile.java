@@ -123,7 +123,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
-        binding.btnReturn.setOnClickListener(new View.OnClickListener() {
+        binding.BackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

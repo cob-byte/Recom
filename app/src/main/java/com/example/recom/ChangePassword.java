@@ -91,7 +91,7 @@ public class ChangePassword extends AppCompatActivity {
             Toast.makeText(ChangePassword.this, "Something went wrong.", Toast.LENGTH_LONG).show();
         }
 
-        binding.btnBackChange.setOnClickListener(new View.OnClickListener() {
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

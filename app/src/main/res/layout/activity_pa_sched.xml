@@ -22,16 +22,18 @@
                 android:id="@+id/LayoutAbove"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@drawable/top_rectangle"
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/backBtn"
+                    android:id="@+id/Backbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    app:tint="@color/blue"
-                    app:srcCompat="@drawable/ic_baseline_arrow_back_34white" />
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_34white"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/PaSched"
@@ -41,7 +43,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-black"
                     android:text="PaSched"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/white"
                     android:textSize="30dp" />
             </LinearLayout>
 

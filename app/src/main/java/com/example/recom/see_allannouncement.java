@@ -60,7 +60,7 @@ public class see_allannouncement extends AppCompatActivity {
         });
 
 
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+        binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

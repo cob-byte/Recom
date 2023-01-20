@@ -23,6 +23,7 @@
                 android:id="@+id/LayoutAbove"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/top_rectangle"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -33,7 +34,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/ic_baseline_arrow_back_34white"
-                    app:tint="#03045E" />
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/CommunityConsensus"
@@ -43,7 +44,7 @@
                     android:layout_marginLeft="15dp"
                     android:fontFamily="sans-serif-black"
                     android:text="Community Consensus"
-                    android:textColor="#03045E"
+                    android:textColor="@color/white"
                     android:textSize="30dp" />
 
             </LinearLayout>
