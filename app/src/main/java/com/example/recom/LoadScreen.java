@@ -23,7 +23,7 @@ public class LoadScreen extends AppCompatActivity {
             vvload = (VideoView)findViewById(R.id.vv_load);
             String videoPath = new StringBuilder("android.resource://")
                     .append(getPackageName())
-                    .append("/raw/splash")
+                    .append("/raw/recom_load")
                     .toString();
             vvload.setVideoPath(videoPath);
 
