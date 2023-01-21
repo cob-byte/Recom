@@ -50,6 +50,16 @@ public class bConsensusAdapter extends RecyclerView.Adapter<bConsensusAdapter.Vi
                 context.startActivity(viewPoll);
             }
         });
+
+        holder.viewPoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewPoll = new Intent(context, brgyViewPoll.class);
+                viewPoll.putExtra("pushKey", pushKey.get(position));
+                viewPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(viewPoll);
+            }
+        });
     }
 
     @Override
