@@ -31,10 +31,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class Add_Announcement extends AppCompatActivity {
     private ActivityAddAnnouncementBinding binding;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -59,6 +55,8 @@ public class Add_Announcement extends AppCompatActivity {
                 String TypeTitle = binding.TypeTitle.getText().toString();
                 String TypeDescription = binding.TypeDescription.getText().toString();
                 String TypeImageDesc = binding.TypeImageDesc.getText().toString();
+                String PostedDate = binding.PostedDate.getText().toString();
+                String PostedTime = binding.PostedTime.getText().toString();
 
                 // Validate input values
                 if (TypeTitle.isEmpty()) {
@@ -164,6 +162,38 @@ public class Add_Announcement extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 binding.ShortImageDesc.setText(binding.TypeImageDesc.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.PostedTime.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.AnnTime.setText(binding.PostedTime.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.PostedDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.AnnDate.setText(binding.PostedDate.getText().toString());
             }
 
             @Override
