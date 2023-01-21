@@ -230,7 +230,7 @@ public class AppointmentSchedule extends AppCompatActivity {
             public void onClick(View view) {
                 if(isInputValid()){
                     new AlertDialog.Builder(AppointmentSchedule.this)
-                    .setMessage("Are you sure you want to post this question?")
+                    .setMessage("Are you sure you want to set this schedule?")
                     .setCancelable(false)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override

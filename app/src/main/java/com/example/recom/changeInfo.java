@@ -43,6 +43,8 @@ public class changeInfo extends AppCompatActivity {
         binding = ActivityChangeInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getSupportActionBar().hide();
+        
         //birthdate
         binding.editBirthdate.setOnClickListener(new View.OnClickListener() {
             @Override

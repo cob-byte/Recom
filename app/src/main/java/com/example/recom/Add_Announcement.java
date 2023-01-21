@@ -31,6 +31,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Add_Announcement extends AppCompatActivity {
     private ActivityAddAnnouncementBinding binding;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -55,8 +58,6 @@ public class Add_Announcement extends AppCompatActivity {
                 String TypeTitle = binding.TypeTitle.getText().toString();
                 String TypeDescription = binding.TypeDescription.getText().toString();
                 String TypeImageDesc = binding.TypeImageDesc.getText().toString();
-                String PostedDate = binding.PostedDate.getText().toString();
-                String PostedTime = binding.PostedTime.getText().toString();
 
                 // Validate input values
                 if (TypeTitle.isEmpty()) {
@@ -84,8 +85,12 @@ public class Add_Announcement extends AppCompatActivity {
                                 imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
+                                        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm MM/dd/yyyy");
+                                        Date date = new Date();
+                                        String currentDateTime = dateFormat.format(date);
+                                        String image = "https://firebasestorage.googleapis.com/v0/b/recom-e0d64.appspot.com/o/Barangay.svg.png?alt=media&token=4919230c-83ba-45b9-a2f5-3557c29395d1";
                                         String downloadUri = uri.toString();
-                                        Announcement announcement = new Announcement(TypeTitle, TypeDescription, TypeImageDesc, downloadUri);
+                                        Announcement announcement = new Announcement(TypeTitle, TypeDescription, TypeImageDesc, downloadUri, currentDateTime, firebaseUser.getDisplayName(), image);
                                         // Save announcement to database with image URL
                                         databaseReference.push().setValue(announcement).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -112,7 +117,7 @@ public class Add_Announcement extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ImagePicker.Builder with1 = ImagePicker.with(Add_Announcement.this);
-                with1.crop(20, 13);
+                with1.crop(20, 15);
                 with1.compress(1024); //Final image size will be less than 1 MB(Optional)
                 with1.maxResultSize(1080, 1080); //Final image resolution will be less than 1080 x 1080(Optional)
                 with1.createIntent(intent -> {
@@ -162,38 +167,6 @@ public class Add_Announcement extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 binding.ShortImageDesc.setText(binding.TypeImageDesc.getText().toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        binding.PostedTime.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                binding.AnnTime.setText(binding.PostedTime.getText().toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        binding.PostedDate.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                binding.AnnDate.setText(binding.PostedDate.getText().toString());
             }
 
             @Override

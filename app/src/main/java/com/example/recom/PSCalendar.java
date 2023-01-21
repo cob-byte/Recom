@@ -157,6 +157,14 @@ public class PSCalendar extends AppCompatActivity {
             }
         });
 
+        binding.goToSched.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent schedule = new Intent(PSCalendar.this, AppointmentSchedule.class);
+                schedule.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(schedule);
+            }
+        });
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

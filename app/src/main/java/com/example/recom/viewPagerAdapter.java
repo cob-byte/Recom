@@ -45,7 +45,7 @@ public class viewPagerAdapter extends RecyclerView.Adapter<viewPagerAdapter.View
         Picasso.get().load(announcement.getImageUri()).into(holder.imageView);
         holder.tcHeading.setText(announcement.getTypeTitle());
         holder.tvDesc.setText(announcement.getTypeDescription());
-
+        holder.timeDate.setText(announcement.getCurrentDateTime());
 
     }
 
@@ -57,7 +57,7 @@ public class viewPagerAdapter extends RecyclerView.Adapter<viewPagerAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-        TextView tcHeading, tvDesc;
+        TextView tcHeading, tvDesc, timeDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +65,7 @@ public class viewPagerAdapter extends RecyclerView.Adapter<viewPagerAdapter.View
             imageView = itemView.findViewById(R.id.ivimage);
             tcHeading = itemView.findViewById(R.id.tvHeading);
             tvDesc = itemView.findViewById(R.id.tvDesc);
+            timeDate = itemView.findViewById(R.id.AnnTime);
         }
     }
 }

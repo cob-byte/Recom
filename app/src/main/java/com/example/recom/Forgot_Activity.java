@@ -32,6 +32,8 @@ public class Forgot_Activity extends AppCompatActivity {
         binding = ActivityForgot2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getSupportActionBar().hide();
+
         //button back
         binding.Backbtn.setOnClickListener(new View.OnClickListener() {
             @Override

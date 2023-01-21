@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class seeAllAnnouncementAdapter extends RecyclerView.Adapter<seeAllAnnouncementAdapter.ViewHolder> {
 
     ArrayList<Announcement> pagerArrayList;
@@ -44,8 +46,10 @@ public class seeAllAnnouncementAdapter extends RecyclerView.Adapter<seeAllAnnoun
         Picasso.get().load(announcement.getImageUri()).into(holder.imageView);
         holder.tcHeading.setText(announcement.getTypeTitle());
         holder.tvDesc.setText(announcement.getTypeDescription());
-
-
+        holder.name.setText(announcement.getName());
+        holder.dateTime.setText(announcement.getCurrentDateTime());
+        holder.desc.setText(announcement.getTypeImageDesc());
+        Picasso.get().load(announcement.getImage()).into(holder.image);
     }
 
     @Override
@@ -54,9 +58,9 @@ public class seeAllAnnouncementAdapter extends RecyclerView.Adapter<seeAllAnnoun
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-
+        CircleImageView image;
         ImageView imageView;
-        TextView tcHeading, tvDesc;
+        TextView tcHeading, tvDesc, name, dateTime, desc;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +68,10 @@ public class seeAllAnnouncementAdapter extends RecyclerView.Adapter<seeAllAnnoun
             imageView = itemView.findViewById(R.id.ivimage);
             tcHeading = itemView.findViewById(R.id.tvHeading);
             tvDesc = itemView.findViewById(R.id.tvDesc);
+            name = itemView.findViewById(R.id.AnnAuthor);
+            image = itemView.findViewById(R.id.AnnAuthorProfile);
+            dateTime = itemView.findViewById(R.id.AnnTime);
+            desc = itemView.findViewById(R.id.imageDescription);
         }
     }
 }
