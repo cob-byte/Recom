@@ -141,7 +141,7 @@ public class PSCalendar extends AppCompatActivity {
                 startActivity(intent);
             }
             else{
-                Toast.makeText(PSCalendar.this, "Selected day is empty.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PSCalendar.this, "Selected day is available.", Toast.LENGTH_SHORT).show();
             }
         });
 
