@@ -114,7 +114,7 @@ public class bcAllPollAdapter extends RecyclerView.Adapter<bcAllPollAdapter.View
         holder.viewPoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent viewPoll = new Intent(context, Viewpoll.class);
+                Intent viewPoll = new Intent(context, brgyViewPoll.class);
                 viewPoll.putExtra("pushKey", pushKey.get(position));
                 viewPoll.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(viewPoll);
